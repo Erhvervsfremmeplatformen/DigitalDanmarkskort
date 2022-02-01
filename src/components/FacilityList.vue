@@ -41,7 +41,7 @@
 
 <script lang="ts">
 export default {
-  name: "FacilitieList",
+  name: "FacilityList",
   data: () => {
     return {
       items: [

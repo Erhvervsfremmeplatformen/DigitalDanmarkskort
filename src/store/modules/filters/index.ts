@@ -1,20 +1,21 @@
 import { ActionTree, GetterTree, Module, MutationTree } from 'vuex';
 import RootState from '@/store/types';
-import FiltersState from './types';
+import FilterState from './types';
 
-const state: FiltersState = {
+const state: FilterState = {
+    searchString: ''
 };
 
-const getters: GetterTree<FiltersState, RootState> = {
+const getters: GetterTree<FilterState, RootState> = {
 };
 
-const mutations: MutationTree<FiltersState> = {
+const mutations: MutationTree<FilterState> = {
 };
 
-const actions: ActionTree<FiltersState, RootState> = {
+const actions: ActionTree<FilterState, RootState> = {
 };
 
-export const filters: Module<FiltersState, RootState> = {
+export const filters: Module<FilterState, RootState> = {
     state,
     getters,
     mutations,

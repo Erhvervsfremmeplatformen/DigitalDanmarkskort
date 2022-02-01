@@ -9,25 +9,8 @@
       </div>
     </div>
 
-    <div v-for="item in items" class="card flex-none mb-4">
-      <div class="card-header d-flex align-items-center">
-        <span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span>
-        <h2 class="header-title">Eksempel på card-komponenten</h2>
-      </div>
-
-      <div class="card-action">
-        <div class="action-links d-flex align-items-center">
-          <i class="icon icon-open-in-new mr-4"></i>
-          <a href="/komponenter/cards/">Gå til komponent</a>
-        </div>
-      </div>
-
-      <div class="card-text">
-        <p><b>test</b></p>
-        <p><b>test</b></p>
-        <p><b>test</b></p>
-        <p><b>test</b></p>
-      </div>
+    <div class="card flex-none mb-4">
+      <Facility />
 
       <div class="card-footer card-action">
         <div class="action-links">
@@ -35,13 +18,14 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script lang="ts">
+import Facility from "@/components/Facility.vue";
 export default {
   name: "FacilityList",
+  components: {Facility},
   data: () => {
     return {
       items: [

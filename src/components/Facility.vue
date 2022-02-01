@@ -1,5 +1,23 @@
 <template>
+  <div class="h-full w-percent-100">
+    <div class="card-header d-flex align-items-center">
+      <span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span>
+      <h2 class="header-title">Eksempel på card-komponenten</h2>
+    </div>
 
+    <div class="card-action">
+      <div class="action-links d-flex align-items-center">
+        <i class="icon icon-open-in-new mr-4"></i>
+        <a href="/komponenter/cards/">Gå til komponent</a>
+      </div>
+    </div>
+
+    <div class="card-text">
+      <p><b>Udbydertype:</b></p>
+      <p><b>Kategori(er):</b></p>
+      <p><b>Område(r):</b></p>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

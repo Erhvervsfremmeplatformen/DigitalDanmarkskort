@@ -1,20 +1,20 @@
 <!-- The entry point for the sandkasse applikation. Direct and indirect imports of components and stylesheets in this class will be included in the final applikation -->
 <template>
-  <div class="applikation-container" style="background-color: gold;">
-    <div class="d-flex" style="background-color: red;">
-      <div class="grow d-flex flex-column" style="background-color: yellow;">
+  <div class="applikation-container bg-alternative">
+    <div class="d-flex">
+      <div class="grow d-flex flex-column">
         <h1>Overblik: Danske Test-, Demonstrations og Udviklingsfaciliteter</h1>
-        <div class="d-flex flex-column" style="background-color: royalblue;">
+        <div class="d-flex flex-column">
           <Header />
         </div>
         <div
             class="main-container">
-          <div class="d-flex flex-1 h-full" style="background-color: blueviolet;">
-            <Main />
-          </div>
-          <div class="d-md-flex flex-1 d-none position-relative overflow-auto">
-            <FacilityList />
-          </div>
+              <MediaQueryProvider :queries="{ mobile: '(max-width: 992px)' }">
+              <MatchMedia v-slot="{ mobile }">
+                <MobileLayout v-if="mobile" />
+                <DesktopLayout v-else />
+              </MatchMedia>
+              </MediaQueryProvider>
         </div>
         <div class="d-flex flex-column">
           <h4>Har du tilføjelser eller rettelser</h4>
@@ -33,16 +33,21 @@
 </template>
 
 <script lang="ts">
-import Main from './Main.vue';
+import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
 import FacilityList from './FacilityList.vue';
+import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
+import DesktopLayout from "@/components/DesktopLayout.vue";
 
 export default {
   name: 'Applikation',
   components: {
-    Main,
+    DesktopLayout,
+    MobileLayout,
     Header,
-    FacilityList
+    FacilityList,
+    MediaQueryProvider,
+    MatchMedia
   },
 };
 </script>
@@ -59,7 +64,7 @@ export default {
   min-height: 635px;
   max-height: 635px;
 
-  @media (min-width: map-get($grid-breakpoints, md)) {
+  @media (min-width: map-get($grid-breakpoints, lg)) {
     //height: 837px;
     min-height: 837px;
     max-height: 837px;

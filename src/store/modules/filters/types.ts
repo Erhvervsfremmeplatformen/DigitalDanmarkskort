@@ -1,2 +1,3 @@
-export default interface FiltersState {
+export default interface FilterState {
+    searchString: string;
 }

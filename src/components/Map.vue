@@ -1,6 +1,7 @@
 <template>
-  <div class="h-full">
+  <div class="h-full w-percent-100 position-relative">
     <div ref="map-root" class="w-percent-100 h-full" />
+      <FacilityDialog />
   </div>
 </template>
 
@@ -17,9 +18,11 @@ import { Geometry, Point } from "ol/geom";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import { createEmpty, extend, getWidth } from "ol/extent";
 import { fromLonLat } from "ol/proj";
+import FacilityDialog from "@/components/FacilityDialog.vue";
 
 export default Vue.extend({
   name: "Map",
+  components: {FacilityDialog},
   async mounted() {
     await this.initiateMap();
   },

@@ -1,12 +1,12 @@
 <template>
 <div class="w-percent-100 d-flex">
-  <div v-if="getTabIndex === 0" class="grow">
+  <div v-if="tabIndex === 0" class="grow">
     <Filters />
   </div>
-  <div v-if="getTabIndex === 1" class="grow w-percent-100">
+  <div v-if="tabIndex === 1" class="grow w-percent-100">
     <Map />
   </div>
-  <div v-if="getTabIndex === 2" class="grow">
+  <div v-if="tabIndex === 2" class="grow d-lg-none">
     <FacilityList />
   </div>
 </div>
@@ -20,7 +20,7 @@ import Filters from "./Filters.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default Vue.extend({
-  name: 'Main',
+  name: 'MobileLayout',
   components: {
     Map,
     FacilityList,

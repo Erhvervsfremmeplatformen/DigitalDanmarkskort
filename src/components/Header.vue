@@ -1,15 +1,12 @@
 <template>
   <div class="position-relative">
     <div class="py-4 d-flex justify-content-center align-items-center">
-      <button @click="setMainIndex(0)"
-          class="button button-unstyled button-small d-lg-none w-auto"
+      <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(0)"
       >
         <i class="d-lg-none icon icon-tune"></i>
       </button>
       <div class="form-group search m-0">
-        <label for="input-type-text-icon" class="sr-only"
-        >Søg efter indhold</label
-        >
+        <label for="input-type-text-icon" class="sr-only">Søg efter indhold</label>
         <input
             id="input-type-text-icon"
             class="form-input input-width-xs"
@@ -18,17 +15,13 @@
             type="search"
         />
         <button class="button button-search">
-          <i class="icon icon-search"></i>
+          <i class="icon icon-search" />
         </button>
       </div>
-      <button @click="setMainIndex(2)"
-          class="button button-unstyled button-small d-lg-none w-auto"
-      >
+      <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(2)">
         <i class="icon icon-menu"></i>
       </button>
-      <button @click="toggleShowFilter"
-          class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
-      >
+      <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center" @click="toggleShowFilter">
         <i v-if="show" class="icon icon-expand-more"></i>
         <i v-if="!show" class="icon icon-expand-less"></i>filter
       </button>

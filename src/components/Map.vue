@@ -1,28 +1,34 @@
 <template>
   <div class="h-full w-percent-100 position-relative">
     <div ref="map-root" class="w-percent-100 h-full" />
-      <FacilityDialog />
+      <FacilityDialog v-if="currentFacility" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import "ol/ol.css";
-import Feature from "ol/Feature";
-import Map from "ol/Map";
-import Overlay from "ol/Overlay";
-import View from "ol/View";
-import { Circle as CircleStyle, Fill, Stroke, Style, Text } from "ol/style";
-import { Cluster, OSM, Vector as VectorSource } from "ol/source";
-import { Geometry, Point } from "ol/geom";
-import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
-import { createEmpty, extend, getWidth } from "ol/extent";
-import { fromLonLat } from "ol/proj";
-import FacilityDialog from "@/components/FacilityDialog.vue";
+import Vue from 'vue';
+import 'ol/ol.css';
+import Feature from 'ol/Feature';
+import Map from 'ol/Map';
+import Overlay from 'ol/Overlay';
+import View from 'ol/View';
+import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
+import { Cluster, OSM, Vector as VectorSource } from 'ol/source';
+import { Geometry, Point } from 'ol/geom';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { createEmpty, extend, getWidth } from 'ol/extent';
+import { fromLonLat } from 'ol/proj';
+import FacilityDialog from '@/components/FacilityDialog.vue';
+import {mapGetters} from 'vuex';
 
 export default Vue.extend({
-  name: "Map",
+  name: 'Map',
   components: {FacilityDialog},
+  computed: {
+    ...mapGetters({
+      currentFacility: 'getCurrentFacility'
+    }),
+  },
   async mounted() {
     await this.initiateMap();
   },
@@ -169,7 +175,7 @@ export default Vue.extend({
       const map = new Map({
         // layers: [raster, clusters, clusterCircles],
         layers: [raster],
-        target: this.$refs["map-root"],
+        target: this.$refs['map-root'],
         view: new View({
           center: fromLonLat([9.501785, 56.26392]),
           zoom: 7,

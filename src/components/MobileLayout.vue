@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Map from "@/components/Map.vue";
-import FacilityList from "./FacilityList.vue";
-import Filters from "./Filters.vue";
-import { mapGetters, mapActions } from "vuex";
+import Vue from 'vue';
+import Map from '@/components/Map.vue';
+import FacilityList from './FacilityList.vue';
+import Filters from './Filters.vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default Vue.extend({
   name: 'MobileLayout',
@@ -26,14 +26,9 @@ export default Vue.extend({
     FacilityList,
     Filters
   },
-  // data: () => {
-  //   return {
-  //     tabValue: 1
-  //   }
-  // }
   computed: {
     ...mapGetters({
-      tabIndex: "getMainTabIndex"
+      tabIndex: 'getMainTabIndex'
     }),
     getTabIndex(): number {
       return this.tabIndex();

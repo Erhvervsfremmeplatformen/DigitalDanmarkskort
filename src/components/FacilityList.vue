@@ -14,7 +14,7 @@
 
       <div class="card-footer card-action">
         <div class="action-links">
-          <button class="button button-secondary">Sekundærknap</button>
+          <button class="button button-primary">Se mere</button>
         </div>
       </div>
     </div>
@@ -22,12 +22,11 @@
 </template>
 
 <script lang="ts">
-import Facility from "@/components/Facility.vue";
+import Facility from '@/components/Facility.vue';
 export default {
-  name: "FacilityList",
+  name: 'FacilityList',
   components: {Facility},
-  data: () => {
-    return {
+  data: () => ({
       items: [
         {message: 'Foo'},
         {message: 'Foo'},
@@ -39,9 +38,8 @@ export default {
         {message: 'Foo'},
         {message: 'Bar'}
       ]
-    }
-  }
-}
+    })
+};
 </script>
 
 <style scoped>

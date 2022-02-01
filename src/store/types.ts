@@ -1,5 +1,4 @@
 export default interface RootState {
-
 }
 
 export interface Facility {
@@ -14,7 +13,6 @@ export interface Facility {
     categories: ListItem[];
     areaTypes: ListItem[];
     serviceTypes: ListItem[];
-    
 }
 
 export interface ListItem {

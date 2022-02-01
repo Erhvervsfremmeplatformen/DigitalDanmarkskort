@@ -8,7 +8,7 @@
     <div class="card-action">
       <div class="action-links d-flex align-items-center">
         <i class="icon icon-open-in-new mr-4"></i>
-        <a href="/komponenter/cards/">Gå til komponent</a>
+        <a href="/komponenter/cards/">Besøg website</a>
       </div>
     </div>
 
@@ -17,13 +17,33 @@
       <p><b>Kategori(er):</b></p>
       <p><b>Område(r):</b></p>
     </div>
+
+    <div v-if="showMore" class="card-text">
+      <p><b>Service:</b></p>
+      <p><b>Beskrivelse:</b></p>
+    </div>
+
+    <div v-if="showMore" class="card-action">
+      <div class="action-links d-flex align-items-center">
+        <i class="icon icon-location-on mr-4"></i>
+        <a href="/komponenter/cards/">Besøg website</a>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script lang="ts">
 export default {
-  name: "Facility"
-}
+  name: 'Facility',
+  props: {
+    showMore: {
+      type: Boolean,
+      default: false
+    }
+  }
+
+};
 </script>
 
 <style scoped>

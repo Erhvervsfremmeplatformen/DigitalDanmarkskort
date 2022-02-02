@@ -35,9 +35,9 @@
 <script lang="ts">
 import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
-import FacilityList from './FacilityList.vue';
 import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 import DesktopLayout from "@/components/DesktopLayout.vue";
+import {mapActions} from "vuex";
 
 export default {
   name: 'Applikation',
@@ -45,10 +45,15 @@ export default {
     DesktopLayout,
     MobileLayout,
     Header,
-    FacilityList,
     MediaQueryProvider,
     MatchMedia
   },
+  computed: {
+    ...mapActions(['getFacilities']),
+  },
+  async mounted() {
+    await this.getFacilities;
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -59,6 +64,7 @@ export default {
   flex-direction: row;
   flex: 1;
   position: relative;
+  overflow: auto;
 
   //height: 635px;
   min-height: 635px;

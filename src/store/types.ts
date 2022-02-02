@@ -2,7 +2,7 @@ export default interface RootState {
 }
 
 export interface Facility {
-    uid: string;
+    uId: string;
     name: string;
     organisation: string;
     address: string;
@@ -13,6 +13,10 @@ export interface Facility {
     categories: ListItem[];
     areaTypes: ListItem[];
     serviceTypes: ListItem[];
+    longitude?: string;
+    latitude?: string;
+    www?: string;
+    isVirtual?: boolean;
 }
 
 export interface ListItem {

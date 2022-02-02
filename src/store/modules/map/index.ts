@@ -8,7 +8,7 @@ const state: MapState = {
 };
 
 export enum MapMutations {
-    SET_CURRENTFACILITY = 'SET_MAINTABINDEX'
+    SET_CURRENTFACILITY = 'SET_CURRENTFACILITY'
 };
 
 

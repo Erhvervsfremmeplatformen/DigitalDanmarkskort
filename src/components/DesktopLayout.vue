@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex h-full w-percent-100">
-    <div class="d-flex flex-1 h-full" style="background-color: blueviolet;">
+    <div class="d-flex flex-1 h-full">
       <Map />
     </div>
     <div class="flex-1 position-relative overflow-auto">

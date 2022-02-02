@@ -20,161 +20,140 @@ import { createEmpty, extend, getWidth } from 'ol/extent';
 import { fromLonLat } from 'ol/proj';
 import FacilityDialog from '@/components/FacilityDialog.vue';
 import {mapGetters} from 'vuex';
+import {Facility} from '@/store/types';
+import RenderFeature from 'ol/render/Feature';
+
+type MapData  = {
+  source: VectorSource<Geometry>;
+}
 
 export default Vue.extend({
   name: 'Map',
   components: {FacilityDialog},
   computed: {
     ...mapGetters({
-      currentFacility: 'getCurrentFacility'
+      currentFacility: 'getCurrentFacility',
+      filteredFacilities: 'getFilteredFacilities'
     }),
   },
+  data: (): MapData => ({
+    source: new VectorSource<Geometry>({ features: [] }),
+  }),
+  watch: {
+    filteredFacilities() {
+      const facilities: Facility[] = this.filteredFacilities;
+      const facilityCount = facilities.length;
+      const features = new Array<Feature<Geometry>>();
+
+      for(let i = 0; i < facilityCount; i++) {
+        const facility = facilities[i];
+        if (!facility.longitude || !facility.latitude)
+        {
+          continue;
+        }
+
+        const feature = new Feature(new Point(fromLonLat([Number(facility.longitude), Number(facility.latitude)])));
+        feature.setProperties({
+          isVirtual: facility.isVirtual ?? false,
+          facilityId: facility.uId
+        });
+        features.push(feature);
+      }
+      this.source.clear();
+      this.source.addFeatures(features);
+    }
+  },
   async mounted() {
-    await this.initiateMap();
+    this.initiateMap();
   },
   methods: {
     initiateMap() {
-    //   const count = 2000;
-    //   const features = new Array(count);
-    //   const e = 4500000;
-    //   for (let i = 0; i < count; ++i) {
-    //     const coordinates = [
-    //       2 * e * Math.random() - e,
-    //       2 * e * Math.random() - e,
-    //     ];
-    //     features[i] = new Feature(new Point(coordinates));
-    //   }
-    //
-    //   const source = new VectorSource({
-    //     features: features,
-    //   });
-    //
-    //   const circleDistanceMultiplier = 1;
-    //   const circleFootSeparation = 28;
-    //   const circleStartAngle = Math.PI / 2;
-    //
-    //   const outerCircleFill = new Fill({
-    //     color: "rgba(255,102,102,0.3)",
-    //   });
-    //   const innerCircleFill = new Fill({
-    //     color: "rgba(255,0,0,0.7)",
-    //   });
-    //   const textFill = new Fill({
-    //     color: "#fff",
-    //   });
-    //   const textStroke = new Stroke({
-    //     color: "rgba(0, 0, 0, 0.6)",
-    //     width: 1,
-    //   });
-    //   const innerCircle = new CircleStyle({
-    //     radius: 14,
-    //     fill: innerCircleFill,
-    //   });
-    //   const outerCircle = new CircleStyle({
-    //     radius: 20,
-    //     fill: outerCircleFill,
-    //   });
-    //
-    //
-    //   let clickFeature: any, clickResolution: any;
-    //   /**
-    //    * Style for clusters with features that are too close to each other, activated on click.
-    //    * @param {Feature} cluster A cluster with overlapping members.
-    //    * @param {number} resolution The current view resolution.
-    //    * @return {Style} A style to render an expanded view of the cluster members.
-    //    */
-    //   function clusterCircleStyle(
-    //       cluster: Feature<any>,
-    //       resolution: number
-    //   ): Array<Array<number>> | void {
-    //     if (cluster !== clickFeature || resolution !== clickResolution) {
-    //       return;
-    //     }
-    //     const clusterMembers = cluster.get("features");
-    //     return generatePointsCircle(
-    //         clusterMembers.length,
-    //         cluster.getGeometry().getCoordinates(),
-    //         resolution
-    //     );
-    //   }
-    //
-    //   /**
-    //    * From
-    //    * https://github.com/Leaflet/Leaflet.markercluster/blob/31360f2/src/MarkerCluster.Spiderfier.js#L55-L72
-    //    * Arranges points in a circle around the cluster center, with a line pointing from the center to
-    //    * each point.
-    //    * @param {number} count Number of cluster members.
-    //    * @param {Array<number>} clusterCenter Center coordinate of the cluster.
-    //    * @param {number} resolution Current view resolution.
-    //    * @return {Array<Array<number>>} An array of coordinates representing the cluster members.
-    //    */
-    //   function generatePointsCircle(
-    //       count: number,
-    //       clusterCenter: Array<number>,
-    //       resolution: number
-    //   ): Array<Array<number>> {
-    //     const circumference =
-    //         circleDistanceMultiplier * circleFootSeparation * (2 + count);
-    //     let legLength = circumference / (Math.PI * 2); //radius from circumference
-    //     const angleStep = (Math.PI * 2) / count;
-    //     const res = [];
-    //     let angle;
-    //
-    //     legLength = Math.max(legLength, 35) * resolution; // Minimum distance to get outside the cluster icon.
-    //
-    //     for (let i = 0; i < count; ++i) {
-    //       // Clockwise, like spiral.
-    //       angle = circleStartAngle + i * angleStep;
-    //       res.push([
-    //         clusterCenter[0] + legLength * Math.cos(angle),
-    //         clusterCenter[1] + legLength * Math.sin(angle),
-    //       ]);
-    //     }
-    //
-    //     return res;
-    //   }
-    //
-    //   function clusterStyle(feature: Feature<any>): Style[] {
-    //     const size = feature.get("features").length;
-    //     return [
-    //       new Style({
-    //         image: outerCircle,
-    //       }),
-    //       new Style({
-    //         image: innerCircle,
-    //         text: new Text({
-    //           text: size.toString(),
-    //           fill: textFill,
-    //           stroke: textStroke,
-    //         }),
-    //       }),
-    //     ];
-    //   }
-    //
-    //   const clusterSource = new Cluster({
-    //     distance: 35,
-    //     source: source,
-    //   });
-    //
-    //   // Layer displaying the clusters and individual features.
-    //   const clusters = new VectorLayer({
-    //     source: clusterSource,
-    //     style: clusterStyle,
-    //   });
-    //
-    //   // Layer displaying the expanded view of overlapping cluster members.
-    //   const clusterCircles = new VectorLayer({
-    //     source: clusterSource,
-    //     style: clusterCircleStyle,
-    //   });
-    //
+      // const source = new VectorSource({
+      //   features: this.features,
+      // });
+      // this.source = source;
+      const source = this.source;
+
+      const outerCircleFill = new Fill({
+        color: 'rgba(255,102,102,0.3)',
+      });
+      const innerCircleFill = new Fill({
+        color: 'rgba(255,0,0,0.7)',
+      });
+      const textFill = new Fill({
+        color: '#fff',
+      });
+      const textStroke = new Stroke({
+        color: 'rgba(0, 0, 0, 0.6)',
+        width: 1,
+      });
+      const innerCircle = new CircleStyle({
+        radius: 14,
+        fill: innerCircleFill,
+      });
+      const outerCircle = new CircleStyle({
+        radius: 20,
+        fill: outerCircleFill,
+      });
+      const virtualMarker = new CircleStyle({
+        radius: 10,
+        fill: new Fill({
+          color: 'rgba(0,0,255,1)'
+        })
+      });
+
+      const physicalMarker = new CircleStyle({
+        radius: 10,
+        fill: new Fill({
+          color: 'rgba(255,0,0,1)'
+        })
+      });
+
+      function clusterStyle(feature: Feature<Geometry> | RenderFeature, resolution: number): (void | Style | Style[]) {
+        const size = feature.get('features').length;
+
+        if(size === 1) {
+          const featureFacility = feature.get('features')[0];
+          const isVirtual = featureFacility.get('isVirtual');
+
+          return new Style({
+            image: isVirtual ? virtualMarker : physicalMarker
+          });
+        }
+
+        return [
+          new Style({
+            image: outerCircle,
+          }),
+          new Style({
+            image: innerCircle,
+            text: new Text({
+              text: size.toString(),
+              fill: textFill,
+              stroke: textStroke,
+            }),
+          }),
+        ];
+      }
+
+      const clusterSource = new Cluster({
+        distance: 35,
+        source: source,
+      });
+
+      // Layer displaying the clusters and individual features.
+      const clusters = new VectorLayer({
+        source: clusterSource,
+        style: clusterStyle,
+      });
+
       const raster = new TileLayer({
         source: new OSM(),
       });
 
       const map = new Map({
-        // layers: [raster, clusters, clusterCircles],
-        layers: [raster],
+         layers: [raster, clusters],
+        // layers: [raster],
         target: this.$refs['map-root'],
         view: new View({
           center: fromLonLat([9.501785, 56.26392]),
@@ -183,37 +162,39 @@ export default Vue.extend({
           showFullExtent: true,
         }),
       });
-    //
-    //   map.on("click", (event) => {
-    //     clusters.getFeatures(event.pixel).then((features) => {
-    //       if (features.length > 0) {
-    //         const clusterMembers = features[0].get("features");
-    //         const view = map.getView();
-    //         if (clusterMembers.length > 1) {
-    //           // Calculate the extent of the cluster members.
-    //           const extent = createEmpty();
-    //           clusterMembers.forEach((feature: Feature<any>) =>
-    //               extend(extent, feature.getGeometry().getExtent())
-    //           );
-    //           const resolution = map.getView().getResolution();
-    //           if (
-    //               view.getZoom() === view.getMaxZoom() ||
-    //               (resolution &&
-    //                   getWidth(extent) < resolution &&
-    //                   getWidth(extent) < resolution)
-    //           ) {
-    //             // Show an expanded view of the cluster members.
-    //             clickFeature = features[0];
-    //             clickResolution = resolution;
-    //             clusterCircles.setStyle(clusterCircleStyle);
-    //           } else {
-    //             // Zoom to the extent of the cluster members.
-    //             view.fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
-    //           }
-    //         }
-    //       }
-    //     });
-    //   });
+
+      map.on("click", (event) => {
+        clusters.getFeatures(event.pixel).then((features) => {
+          console.log(features)
+          if (features.length > 0) {
+            const clusterMembers = features[0].get("features");
+            const view = map.getView();
+            if (clusterMembers.length > 1) {
+              // Calculate the extent of the cluster members.
+              const extent = createEmpty();
+              clusterMembers.forEach((feature: Feature<any>) =>
+                  extend(extent, feature.getGeometry().getExtent())
+              );
+              const resolution = map.getView().getResolution();
+              if (
+                  view.getZoom() === view.getMaxZoom() ||
+                  (resolution &&
+                      getWidth(extent) < resolution &&
+                      getWidth(extent) < resolution)
+              ) {
+                // Show an expanded view of the cluster members.
+                // clickFeature = features[0];
+                // clickResolution = resolution;
+                // clusterCircles.setStyle(clusterCircleStyle);
+                console.log('some clicky bait')
+              } else {
+                // Zoom to the extent of the cluster members.
+                view.fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
+              }
+            }
+          }
+        });
+      });
     },
   },
 });

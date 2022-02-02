@@ -28,7 +28,7 @@
         <i v-if="!show" class="icon icon-expand-less"></i>filter
       </button>
     </div>
-    <div v-if="show" class="position-absolute z-10 bg-alternative p-4 w-percent-100 d-none d-lg-flex">
+    <div v-if="show" class="position-absolute z-10 bg-alternative w-percent-100 d-none d-lg-flex">
       <Filters />
     </div>
   </div>

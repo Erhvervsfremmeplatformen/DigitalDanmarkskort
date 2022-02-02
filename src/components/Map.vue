@@ -186,11 +186,13 @@ export default Vue.extend({
                 // clickFeature = features[0];
                 // clickResolution = resolution;
                 // clusterCircles.setStyle(clusterCircleStyle);
-                console.log('some clicky bait')
               } else {
                 // Zoom to the extent of the cluster members.
                 view.fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
               }
+            }
+            else {
+
             }
           }
         });

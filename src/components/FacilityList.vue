@@ -8,7 +8,9 @@
         <span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span> Fysisk facilitet
       </div>
     </div>
-
+    <div class="h-full d-flex flex-column justify-content-center" v-if="facilities.length === 0">
+      <b>Ingen faciliteter fundet</b>
+    </div>
     <div v-for="facility in facilities" :key="facility.uId" class="card flex-none mb-4">
       <Facility v-bind:facility="facility" />
 

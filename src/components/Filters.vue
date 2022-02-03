@@ -6,18 +6,24 @@
           Område(r)
         </label>
       <multiselect
-          v-model="value"
+          :value="stateAreaTypes"
           select-label=""
           tag-placeholder=""
           deselect-label=""
           selected-label=""
           placeholder=""
-          label="name"
-          track-by="code"
-          :options="options"
+          label="text"
+          track-by="value"
+          :options="areaTypes.options"
           :multiple="true"
           :taggable="true"
-          @tag="addTag">
+          :preselect-first="false"
+          @input="setAreaTypes">
+        <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+        </template>
       </multiselect>
       </div>
       <div class="flex-1 m-4">
@@ -25,18 +31,24 @@
           Service
         </label>
         <multiselect
-            v-model="value"
+            :value="stateServiceTypes"
             select-label=""
             tag-placeholder=""
             deselect-label=""
             selected-label=""
             placeholder=""
-            label="name"
-            track-by="code"
-            :options="options"
+            label="text"
+            track-by="value"
+            :options="serviceTypes.options"
             :multiple="true"
             :taggable="true"
-            @tag="addTag">
+            :preselect-first="false"
+            @input="setServiceTypes">
+          <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+          </template>
         </multiselect>
       </div>
     </div>
@@ -46,18 +58,24 @@
           Kategori(er)
         </label>
         <multiselect
-            v-model="value"
+            :value="stateCategories"
             select-label=""
             tag-placeholder=""
             deselect-label=""
             selected-label=""
             placeholder=""
-            label="name"
-            track-by="code"
-            :options="options"
+            label="text"
+            track-by="value"
+            :options="categories.options"
             :multiple="true"
             :taggable="true"
-            @tag="addTag">
+            :preselect-first="false"
+            @input="setCategories">
+          <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+          </template>
         </multiselect>
       </div>
       <div class="flex-1 m-4">
@@ -65,18 +83,24 @@
           Udbydertype
         </label>
         <multiselect
-            v-model="value"
+            :value="stateProviderTypes"
             select-label=""
             tag-placeholder=""
             deselect-label=""
             selected-label=""
             placeholder=""
-            label="name"
-            track-by="code"
-            :options="options"
+            label="text"
+            track-by="value"
+            :options="providerTypes.options"
             :multiple="true"
             :taggable="true"
-            @tag="addTag">
+            :preselect-first="false"
+            @input="setProviderTypes">
+          <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+          </template>
         </multiselect>
       </div>
     </div>
@@ -84,35 +108,49 @@
 </template>
 
 <script lang="ts">
-import Facility from '@/components/Facility.vue';
 import Multiselect from 'vue-multiselect';
-
+import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '@/store/types';
+import {mapActions, mapGetters} from "vuex";
 export default {
   name: 'Filters',
   components: {
     Multiselect
   },
   data() {
+    const providerTypes = Object.keys(ProviderTypes)
+        .map((x: string): ListItem => ({ text: ProviderTypes[Number(x)], value: x }));
+    const categories = Object.keys(Categories)
+        .map((x: string): ListItem => ({ text: Categories[Number(x)], value: x }));
+    const areaTypes = Object.keys(AreaTypes)
+        .map((x: string): ListItem => ({ text: AreaTypes[Number(x)], value: x }));
+    const serviceTypes = Object.keys(ServiceTypes)
+        .map((x: string): ListItem => ({ text: ServiceTypes[Number(x)], value: x }));
+
     return {
-      value: [
-        { name: 'Javascript', code: 'js' }
-      ],
-      options: [
-        { name: 'Vue.js', code: 'vu' },
-        { name: 'Javascript', code: 'js' },
-        { name: 'Open Source', code: 'os' }
-      ]
-    };
+      categories: {
+        options: categories
+      },
+      providerTypes: {
+        options: providerTypes,
+      },
+      areaTypes: {
+        options: areaTypes,
+      },
+      serviceTypes: {
+        options: serviceTypes,
+      }
+    }
+  },
+  computed:{
+    ...mapGetters({
+      stateProviderTypes: 'getProviderTypes',
+      stateAreaTypes: 'getAreaTypes',
+      stateCategories: 'getCategories',
+      stateServiceTypes: 'getServiceTypes',
+    })
   },
   methods: {
-    addTag(newTag: any) {
-      const tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
-      };
-      this.options.push(tag);
-      this.value.push(tag);
-    }
+    ...mapActions(["setProviderTypes", "setCategories", "setAreaTypes", "setServiceTypes"])
   }
 };
 </script>
@@ -153,5 +191,20 @@ export default {
 }
 #filter-multiselect .multiselect__tag-icon:after {
 color: ghostwhite;
+}
+
+#filter-multiselect .multiselect__option--selected.multiselect__option--highlight {
+  background-color: transparent;
+  color: black;
+}
+
+#filter-multiselect .multiselect__option--highlight {
+  background-color: blue;
+}
+
+.multiselect__tag{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

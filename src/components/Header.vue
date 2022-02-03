@@ -4,11 +4,11 @@
       <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(0)">
         <i class="d-lg-none icon icon-tune"></i>
       </button>
-      <div class="form-group search m-0">
+      <div class="form-group search m-0 mx-4">
         <label for="searchString" class="sr-only">Søg efter indhold</label>
         <input
             id="searchString"
-            class="form-input input-width-xs"
+            class="form-input searchInput"
             name="searchString"
             title="Search"
             type="search"
@@ -20,7 +20,8 @@
       </div>
 
       <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(2)">
-        <i class="icon icon-menu"></i>
+        <i v-if="tabIndex === 0 || tabIndex === 1" class="icon icon-menu"></i>
+        <i v-if="tabIndex === 2" class="icon icon-map"></i>
       </button>
       <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
               @click="toggleShowFilter">
@@ -45,7 +46,8 @@ export default {
   name: 'Header',
   data: () => ({
     searchString: '',
-    show: false
+    show: false,
+    debounce: undefined
   }),
   components: {
     Filters
@@ -58,11 +60,14 @@ export default {
   watch: {
     // whenever question changes, this function will run
     searchString: function(search: string) {
-      this.SET_SEARCHSTRING(search)
+      if (this.debounce) {
+        clearTimeout(this.debounce);
+      }
+      this.debounce = setTimeout(() => this.setSearchString(search), 300);
     }
   },
   methods: {
-    ...mapMutations([FiltersMutations.SET_SEARCHSTRING]),
+    ...mapActions(['setSearchString']),
     ...mapActions(['setMainTabIndex']),
     setMainIndex(index: number) {
       if(this.tabIndex === index) {
@@ -79,5 +84,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .searchInput {
+    width: 40rem;
+  }
 </style>

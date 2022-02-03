@@ -19,7 +19,7 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { createEmpty, extend, getWidth } from 'ol/extent';
 import { fromLonLat } from 'ol/proj';
 import FacilityDialog from '@/components/FacilityDialog.vue';
-import {mapGetters} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import {Facility} from '@/store/types';
 import RenderFeature from 'ol/render/Feature';
 
@@ -67,6 +67,10 @@ export default Vue.extend({
     this.initiateMap();
   },
   methods: {
+    ...mapActions([
+        'getFacility',
+        'setCurrentFacility'
+    ]),
     initiateMap() {
       // const source = new VectorSource({
       //   features: this.features,
@@ -164,7 +168,7 @@ export default Vue.extend({
       });
 
       map.on("click", (event) => {
-        clusters.getFeatures(event.pixel).then((features) => {
+        clusters.getFeatures(event.pixel).then(async (features) => {
           console.log(features)
           if (features.length > 0) {
             const clusterMembers = features[0].get("features");
@@ -191,8 +195,12 @@ export default Vue.extend({
                 view.fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
               }
             }
-            else {
+            else if (clusterMembers.length === 1) {
+              const feature = clusterMembers[0];
+              const facilityId = feature.get('facilityId');
 
+              const facility = await this.getFacility(facilityId);
+              await this.setCurrentFacility(facility);
             }
           }
         });

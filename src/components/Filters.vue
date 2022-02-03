@@ -30,6 +30,11 @@
         <label>
           Service
         </label>
+        <button class="js-tooltip button-unstyled"
+                data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">
+          <i class="icon icon-help" />
+          <span id="Tooltip-ID" class="sr-only">Hvad betyder det?</span>
+        </button>
         <multiselect
             :value="stateServiceTypes"
             select-label=""
@@ -111,6 +116,7 @@
 import Multiselect from 'vue-multiselect';
 import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '@/store/types';
 import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: 'Filters',
   components: {
@@ -200,11 +206,5 @@ color: ghostwhite;
 
 #filter-multiselect .multiselect__option--highlight {
   background-color: blue;
-}
-
-.multiselect__tag{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 </style>

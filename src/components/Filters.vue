@@ -1,16 +1,210 @@
 <template>
-  <div>
-    TODO: Filters
+  <div id="filter-multiselect" class="d-flex flex-1 flex-column flex-lg-row">
+    <div class="flex-1 d-flex flex-column">
+      <div class="flex-1 m-4">
+        <label>
+          Område(r)
+        </label>
+      <multiselect
+          :value="stateAreaTypes"
+          select-label=""
+          tag-placeholder=""
+          deselect-label=""
+          selected-label=""
+          placeholder=""
+          label="text"
+          track-by="value"
+          :options="areaTypes.options"
+          :multiple="true"
+          :taggable="true"
+          :preselect-first="false"
+          @input="setAreaTypes">
+        <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+        </template>
+      </multiselect>
+      </div>
+      <div class="flex-1 m-4">
+        <label>
+          Service
+        </label>
+        <button class="js-tooltip button-unstyled"
+                data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">
+          <i class="icon icon-help" />
+          <span id="Tooltip-ID" class="sr-only">Hvad betyder det?</span>
+        </button>
+        <multiselect
+            :value="stateServiceTypes"
+            select-label=""
+            tag-placeholder=""
+            deselect-label=""
+            selected-label=""
+            placeholder=""
+            label="text"
+            track-by="value"
+            :options="serviceTypes.options"
+            :multiple="true"
+            :taggable="true"
+            :preselect-first="false"
+            @input="setServiceTypes">
+          <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+          </template>
+        </multiselect>
+      </div>
+    </div>
+    <div class="flex-1 d-flex flex-column">
+      <div class="flex-1 m-4">
+        <label>
+          Kategori(er)
+        </label>
+        <multiselect
+            :value="stateCategories"
+            select-label=""
+            tag-placeholder=""
+            deselect-label=""
+            selected-label=""
+            placeholder=""
+            label="text"
+            track-by="value"
+            :options="categories.options"
+            :multiple="true"
+            :taggable="true"
+            :preselect-first="false"
+            @input="setCategories">
+          <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+          </template>
+        </multiselect>
+      </div>
+      <div class="flex-1 m-4">
+        <label>
+          Udbydertype
+        </label>
+        <multiselect
+            :value="stateProviderTypes"
+            select-label=""
+            tag-placeholder=""
+            deselect-label=""
+            selected-label=""
+            placeholder=""
+            label="text"
+            track-by="value"
+            :options="providerTypes.options"
+            :multiple="true"
+            :taggable="true"
+            :preselect-first="false"
+            @input="setProviderTypes">
+          <template slot="tag" slot-scope="props">
+            <span class="multiselect__tag">
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+          </template>
+        </multiselect>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-export default {
-  name: "Filters",
+import Multiselect from 'vue-multiselect';
+import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '@/store/types';
+import {mapActions, mapGetters} from "vuex";
 
-}
+export default {
+  name: 'Filters',
+  components: {
+    Multiselect
+  },
+  data() {
+    const providerTypes = Object.keys(ProviderTypes)
+        .map((x: string): ListItem => ({ text: ProviderTypes[Number(x)], value: x }));
+    const categories = Object.keys(Categories)
+        .map((x: string): ListItem => ({ text: Categories[Number(x)], value: x }));
+    const areaTypes = Object.keys(AreaTypes)
+        .map((x: string): ListItem => ({ text: AreaTypes[Number(x)], value: x }));
+    const serviceTypes = Object.keys(ServiceTypes)
+        .map((x: string): ListItem => ({ text: ServiceTypes[Number(x)], value: x }));
+
+    return {
+      categories: {
+        options: categories
+      },
+      providerTypes: {
+        options: providerTypes,
+      },
+      areaTypes: {
+        options: areaTypes,
+      },
+      serviceTypes: {
+        options: serviceTypes,
+      }
+    }
+  },
+  computed:{
+    ...mapGetters({
+      stateProviderTypes: 'getProviderTypes',
+      stateAreaTypes: 'getAreaTypes',
+      stateCategories: 'getCategories',
+      stateServiceTypes: 'getServiceTypes',
+    })
+  },
+  methods: {
+    ...mapActions(["setProviderTypes", "setCategories", "setAreaTypes", "setServiceTypes"])
+  }
+};
 </script>
 
-<style scoped>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
+<style lang="scss">
+#filter-multiselect .multiselect__element {
+  ul > li {
+    margin-top: 0;
+    padding-left: 0;
+    line-height: 0;
+  }
+  ul > li::before {
+    display: none;
+  }
+}
+#filter-multiselect .multiselect__element {
+  list-style-type: none;
+}
+#filter-multiselect .multiselect__tag-icon:focus,
+#filter-multiselect .multiselect__tag-icon:hover {
+  background-color: royalblue;
+}
+#filter-multiselect .multiselect__tag {
+  background-color: blue;
+}
+#filter-multiselect .multiselect__tags {
+  border-radius: 0;
+}
+#filter-multiselect ul > li {
+  margin-top: 0 !important;
+  padding-left: 0 !important;
+  line-height: 0 !important;
+}
+#filter-multiselect ul > li::before {
+  display: none !important;
+}
+#filter-multiselect .multiselect__tag-icon:after {
+color: ghostwhite;
+}
+
+#filter-multiselect .multiselect__option--selected.multiselect__option--highlight {
+  background-color: transparent;
+  color: black;
+}
+
+#filter-multiselect .multiselect__option--highlight {
+  background-color: blue;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-percent-100 position-relative">
     <div ref="map-root" class="w-percent-100 h-full" />
-      <FacilityDialog v-if="currentFacility" />
+    <FacilityDialog v-if="currentFacility" />
   </div>
 </template>
 
@@ -68,8 +68,8 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions([
-        'getFacility',
-        'setCurrentFacility'
+      'getFacility',
+      'setCurrentFacility'
     ]),
     initiateMap() {
       // const source = new VectorSource({
@@ -156,7 +156,7 @@ export default Vue.extend({
       });
 
       const map = new Map({
-         layers: [raster, clusters],
+        layers: [raster, clusters],
         // layers: [raster],
         target: this.$refs['map-root'],
         view: new View({

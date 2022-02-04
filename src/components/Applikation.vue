@@ -37,7 +37,7 @@ import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
 import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 import DesktopLayout from "@/components/DesktopLayout.vue";
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: 'Applikation',

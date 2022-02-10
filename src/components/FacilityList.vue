@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column px-4 position-absolute w-percent-100">
+  <div class="d-flex flex-column px-5 position-absolute w-percent-100">
     <div class="d-flex flex-column py-4">
       <div class="d-flex align-items-center mb-2">
         <span class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span> Virtuel facilitet

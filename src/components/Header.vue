@@ -26,10 +26,10 @@
       <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
               @click="toggleShowFilter">
         <i v-if="show" class="icon icon-expand-more"></i>
-        <i v-if="!show" class="icon icon-expand-less"></i>filter
+        <i v-if="!show" class="icon icon-expand-less"></i>Filter
       </button>
     </div>
-    <div v-if="show" class="position-absolute z-10 bg-alternative w-percent-100 d-none d-lg-flex">
+    <div v-if="show" class="position-absolute z-20 bg-alternative w-percent-100 d-none d-lg-flex">
       <Filters />
     </div>
   </div>

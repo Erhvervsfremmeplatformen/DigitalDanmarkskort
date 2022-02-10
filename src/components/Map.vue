@@ -10,7 +10,6 @@ import Vue from 'vue';
 import 'ol/ol.css';
 import Feature from 'ol/Feature';
 import Map from 'ol/Map';
-import Overlay from 'ol/Overlay';
 import View from 'ol/View';
 import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
 import { Cluster, OSM, Vector as VectorSource } from 'ol/source';
@@ -33,43 +32,27 @@ export default Vue.extend({
   computed: {
     ...mapGetters({
       currentFacility: 'getCurrentFacility',
-      filteredFacilities: 'getFilteredFacilities'
-    }),
+      filteredFacilities: 'getFilteredFacilities',
+    })
   },
   data: (): MapData => ({
     source: new VectorSource<Geometry>({ features: [] }),
   }),
   watch: {
     filteredFacilities() {
-      const facilities: Facility[] = this.filteredFacilities;
-      const facilityCount = facilities.length;
-      const features = new Array<Feature<Geometry>>();
-
-      for(let i = 0; i < facilityCount; i++) {
-        const facility = facilities[i];
-        if (!facility.longitude || !facility.latitude)
-        {
-          continue;
-        }
-
-        const feature = new Feature(new Point(fromLonLat([Number(facility.longitude), Number(facility.latitude)])));
-        feature.setProperties({
-          isVirtual: facility.isVirtual ?? false,
-          facilityId: facility.uId
-        });
-        features.push(feature);
-      }
-      this.source.clear();
-      this.source.addFeatures(features);
+      this.setMarkers();
     }
   },
   async mounted() {
     this.initiateMap();
+    if (this.filteredFacilities.length > 0) {
+      this.setMarkers();
+    }
   },
   methods: {
     ...mapActions([
       'getFacility',
-      'setCurrentFacility'
+      'setCurrentFacility',
     ]),
     initiateMap() {
       // const source = new VectorSource({
@@ -169,9 +152,9 @@ export default Vue.extend({
 
       map.on("click", (event) => {
         clusters.getFeatures(event.pixel).then(async (features) => {
-          console.log(features)
           if (features.length > 0) {
             const clusterMembers = features[0].get("features");
+
             const view = map.getView();
             if (clusterMembers.length > 1) {
               // Calculate the extent of the cluster members.
@@ -186,6 +169,7 @@ export default Vue.extend({
                       getWidth(extent) < resolution &&
                       getWidth(extent) < resolution)
               ) {
+                view.fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
                 // Show an expanded view of the cluster members.
                 // clickFeature = features[0];
                 // clickResolution = resolution;
@@ -206,6 +190,28 @@ export default Vue.extend({
         });
       });
     },
+    setMarkers() {
+      const facilities: Facility[] = this.filteredFacilities;
+      const facilityCount = facilities.length;
+      const features = new Array<Feature<Geometry>>();
+
+      for(let i = 0; i < facilityCount; i++) {
+        const facility = facilities[i];
+        if (!facility.longitude || !facility.latitude)
+        {
+          continue;
+        }
+
+        const feature = new Feature(new Point(fromLonLat([Number(facility.longitude), Number(facility.latitude)])));
+        feature.setProperties({
+          isVirtual: facility.isVirtual ?? false,
+          facilityId: facility.uId
+        });
+        features.push(feature);
+      }
+      this.source.clear();
+      this.source.addFeatures(features);
+    }
   },
 });
 </script>

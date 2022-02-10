@@ -17,7 +17,7 @@ import Vue from 'vue';
 import Map from '@/components/Map.vue';
 import FacilityList from './FacilityList.vue';
 import Filters from './Filters.vue';
-import { mapGetters, mapActions } from 'vuex';
+import {mapGetters} from 'vuex';
 
 export default Vue.extend({
   name: 'MobileLayout',
@@ -28,12 +28,9 @@ export default Vue.extend({
   },
   computed: {
     ...mapGetters({
-      tabIndex: 'getMainTabIndex'
-    }),
-    getTabIndex(): number {
-      return this.tabIndex();
-    }
-  }
+      tabIndex: 'getMainTabIndex',
+    })
+  },
 });
 </script>
 

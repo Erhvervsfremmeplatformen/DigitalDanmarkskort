@@ -1,47 +1,40 @@
 <template>
   <div id="filter-multiselect" class="d-flex flex-1 flex-column flex-lg-row">
     <div class="flex-1 d-flex flex-column">
-      <div class="flex-1 m-3">
-        <label class="d-block mb-2">
+      <div class="flex-1 m-4">
+        <label>
           Område(r)
         </label>
-      <multiselect
-          :value="stateAreaTypes"
-          select-label=""
-          tag-placeholder=""
-          deselect-label=""
-          selected-label=""
-          placeholder=""
-          label="text"
-          track-by="value"
-          :options="areaTypes.options"
-          :multiple="true"
-          :taggable="true"
-          :preselect-first="false"
-          @input="setAreaTypes">
-        <template slot="tag" slot-scope="props">
+        <multiselect
+            :value="stateAreaTypes"
+            select-label=""
+            tag-placeholder=""
+            deselect-label=""
+            selected-label=""
+            placeholder=""
+            label="text"
+            track-by="value"
+            :options="areaTypes.options"
+            :multiple="true"
+            :taggable="true"
+            :preselect-first="false"
+            @input="setAreaTypes">
+          <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substring(0,30)}...` : props.option.text}}</span>
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
-        </template>
-        <template slot="option" slot-scope="props">
-          <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
-              <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
-              </Tooltip>
-          </div>
-        </template>
-      </multiselect>
+          </template>
+        </multiselect>
       </div>
-      <div class="flex-1 m-3">
-        <div class="d-flex align-items-center">
-        <label class="mb-2 mr-2">
-          Service
+      <div class="flex-1 m-4">
+        <label>
+          Service(s)
         </label>
-          <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?">
-            <i class="icon icon-help" slot="trigger" />
-          </Tooltip>
-        </div>
+        <button class="js-tooltip button-unstyled"
+                data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">
+          <i class="icon icon-help" />
+          <span id="Tooltip-ID" class="sr-only">Hvad betyder det?</span>
+        </button>
         <multiselect
             :value="stateServiceTypes"
             select-label=""
@@ -58,22 +51,15 @@
             @input="setServiceTypes">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substring(0,30)}...` : props.option.text}}</span>
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
-          </template>
-          <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
-              <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
-              </Tooltip>
-            </div>
           </template>
         </multiselect>
       </div>
     </div>
     <div class="flex-1 d-flex flex-column">
-      <div class="flex-1 m-3">
-        <label class="d-block mb-2">
+      <div class="flex-1 m-4">
+        <label>
           Kategori(er)
         </label>
         <multiselect
@@ -92,21 +78,14 @@
             @input="setCategories">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substring(0,30)}...` : props.option.text}}</span>
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
-          </template>
-          <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
-              <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
-              </Tooltip>
-            </div>
           </template>
         </multiselect>
       </div>
-      <div class="flex-1 m-3">
-        <label class="d-block mb-2">
-          Udbydertype
+      <div class="flex-1 m-4">
+        <label>
+          Udbydertype(r)
         </label>
         <multiselect
             :value="stateProviderTypes"
@@ -124,15 +103,8 @@
             @input="setProviderTypes">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substring(0,30)}...` : props.option.text}}</span>
+            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
-          </template>
-          <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
-              <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
-              </Tooltip>
-            </div>
           </template>
         </multiselect>
       </div>
@@ -144,23 +116,21 @@
 import Multiselect from 'vue-multiselect';
 import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '@/store/types';
 import {mapActions, mapGetters} from "vuex";
-import Tooltip from "@/components/Tooltip.vue";
 
 export default {
   name: 'Filters',
   components: {
-    Tooltip,
     Multiselect
   },
   data() {
     const providerTypes = Object.keys(ProviderTypes)
-        .map((x: string): ListItem => ({ text: ProviderTypes[Number(x)].text, value: x, description: ProviderTypes[Number(x)].description }));
+        .map((x: string): ListItem => ({ text: ProviderTypes[Number(x)], value: x }));
     const categories = Object.keys(Categories)
-        .map((x: string): ListItem => ({ text: Categories[Number(x)].text, value: x, description: Categories[Number(x)].description }));
+        .map((x: string): ListItem => ({ text: Categories[Number(x)], value: x }));
     const areaTypes = Object.keys(AreaTypes)
-        .map((x: string): ListItem => ({ text: AreaTypes[Number(x)].text, value: x, description: AreaTypes[Number(x)].description }));
+        .map((x: string): ListItem => ({ text: AreaTypes[Number(x)], value: x }));
     const serviceTypes = Object.keys(ServiceTypes)
-        .map((x: string): ListItem => ({ text: ServiceTypes[Number(x)].text, value: x, description: ServiceTypes[Number(x)].description }));
+        .map((x: string): ListItem => ({ text: ServiceTypes[Number(x)], value: x }));
 
     return {
       categories: {
@@ -187,7 +157,7 @@ export default {
   },
   methods: {
     ...mapActions(["setProviderTypes", "setCategories", "setAreaTypes", "setServiceTypes"])
-  },
+  }
 };
 </script>
 
@@ -226,7 +196,7 @@ export default {
   display: none !important;
 }
 #filter-multiselect .multiselect__tag-icon:after {
-color: white;
+  color: ghostwhite;
 }
 
 #filter-multiselect .multiselect__option--selected.multiselect__option--highlight {
@@ -237,13 +207,4 @@ color: white;
 #filter-multiselect .multiselect__option--highlight {
   background-color: blue;
 }
-
-#filter-multiselect .multiselect__option--highlight .i-white {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(128deg) brightness(102%) contrast(104%);
-}
-
-#filter-multiselect .multiselect__option--selected.multiselect__option--highlight .i-white {
-  filter: invert(0%) sepia(6%) saturate(0%) hue-rotate(324deg) brightness(91%) contrast(102%);
-}
-
 </style>

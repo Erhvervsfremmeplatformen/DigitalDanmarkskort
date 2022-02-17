@@ -15,8 +15,11 @@
               <i v-if="showMore" class="icon icon-expand-more"></i>
               <i v-if="!showMore" class="icon icon-expand-less"></i>
             </span>
-            <span>
+            <span v-if="!showMore">
               Se mere
+            </span>
+            <span v-if="showMore">
+              Se mindre
             </span>
           </button>
         </div>
@@ -32,8 +35,8 @@ export default {
   name: 'FacilityDialog',
   components: {Facility},
   data: () => ({
-      showMore: false
-    }),
+    showMore: false
+  }),
   computed: {
     ...mapGetters({
       facility: 'getCurrentFacility'
@@ -43,8 +46,18 @@ export default {
     ...mapActions(['setCurrentFacility']),
     toggleShowMore() {
       this.showMore = !this.showMore;
+    },
+    isDesktop() {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return false
+      } else {
+        return true
+      }
     }
-  }
+  },
+  mounted(){
+    this.showMore = this.isDesktop()
+  },
 };
 </script>
 

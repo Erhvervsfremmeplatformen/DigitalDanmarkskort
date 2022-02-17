@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column px-5 position-absolute w-percent-100">
+  <div class="d-flex flex-column px-4 position-absolute h-full w-percent-100">
     <div class="d-flex flex-column py-4">
       <div class="d-flex align-items-center mb-2">
         <span class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span> Virtuel facilitet
@@ -16,7 +16,7 @@
 
       <div class="card-footer card-action">
         <div class="action-links">
-          <button @click="showFacilityDialog(facility)" class="button button-primary">Se mere</button>
+          <button @click="showFacilityDialog(facility)" class="button button-primary">Læs mere</button>
         </div>
       </div>
     </div>

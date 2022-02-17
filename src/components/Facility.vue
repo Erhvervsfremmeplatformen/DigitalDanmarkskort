@@ -13,6 +13,7 @@
       </div>
 
       <div class="card-text">
+        <p><b>Organisation:</b> {{getOrganisation}}</p>
         <p><b>Udbydertype:</b> {{getProviders}}</p>
         <p><b>Kategori(er):</b> {{getCategories}}</p>
         <p><b>Område(r):</b> {{getAreas}}</p>
@@ -58,6 +59,9 @@ export default {
     },
     getServices(): string {
       return this.facility.serviceTypes?.map((item: ListItem) => ServiceTypes[Number(item.value)])?.join(', ') ?? '';
+    },
+    getOrganisation(): string {
+      return this.facility.organisation ?? '';
     }
   },
   methods: {

@@ -35,8 +35,8 @@ export default {
   name: 'FacilityDialog',
   components: {Facility},
   data: () => ({
-      showMore: false
-    }),
+    showMore: false
+  }),
   computed: {
     ...mapGetters({
       facility: 'getCurrentFacility'

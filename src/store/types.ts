@@ -19,6 +19,7 @@ export interface Facility {
     latitude?: string;
     website: string;
     isVirtual?: boolean;
+    paymentType:Number
 }
 
 export interface ListItem {

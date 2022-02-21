@@ -120,7 +120,7 @@ const mutations: MutationTree<FilterState> = {
 
 const actions: ActionTree<FilterState, RootState> = {
     async getFacilities({ commit, dispatch }) {
-        const { data } = await axios.get(`/facilities`);
+        const { data } = await axios.get(`${process.env.VUE_APP_API_BASE_URI}/${process.env.VUE_APP_API_VERSION}/facilities`);
         commit(FiltersMutations.SET_FACILITIES, data);
         await dispatch('filter');
     },

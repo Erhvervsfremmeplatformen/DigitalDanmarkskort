@@ -1,6 +1,7 @@
 <!-- The entry point for the sandkasse applikation. Direct and indirect imports of components and stylesheets in this class will be included in the final applikation -->
 <template>
   <div class="applikation-container bg-alternative">
+
     <div class="d-flex">
       <div class="grow d-flex flex-column">
         <h1>Overblik: Danske Test-, Demonstrations og Udviklingsfaciliteter</h1>
@@ -37,7 +38,8 @@ import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
 import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
 import DesktopLayout from "@/components/DesktopLayout.vue";
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
+import 'tippy.js/dist/tippy.css';
 
 export default {
   name: 'Applikation',
@@ -46,7 +48,7 @@ export default {
     MobileLayout,
     Header,
     MediaQueryProvider,
-    MatchMedia
+    MatchMedia,
   },
   computed: {
     ...mapActions(['getFacilities']),

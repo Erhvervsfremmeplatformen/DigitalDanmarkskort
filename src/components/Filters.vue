@@ -5,30 +5,30 @@
         <label>
           Område(r)
         </label>
-      <multiselect
-          :value="stateAreaTypes"
-          select-label=""
-          tag-placeholder=""
-          deselect-label=""
-          selected-label=""
-          placeholder=""
-          label="text"
-          track-by="value"
-          :options="areaTypes.options"
-          :multiple="true"
-          :taggable="true"
-          :preselect-first="false"
-          @input="setAreaTypes">
-        <template slot="tag" slot-scope="props">
+        <multiselect
+            :value="stateAreaTypes"
+            select-label=""
+            tag-placeholder=""
+            deselect-label=""
+            selected-label=""
+            placeholder=""
+            label="text"
+            track-by="value"
+            :options="areaTypes.options"
+            :multiple="true"
+            :taggable="true"
+            :preselect-first="false"
+            @input="setAreaTypes">
+          <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
             <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
-        </template>
-      </multiselect>
+          </template>
+        </multiselect>
       </div>
       <div class="flex-1 m-4">
         <label>
-          Service
+          Service(s)
         </label>
         <button class="js-tooltip button-unstyled"
                 data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">
@@ -85,7 +85,7 @@
       </div>
       <div class="flex-1 m-4">
         <label>
-          Udbydertype
+          Udbydertype(r)
         </label>
         <multiselect
             :value="stateProviderTypes"
@@ -196,7 +196,7 @@ export default {
   display: none !important;
 }
 #filter-multiselect .multiselect__tag-icon:after {
-color: ghostwhite;
+  color: ghostwhite;
 }
 
 #filter-multiselect .multiselect__option--selected.multiselect__option--highlight {

@@ -1,7 +1,8 @@
 <template>
   <div class="h-full w-percent-100 max-h overflow-auto">
     <div class="card-header d-flex align-items-center">
-      <span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span>
+      <span v-if="facility.isVirtual" class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span>
+      <span v-if="!facility.isVirtual" class="bg-red rounded-full badge mr-4" style="padding: 12px"></span>
       <h2 class="header-title">{{ facility.name }}</h2>
     </div>
 
@@ -13,24 +14,21 @@
     </div>
 
     <div class="card-text">
-      <p><b>Organisation:</b> {{ getOrganisation }}</p>
-      <p><b>Udbydertype:</b> {{ getProviders }}</p>
-      <p><b>Kategori(er):</b> {{ getCategories }}</p>
-      <p><b>Område(r):</b> {{ getAreas }}</p>
+      <p><b>Organisation:</b> {{facility.organisation}}</p>
+      <p><b>Udbydertype:</b> {{getProviders}}</p>
+      <p><b>Kategori(er):</b> {{getCategories}}</p>
+      <p><b>Område(r):</b> {{getAreas}}</p>
     </div>
 
     <div v-if="showMore" class="card-text">
-      <p><b>Service(s):</b> {{ getServices }}</p>
-      <p><b>Brugerbetaling:</b> {{ getPayment }}</p>
-      <p><b>Beskrivelse:</b> {{ facility.description }}</p>
+      <p><b>Service:</b> {{getServices}}</p>
+      <p><b>Beskrivelse:</b> {{facility.description}}</p>
     </div>
 
     <div v-if="showMore" class="card-action">
       <div class="action-links d-flex align-items-center">
         <i class="icon icon-location-on mr-4"></i>
-        <a target="_blank"
-           v-bind:href="`https://maps.apple.com/?daddr=${facility.city}+${facility.zip}+${facility.address}&dirflg=d`">{{ facility.address }},
-          {{ facility.city }}, {{ facility.zip }}</a>
+        <a target="_blank" v-bind:href="`https://maps.apple.com/?daddr=${facility.city}+${facility.zip}+${facility.address}&dirflg=d`">{{facility.address}}, {{facility.city}}, {{facility.zip}}</a>
       </div>
     </div>
   </div>
@@ -52,38 +50,35 @@ export default {
   },
   computed: {
     getProviders(): string {
-      return this.facility.providerTypes?.map((item: ListItem) => ProviderTypes[Number(item.value)])?.join(', ') ?? '';
+      return this.facility.providerTypes?.map((item: ListItem) => {
+        const data = ProviderTypes[Number(item.value)];
+        return `${data.text} ${data.description}`;
+      })?.join(', ') ?? '';
     },
     getCategories(): string {
-      return this.facility.categories?.map((item: ListItem) => Categories[Number(item.value)])?.join(', ') ?? '';
+      return this.facility.categories?.map((item: ListItem) => {
+        const data = Categories[Number(item.value)];
+        return `${data.text} ${data.description}`;
+      })?.join(', ') ?? '';
     },
     getAreas(): string {
-      return this.facility.areaTypes?.map((item: ListItem) => AreaTypes[Number(item.value)])?.join(', ') ?? '';
+      return this.facility.areaTypes?.map((item: ListItem) => {
+        const data = AreaTypes[Number(item.value)];
+        return `${data.text} ${data.description}`;
+      })?.join(', ') ?? '';
     },
     getServices(): string {
-      return this.facility.serviceTypes?.map((item: ListItem) => ServiceTypes[Number(item.value)])?.join(', ') ?? '';
+      return this.facility.serviceTypes?.map((item: ListItem) => {
+        const data = ServiceTypes[Number(item.value)];
+        return `${data.text} ${data.description}`;
+      })?.join(', ') ?? '';
     },
-    getPayment(): string {
-
-      if (this.facility.paymentType == 0)
-        return "Nej";
-      if (this.facility.paymentType == 1)
-        return "Ja";
-      if (this.facility.paymentType == 2)
-        return "I nogen grad";
-      return "Ukendt";
-
-    },
-    getOrganisation(): string {
-      return this.facility.organisation ?? '';
-    }
   },
   methods: {
     getWebsiteLink(url: string): string {
       return url.startsWith('http') ? url : `https://${url}`;
     }
   }
-
 };
 </script>
 

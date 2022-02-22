@@ -67,6 +67,12 @@ export default Vue.extend({
       const innerCircleFill = new Fill({
         color: 'rgba(255,0,0,0.7)',
       });
+      const outerCircleFillVirtual = new Fill({
+        color: 'rgba(0,0,255,.3)',
+      });
+      const innerCircleFillVirtual = new Fill({
+        color: 'rgba(0,0,255,.7)',
+      });
       const textFill = new Fill({
         color: '#fff',
       });
@@ -81,6 +87,14 @@ export default Vue.extend({
       const outerCircle = new CircleStyle({
         radius: 20,
         fill: outerCircleFill,
+      });
+      const innerCircleVirtual = new CircleStyle({
+        radius: 14,
+        fill: innerCircleFillVirtual,
+      });
+      const outerCircleVirtual = new CircleStyle({
+        radius: 20,
+        fill: outerCircleFillVirtual,
       });
       const virtualMarker = new CircleStyle({
         radius: 10,
@@ -97,7 +111,11 @@ export default Vue.extend({
       });
 
       function clusterStyle(feature: Feature<Geometry> | RenderFeature, resolution: number): (void | Style | Style[]) {
-        const size = feature.get('features').length;
+        const features: Feature<Geometry>[] = feature.get('features');
+        const size = features.length;
+
+        const virtualFacilityFeatures = features.filter(x => x.get('isVirtual') === true);
+        const notVirtualFacilityFeatures = features.filter(x => x.get('isVirtual') === false);
 
         if(size === 1) {
           const featureFacility = feature.get('features')[0];
@@ -106,6 +124,22 @@ export default Vue.extend({
           return new Style({
             image: isVirtual ? virtualMarker : physicalMarker
           });
+        }
+        else if (virtualFacilityFeatures.length > 1 && virtualFacilityFeatures.length > notVirtualFacilityFeatures.length)
+        {
+          return [
+            new Style({
+              image: outerCircleVirtual,
+            }),
+            new Style({
+              image: innerCircleVirtual,
+              text: new Text({
+                text: size.toString(),
+                fill: textFill,
+                stroke: textStroke,
+              }),
+            }),
+          ];
         }
 
         return [

@@ -1,3 +1,14 @@
+$color-primary:               #0059B3;
+$color-primary-medium:        #004993;
+$color-primary-dark:          #003972;
+
+$grid-gutter-width: 1;
+$font-path:         '~dkfds/src/fonts/IBMPlexSans/';
+$image-path:        '~dkfds/src/img';
+$site-image-path:   '~dkfds/src/img';
+$icons-folder-path: '~dkfds/src/img/svg-icons';
+@import '~dkfds/src/stylesheets/dkfds';
+
 body {
   background-color: #f5f5f5;
 }

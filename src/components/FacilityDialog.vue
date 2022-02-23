@@ -62,5 +62,5 @@ export default {
 </script>
 
 <style scoped>
-
+@import '../styles/components/_external.scss';
 </style>

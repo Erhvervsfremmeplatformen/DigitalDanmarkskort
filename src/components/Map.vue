@@ -251,5 +251,5 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
+@import '../styles/components/_external.scss';
 </style>

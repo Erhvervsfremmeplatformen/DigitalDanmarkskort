@@ -61,6 +61,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '../styles/components/external.scss';
 @import '../styles/components/_applikation.scss';
 
 .main-container {

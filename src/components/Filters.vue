@@ -182,7 +182,7 @@ export default {
       stateProviderTypes: 'getProviderTypes',
       stateAreaTypes: 'getAreaTypes',
       stateCategories: 'getCategories',
-      stateServiceTypes: 'getServiceTypes',
+      stateServiceTypes: 'getServiceTypes'
     })
   },
   methods: {
@@ -193,8 +193,10 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-<style lang="scss">
-#filter-multiselect .multiselect__element {
+<style lang="scss" scoped>
+@import '../styles/components/_external.scss';
+
+#filter-multiselect >>> .multiselect__element {
   ul > li {
     margin-top: 0;
     padding-left: 0;
@@ -204,45 +206,45 @@ export default {
     display: none;
   }
 }
-#filter-multiselect .multiselect__element {
+#filter-multiselect >>> .multiselect__element {
   list-style-type: none;
 }
-#filter-multiselect .multiselect__tag-icon:focus,
-#filter-multiselect .multiselect__tag-icon:hover {
+#filter-multiselect >>> .multiselect__tag-icon:focus,
+#filter-multiselect >>> .multiselect__tag-icon:hover {
   background-color: royalblue;
 }
-#filter-multiselect .multiselect__tag {
+#filter-multiselect >>> .multiselect__tag {
   background-color: darkblue;
 }
-#filter-multiselect .multiselect__tags {
+#filter-multiselect >>> .multiselect__tags {
   border-radius: 0;
 }
-#filter-multiselect ul > li {
+#filter-multiselect >>> ul > li {
   margin-top: 0 !important;
   padding-left: 0 !important;
   line-height: 0 !important;
 }
-#filter-multiselect ul > li::before {
+#filter-multiselect >>> ul > li::before {
   display: none !important;
 }
-#filter-multiselect .multiselect__tag-icon:after {
+#filter-multiselect >>> .multiselect__tag-icon:after {
   color: white;
 }
 
-#filter-multiselect .multiselect__option--selected.multiselect__option--highlight {
+#filter-multiselect >>> .multiselect__option--selected.multiselect__option--highlight {
   background-color: transparent;
   color: black;
 }
 
-#filter-multiselect .multiselect__option--highlight {
+#filter-multiselect >>> .multiselect__option--highlight {
   background-color: darkblue;
 }
 
-#filter-multiselect .multiselect__option--highlight .i-white {
+#filter-multiselect >>> .multiselect__option--highlight .i-white {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(128deg) brightness(102%) contrast(104%);
 }
 
-#filter-multiselect .multiselect__option--selected.multiselect__option--highlight .i-white {
+#filter-multiselect >>> .multiselect__option--selected.multiselect__option--highlight .i-white {
   filter: invert(0%) sepia(6%) saturate(0%) hue-rotate(324deg) brightness(91%) contrast(102%);
 }
 </style>

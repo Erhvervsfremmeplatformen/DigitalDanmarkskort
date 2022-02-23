@@ -83,6 +83,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/components/_external.scss';
 
 .max-h {
   max-height: 500px;

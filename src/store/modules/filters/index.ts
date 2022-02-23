@@ -12,11 +12,15 @@ export enum FiltersMutations {
     SET_CATEGORIES = 'SET_CATEGORIES',
     SET_AREATYPES = 'SET_AREATYPES',
     SET_SERVICETYPES = 'SET_SERVICETYPES',
+    SET_LOADING = 'SET_LOADING',
+    SET_ERROR = 'SET_ERROR',
 }
 
 const state: FilterState = {
     facilities: [],
     filteredFacilities: [],
+    error: '',
+    loading: 'idle',
     searchString: '',
     providerTypes: [],
     categories: [],
@@ -39,6 +43,12 @@ const getters: GetterTree<FilterState, RootState> = {
     },
     getServiceTypes(state): ListItem[] {
         return state.serviceTypes;
+    },
+    getError(state): string {
+        return state.error
+    },
+    getLoading(state): string {
+        return state.loading
     }
 };
 
@@ -95,6 +105,12 @@ const searchInObj = (itemObj: any, searchText: string) => {
 };
 
 const mutations: MutationTree<FilterState> = {
+    [FiltersMutations.SET_LOADING] (state, payload: string){
+      state.loading = payload;
+    },
+    [FiltersMutations.SET_ERROR] (state, payload: string){
+        state.error = payload;
+    },
     [FiltersMutations.SET_FACILITIES] (state, payload: Facility[]) {
         state.facilities = payload;
     },
@@ -120,8 +136,16 @@ const mutations: MutationTree<FilterState> = {
 
 const actions: ActionTree<FilterState, RootState> = {
     async getFacilities({ commit, dispatch }) {
-        const { data } = await axios.get(`${process.env.VUE_APP_API_BASE_URI}/${process.env.VUE_APP_API_VERSION}/facilities`);
-        commit(FiltersMutations.SET_FACILITIES, data);
+        commit(FiltersMutations.SET_LOADING, "pending");
+        await axios.get(`${process.env.VUE_APP_API_BASE_URI}/${process.env.VUE_APP_API_VERSION}/facilities`)
+            .then(({ data }) => {
+                commit(FiltersMutations.SET_FACILITIES, data);
+                commit(FiltersMutations.SET_ERROR, "");
+            })
+            .catch(() => {
+                commit(FiltersMutations.SET_ERROR, "Der opstod en fejl");
+            });
+        commit(FiltersMutations.SET_LOADING, "idle");
         await dispatch('filter');
     },
     getFacility({state: FilterState } , facilityId: string): Facility | undefined {

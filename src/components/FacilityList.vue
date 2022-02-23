@@ -8,8 +8,15 @@
         <span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span> Fysisk facilitet
       </div>
     </div>
-    <div class="h-full d-flex align-items-center justify-content-center" v-if="facilities.length === 0">
+    <div v-if="loading === 'pending'">
+      <div class="spinner"></div>
+      <div class="spinner-status" role="status">Arbejder</div>
+    </div>
+    <div class="h-full d-flex align-items-center justify-content-center" v-if="facilities.length === 0 && loading === 'idle' && !error">
       <b>Ingen faciliteter fundet</b>
+    </div>
+    <div class="h-full d-flex align-items-center justify-content-center" v-if="error">
+      <b>{{error}}</b>
     </div>
     <div v-for="facility in facilities" :key="facility.uId" class="card flex-none mb-4">
       <Facility v-bind:facility="facility" />
@@ -32,7 +39,9 @@ export default {
   components: {Facility},
   computed: {
     ...mapGetters({
-      facilities: 'getFilteredFacilities'
+      facilities: 'getFilteredFacilities',
+      error: 'getError',
+      loading: 'getLoading'
     })
   },
   methods: {
@@ -45,5 +54,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$color-primary:               #0059B3;
+$color-primary-medium:        #004993;
+$color-primary-dark:          #003972;
+
+$font-path:         '~dkfds/src/fonts/IBMPlexSans/';
+$image-path:        '~dkfds/src/img';
+$site-image-path:   '~dkfds/src/img';
+$icons-folder-path: '~dkfds/src/img/svg-icons';
+@import '~dkfds/src/stylesheets/dkfds';
+@import '../styles/components/_external.scss';
+
 </style>

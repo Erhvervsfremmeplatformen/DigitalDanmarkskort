@@ -83,9 +83,9 @@ export default {
       let elm = this.toElement;
       if (elm == null) {
         if (this.to) {
-          elm = document.querySelector(`[name='${this.to}']`);
+          elm = document.querySelector(`.applikation-container [name='${this.to}']`);
         } else if (this.toSelector) {
-          elm = document.querySelector(this.toSelector);
+          elm = document.querySelector(".applikation-container " + this.toSelector);
         }
         else if (
             this.$refs.trigger &&
@@ -128,5 +128,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '../styles/components/_external.scss';
 </style>

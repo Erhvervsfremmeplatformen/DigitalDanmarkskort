@@ -18,16 +18,19 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
+            open-direction="bottom"
             @input="setAreaTypes">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+            <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
+            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{
+                props.option.text
+              }}</span>
               <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
+                <i class="icon icon-help i-white" slot="trigger"/>
               </Tooltip>
             </div>
           </template>
@@ -39,7 +42,7 @@
             <b>Service</b>
           </label>
           <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?">
-            <i class="icon icon-help" slot="trigger" />
+            <i class="icon icon-help" slot="trigger"/>
           </Tooltip>
         </div>
         <multiselect
@@ -55,16 +58,19 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
+            open-direction="bottom"
             @input="setServiceTypes">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+            <span id="test">{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
-              <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
+            <div  class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{
+                props.option.text
+              }}</span>
+              <Tooltip  v-if="props.option.description" trigger="click" :content="props.option.description">
+                <i id="test2" class="icon icon-help i-white" slot="trigger"/>
               </Tooltip>
             </div>
           </template>
@@ -89,16 +95,19 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
+            open-direction="bottom"
             @input="setCategories">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+            <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
+            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{
+                props.option.text
+              }}</span>
               <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
+                <i class="icon icon-help i-white" slot="trigger"/>
               </Tooltip>
             </div>
           </template>
@@ -121,16 +130,21 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
-            @input="setProviderTypes">
+            open-direction="bottom"
+            @input="setProviderTypes"
+            @focus="test">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
+            <span
+                ref="test">{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
               <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
+            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{
+                props.option.text
+              }}</span>
               <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                <i class="icon icon-help i-white" slot="trigger" />
+                <i class="icon icon-help i-white" slot="trigger"/>
               </Tooltip>
             </div>
           </template>
@@ -154,13 +168,29 @@ export default {
   },
   data() {
     const providerTypes = Object.keys(ProviderTypes)
-        .map((x: string): ListItem => ({ text: ProviderTypes[Number(x)].text, value: x, description: ProviderTypes[Number(x)].description }));
+        .map((x: string): ListItem => ({
+          text: ProviderTypes[Number(x)].text,
+          value: x,
+          description: ProviderTypes[Number(x)].description
+        }));
     const categories = Object.keys(Categories)
-        .map((x: string): ListItem => ({ text: Categories[Number(x)].text, value: x, description: Categories[Number(x)].description }));
+        .map((x: string): ListItem => ({
+          text: Categories[Number(x)].text,
+          value: x,
+          description: Categories[Number(x)].description
+        }));
     const areaTypes = Object.keys(AreaTypes)
-        .map((x: string): ListItem => ({ text: AreaTypes[Number(x)].text, value: x, description: AreaTypes[Number(x)].description }));
+        .map((x: string): ListItem => ({
+          text: AreaTypes[Number(x)].text,
+          value: x,
+          description: AreaTypes[Number(x)].description
+        }));
     const serviceTypes = Object.keys(ServiceTypes)
-        .map((x: string): ListItem => ({ text: ServiceTypes[Number(x)].text, value: x, description: ServiceTypes[Number(x)].description }));
+        .map((x: string): ListItem => ({
+          text: ServiceTypes[Number(x)].text,
+          value: x,
+          description: ServiceTypes[Number(x)].description
+        }));
 
     return {
       categories: {
@@ -177,7 +207,7 @@ export default {
       }
     }
   },
-  computed:{
+  computed: {
     ...mapGetters({
       stateProviderTypes: 'getProviderTypes',
       stateAreaTypes: 'getAreaTypes',
@@ -186,7 +216,10 @@ export default {
     })
   },
   methods: {
-    ...mapActions(["setProviderTypes", "setCategories", "setAreaTypes", "setServiceTypes"])
+    ...mapActions(["setProviderTypes", "setCategories", "setAreaTypes", "setServiceTypes"]),
+    test() {
+      alert("hey");
+    }
   }
 };
 </script>
@@ -196,55 +229,63 @@ export default {
 <style lang="scss" scoped>
 @import '../styles/components/_external.scss';
 
-#filter-multiselect >>> .multiselect__element {
+#filter-multiselect > > > .multiselect__element {
   ul > li {
     margin-top: 0;
     padding-left: 0;
     line-height: 0;
   }
+
   ul > li::before {
     display: none;
   }
 }
-#filter-multiselect >>> .multiselect__element {
+
+#filter-multiselect > > > .multiselect__element {
   list-style-type: none;
 }
-#filter-multiselect >>> .multiselect__tag-icon:focus,
-#filter-multiselect >>> .multiselect__tag-icon:hover {
+
+#filter-multiselect > > > .multiselect__tag-icon:focus,
+#filter-multiselect > > > .multiselect__tag-icon:hover {
   background-color: royalblue;
 }
-#filter-multiselect >>> .multiselect__tag {
+
+#filter-multiselect > > > .multiselect__tag {
   background-color: darkblue;
 }
-#filter-multiselect >>> .multiselect__tags {
+
+#filter-multiselect > > > .multiselect__tags {
   border-radius: 0;
 }
-#filter-multiselect >>> ul > li {
+
+#filter-multiselect > > > ul > li {
   margin-top: 0 !important;
   padding-left: 0 !important;
   line-height: 0 !important;
 }
-#filter-multiselect >>> ul > li::before {
+
+#filter-multiselect > > > ul > li::before {
   display: none !important;
 }
-#filter-multiselect >>> .multiselect__tag-icon:after {
+
+#filter-multiselect > > > .multiselect__tag-icon:after {
   color: white;
 }
 
-#filter-multiselect >>> .multiselect__option--selected.multiselect__option--highlight {
+#filter-multiselect > > > .multiselect__option--selected.multiselect__option--highlight {
   background-color: transparent;
   color: black;
 }
 
-#filter-multiselect >>> .multiselect__option--highlight {
+#filter-multiselect > > > .multiselect__option--highlight {
   background-color: darkblue;
 }
 
-#filter-multiselect >>> .multiselect__option--highlight .i-white {
+#filter-multiselect > > > .multiselect__option--highlight .i-white {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(128deg) brightness(102%) contrast(104%);
 }
 
-#filter-multiselect >>> .multiselect__option--selected.multiselect__option--highlight .i-white {
+#filter-multiselect > > > .multiselect__option--selected.multiselect__option--highlight .i-white {
   filter: invert(0%) sepia(6%) saturate(0%) hue-rotate(324deg) brightness(91%) contrast(102%);
 }
 </style>

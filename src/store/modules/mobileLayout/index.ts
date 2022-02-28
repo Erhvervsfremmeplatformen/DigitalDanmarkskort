@@ -1,6 +1,6 @@
 import { GetterTree, Module, MutationTree, ActionTree } from 'vuex';
-import RootState from '@/store/types';
-import { MobileState } from '@/store/modules/mobileLayout/types';
+import RootState from '../../types';
+import { MobileState } from './types';
 
 const state: MobileState = {
     tabIndex: 2

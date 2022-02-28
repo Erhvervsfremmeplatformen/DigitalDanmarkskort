@@ -20,6 +20,7 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
+            open-direction="bottom"
             @input="setAreaTypes">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
@@ -54,6 +55,7 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
+            open-direction="bottom"
             @input="setCategories">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
@@ -100,6 +102,7 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
+            open-direction="bottom"
             @input="setServiceTypes">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
@@ -134,6 +137,7 @@
             :multiple="true"
             :taggable="true"
             :preselect-first="false"
+            open-direction="bottom"
             @input="setProviderTypes">
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
@@ -155,9 +159,9 @@
 
 <script lang="ts">
 import Multiselect from 'vue-multiselect';
-import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '@/store/types';
+import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '../store/types';
 import {mapActions, mapGetters} from "vuex";
-import Tooltip from "@/components/Tooltip.vue";
+import Tooltip from "./Tooltip.vue";
 import * as DKFDS from 'dkfds';
 
 export default {

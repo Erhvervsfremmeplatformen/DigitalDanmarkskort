@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import {Facility, ListItem, ProviderTypes, Categories, AreaTypes, ServiceTypes} from "@/store/types";
+import {Facility, ListItem, ProviderTypes, Categories, AreaTypes, ServiceTypes} from "../store/types";
 
 export default {
   name: 'Facility',

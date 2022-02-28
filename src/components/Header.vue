@@ -41,9 +41,7 @@
 <script lang="ts">
 
 import {mapActions, mapGetters, mapMutations} from 'vuex';
-import Filter from "ol/format/filter/Filter";
-import Filters from "@/components/Filters.vue";
-import {FiltersMutations} from "@/store/modules/filters";
+import Filters from "./Filters.vue";
 
 export default {
   name: 'Header',

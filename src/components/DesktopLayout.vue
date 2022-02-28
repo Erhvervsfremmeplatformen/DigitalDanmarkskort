@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Map from "@/components/Map";
-import FacilityList from "@/components/FacilityList";
+import Map from "./Map";
+import FacilityList from "./FacilityList";
 export default {
   name: "DesktopLayout",
   components: {FacilityList, Map}

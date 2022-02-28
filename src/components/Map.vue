@@ -17,9 +17,9 @@ import { Geometry, Point } from 'ol/geom';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { createEmpty, extend, getWidth } from 'ol/extent';
 import { fromLonLat } from 'ol/proj';
-import FacilityDialog from '@/components/FacilityDialog.vue';
+import FacilityDialog from './FacilityDialog.vue';
 import {mapActions, mapGetters} from 'vuex';
-import {Facility} from '@/store/types';
+import {Facility} from '../store/types';
 import RenderFeature from 'ol/render/Feature';
 
 

@@ -57,6 +57,32 @@ export default {
   },
   mounted() {
     this.init();
+    var that = this;
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutationRecord) {
+        console.log(mutationRecord);
+       var t =mutationRecord.target as HTMLElement;
+       if(t.classList.contains("multiselect__option--highlight")){
+         that.tip.show();
+        // console.log("hightligt")
+       } else{
+         that.tip.hide();
+         //console.log("not hig");
+       }
+        // console.log("changed?")
+        // console.log(that.$refs.trigger);
+        //that.tip.show();
+
+      });
+    });
+
+    var target = that.$refs.trigger;
+    if(target) {
+      var newTarget = target.closest(".multiselect__option");
+      if (newTarget)
+        observer.observe(newTarget, {attributes: true, attributeFilter: ['class']});
+    }
+    
   },
   updated() {
     if (this.tip && !this.content) {

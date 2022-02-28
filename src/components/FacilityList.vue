@@ -61,8 +61,8 @@
 </template>
 
 <script lang="ts">
-import Facility from '@/components/Facility.vue';
-import { Facility as FacilityType } from '@/store/types';
+import Facility from './Facility.vue';
+import { Facility as FacilityType } from '../store/types';
 import {mapActions, mapGetters} from "vuex";
 export default {
   name: 'FacilityList',

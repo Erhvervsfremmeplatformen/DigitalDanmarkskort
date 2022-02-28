@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Map from '@/components/Map.vue';
+import Map from './Map.vue';
 import FacilityList from './FacilityList.vue';
 import Filters from './Filters.vue';
 import {mapGetters} from 'vuex';
@@ -35,5 +35,5 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-
+@import '../styles/components/_external.scss';
 </style>

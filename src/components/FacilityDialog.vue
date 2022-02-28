@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import Facility from '@/components/Facility.vue';
+import Facility from './Facility.vue';
 import {mapActions, mapGetters} from "vuex";
 export default {
   name: 'FacilityDialog',
@@ -62,5 +62,5 @@ export default {
 </script>
 
 <style scoped>
-
+@import '../styles/components/_external.scss';
 </style>

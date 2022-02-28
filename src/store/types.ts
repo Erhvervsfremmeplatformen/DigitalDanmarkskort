@@ -1,4 +1,4 @@
-import FilterState from "@/store/modules/filters/types";
+import FilterState from "./modules/filters/types";
 export default interface RootState {
     Filters: FilterState
 }
@@ -25,58 +25,64 @@ export interface Facility {
 export interface ListItem {
     text: string;
     value: string;
+    description?: string;
+}
+
+export interface Item {
+    text: string;
+    description?: string;
 }
 
 export interface TypeDictionary {
-    [value: number]: string;
+    [value: number]: Item;
 }
 
 export const ProviderTypes: TypeDictionary = {
-    1: 'Universitet eller andet vidensinstitut',
-    2: 'Privat virksomhed',
-    4: 'Forsyningsvirksomhed',
-    8: 'GTS-institut',
-    16: 'Hospital',
-    32: 'Kommune',
-    64: 'Viden- og erhvervsklynge',
-    128: 'Andet, beskriv'
+    1: { text: 'Universitet eller andet vidensinstitut', description: ''},
+    2: { text: 'Privat virksomhed', description: ''},
+    4: { text: 'Forsyningsvirksomhed', description: ''},
+    8: { text: 'GTS-institut', description: ''},
+    16: { text: 'Hospital', description: ''},
+    32: { text: 'Kommune', description: ''},
+    64: { text: 'Viden- og erhvervsklynge', description: ''},
+    128: { text: 'Andet, beskriv', description: ''}
 };
 
 export const Categories: TypeDictionary = {
-    1: 'Laboratorie',
-    2: 'Konstrueret miljø herunder simulering(facilitet som skaber et kunstigt miljø fx en vindtunnel)',
-    4: 'Real world miljø (et virkeligt miljø, som bruges til at teste, demonstere eller udvikle, fx et living lab eller et rensningsanlæg, hvor en del af spildevandet afledes til forsøg',
-    8: 'Datamiljø herunder computerkapacitet og databaser (fx serverkapacitet eller biobanker',
-    16: 'Certificering og dokumentation (facilitet der bruges til at certificere eller dokumentere det testede produkt',
-    32: 'Andet, beskriv',
+    1: { text:'Laboratorie', description: ''},
+    2: { text:'Konstrueret miljø', description: 'Facilitet som skaber et kunstigt miljø fx en vindtunnel'},
+    4: { text:'Real world miljø', description: 'Et virkeligt miljø, som bruges til at teste, demonstrere eller udvikle fx et living lab eller et rensningsanlæg, hvor en del af spildevandet afledes til forsøg.'},
+    8: { text:'Datamiljø', description: 'Fx serverkapacitet eller biobanker'},
+    16: { text:'Certificering og dokumentation', description: 'Facilitet der bruges til at certificere eller dokumentere det testede produkt.'},
+    32: { text:'Andet, beskriv', description: ''},
 };
 
 export const AreaTypes: TypeDictionary = {
-    1: 'Animation, spil, film og reality teknologi',
-    2: 'Byggeri og anlæg',
-    4: 'Design, mode og møbler',
-    8: 'Digitale teknologier',
-    16: 'Energi',
-    32: 'Finans og fintech',
-    64: 'Forsvar, rum og sikkerhed',
-    128: 'Fødevarer og bioressourcer',
-    256: 'Health Science',
-    512: 'Industriproduktion',
-    1024: 'Life Science og velfærdsteknologi',
-    2048: 'Lydteknologi',
-    4096: 'Maritime erhverv og logistik',
-    8192: 'Miljø',
-    16384: 'Robotteknologi',
-    32768: 'Turisme',
-    65536: 'Vand',
-    131072: 'Andet, beskriv'
+    1: { text:'Animation, spil, film og reality teknologi', description: ''},
+    2: { text:'Byggeri og anlæg', description: ''},
+    4: { text:'Design, mode og møbler', description: ''},
+    8: { text:'Digitale teknologier', description: ''},
+    16: { text:'Energi', description: ''},
+    32: { text:'Finans og fintech', description: ''},
+    64: { text:'Forsvar, rum og sikkerhed', description: ''},
+    128: { text:'Fødevarer og bioressourcer', description: ''},
+    256: { text:'Health Science', description: ''},
+    512: { text:'Industriproduktion', description: ''},
+    1024: { text:'Life Science og velfærdsteknologi', description: ''},
+    2048: { text:'Lydteknologi', description: ''},
+    4096: { text:'Maritime erhverv og logistik', description: ''},
+    8192: { text:'Miljø', description: ''},
+    16384: { text:'Robotteknologi', description: ''},
+    32768: { text:'Turisme', description: ''},
+    65536: { text:'Vand', description: ''},
+    131072: { text:'Andet, beskriv', description: ''}
 };
 
 export const ServiceTypes: TypeDictionary = {
-    1: 'Selvbetjening af faciliteten',
-    2: 'Teknisk support eller hjælp til at anvende faciliteten',
-    4: 'Komplet service, herunder gennemførelse af fx forskning, test, demonstration eller udvikling uden brugeren',
-    8: 'sel (ikke teknisk support til faciliteten)',
-    16: 'Akkrediteret måling og/eller udførelse af certificering',
-    32: 'Andet, beskriv',
+    1: { text:'Selvbetjening af faciliteten', description: ''},
+    2: { text:'Teknisk support eller hjælp til at anvende faciliteten', description: ''},
+    4: { text:'Komplet service', description: 'Herunder gennemførelse af fx forskning, test, demonstration eller udvikling uden brugerens involvering'},
+    8: { text:'Anden rådgivning', description: '(Ikke teknisk support til faciliteten)'},
+    16: { text:'Akkrediteret måling og/eller udførelse af certificering', description: ''},
+    32: { text:'Andet, beskriv', description: ''},
 };

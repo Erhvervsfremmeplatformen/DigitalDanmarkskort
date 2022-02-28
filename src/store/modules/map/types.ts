@@ -1,4 +1,4 @@
-import {Facility} from '@/store/types';
+import {Facility} from '../../types';
 
 export default interface MapState {
     currentFacility?: Facility;

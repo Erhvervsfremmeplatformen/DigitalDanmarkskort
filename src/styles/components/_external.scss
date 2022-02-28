@@ -1,6 +1,102 @@
-// Example of a CSS rule that is located in a separate file
-.external {
-  background-color: #35495e;
-  color: #42b883;
-  padding: 24px;
+body {
+  background-color: #f5f5f5;
+}
+
+.app-body{
+  min-height: 100vh;
+}
+
+.bg-red {
+  background-color: red;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.max-h-50 {
+  max-height: 50%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.relative {
+  position: relative;
+}
+
+.shrink {
+  flex-shrink: 1;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-1 {
+  flex: 1 1 0;
+}
+
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-20 {
+  z-index: 20;
+}
+.z-30 {
+  z-index: 30;
+}
+.z-40 {
+  z-index: 40;
+}
+.z-50 {
+  z-index: 50;
+}
+.z-auto {
+  z-index: auto;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+@media (min-width:992px) {
+  .position-lg-relative {
+    position: relative;
+  }
+  .position-lg-sticky {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+  }
+
+  .sticky-lg-top {
+    position:-webkit-sticky;
+    position:sticky;
+    top:0;
+    z-index:1020;
+  }
+}
+
+.tooltip-popper {
+  z-index: 9999 !important;
 }

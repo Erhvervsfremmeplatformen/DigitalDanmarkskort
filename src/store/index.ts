@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Vuex, { createLogger, StoreOptions } from 'vuex';
 import RootState from './types';
-import { mobile } from '@/store/modules/mobileLayout';
-import { map } from '@/store/modules/map';
-import { filters } from '@/store/modules/filters';
+import { mobile } from './modules/mobileLayout';
+import { map } from './modules/map';
+import { filters } from './modules/filters';
 
 Vue.use(Vuex);
 

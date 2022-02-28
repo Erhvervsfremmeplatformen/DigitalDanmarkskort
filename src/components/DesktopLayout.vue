@@ -1,17 +1,17 @@
 <template>
-  <div class="d-flex h-full w-percent-100">
-    <div class="d-flex flex-1 h-full">
+  <div class="row h-full w-percent-100">
+    <div class="col-7">
       <Map />
     </div>
-    <div class="flex-1 position-relative overflow-auto">
+    <div class="col">
       <FacilityList />
     </div>
   </div>
 </template>
 
 <script>
-import Map from "@/components/Map";
-import FacilityList from "@/components/FacilityList";
+import Map from "./Map";
+import FacilityList from "./FacilityList";
 export default {
   name: "DesktopLayout",
   components: {FacilityList, Map}
@@ -19,5 +19,6 @@ export default {
 </script>
 
 <style scoped>
+@import '../styles/components/_external.scss';
 
 </style>

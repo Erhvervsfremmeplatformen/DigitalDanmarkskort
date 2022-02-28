@@ -1,6 +1,6 @@
 <template>
-  <div class="h-full w-percent-100 position-relative">
-    <div ref="map-root" class="w-percent-100 h-full" />
+  <div class="position-relative position-lg-sticky" :class="showFilter ? 'map-container-on' : 'map-container-off'">
+    <div id="map-root" ref="map-root" class="w-percent-100 h-full" />
     <FacilityDialog v-if="currentFacility" />
   </div>
 </template>
@@ -17,10 +17,11 @@ import { Geometry, Point } from 'ol/geom';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { createEmpty, extend, getWidth } from 'ol/extent';
 import { fromLonLat } from 'ol/proj';
-import FacilityDialog from '@/components/FacilityDialog.vue';
+import FacilityDialog from './FacilityDialog.vue';
 import {mapActions, mapGetters} from 'vuex';
-import {Facility} from '@/store/types';
+import {Facility} from '../store/types';
 import RenderFeature from 'ol/render/Feature';
+
 
 type MapData  = {
   source: VectorSource<Geometry>;
@@ -33,7 +34,13 @@ export default Vue.extend({
     ...mapGetters({
       currentFacility: 'getCurrentFacility',
       filteredFacilities: 'getFilteredFacilities',
-    })
+      showFilter: 'getShowFilter'
+    }),
+    classObject: function () {
+      return {
+        containerClass: this.showFilter ? "map-container-on" : "map-container-off"
+      }
+    }
   },
   data: (): MapData => ({
     source: new VectorSource<Geometry>({ features: [] }),
@@ -67,6 +74,12 @@ export default Vue.extend({
       const innerCircleFill = new Fill({
         color: 'rgba(255,0,0,0.7)',
       });
+      const outerCircleFillVirtual = new Fill({
+        color: 'rgba(0,0,255,.3)',
+      });
+      const innerCircleFillVirtual = new Fill({
+        color: 'rgba(0,0,255,.7)',
+      });
       const textFill = new Fill({
         color: '#fff',
       });
@@ -81,6 +94,14 @@ export default Vue.extend({
       const outerCircle = new CircleStyle({
         radius: 20,
         fill: outerCircleFill,
+      });
+      const innerCircleVirtual = new CircleStyle({
+        radius: 14,
+        fill: innerCircleFillVirtual,
+      });
+      const outerCircleVirtual = new CircleStyle({
+        radius: 20,
+        fill: outerCircleFillVirtual,
       });
       const virtualMarker = new CircleStyle({
         radius: 10,
@@ -97,7 +118,11 @@ export default Vue.extend({
       });
 
       function clusterStyle(feature: Feature<Geometry> | RenderFeature, resolution: number): (void | Style | Style[]) {
-        const size = feature.get('features').length;
+        const features: Feature<Geometry>[] = feature.get('features');
+        const size = features.length;
+
+        const virtualFacilityFeatures = features.filter(x => x.get('isVirtual') === true);
+        const notVirtualFacilityFeatures = features.filter(x => x.get('isVirtual') === false);
 
         if(size === 1) {
           const featureFacility = feature.get('features')[0];
@@ -106,6 +131,22 @@ export default Vue.extend({
           return new Style({
             image: isVirtual ? virtualMarker : physicalMarker
           });
+        }
+        else if (virtualFacilityFeatures.length > 1 && virtualFacilityFeatures.length > notVirtualFacilityFeatures.length)
+        {
+          return [
+            new Style({
+              image: outerCircleVirtual,
+            }),
+            new Style({
+              image: innerCircleVirtual,
+              text: new Text({
+                text: size.toString(),
+                fill: textFill,
+                stroke: textStroke,
+              }),
+            }),
+          ];
         }
 
         return [
@@ -216,6 +257,25 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../styles/components/_external.scss';
 
+#map-root {
+  height: 635px;
+  max-height: 635px;
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  #map-root {
+    height: 827px;
+    max-height: 827px;
+  }
+  .map-container-on {
+    top: 308px;
+  }
+
+  .map-container-off {
+    top: 140px;
+  }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="h-full w-percent-100 position-relative">
-    <div ref="map-root" class="w-percent-100 h-full" />
+  <div class="position-relative position-lg-sticky" :class="showFilter ? 'map-container-on' : 'map-container-off'">
+    <div id="map-root" ref="map-root" class="w-percent-100 h-full" />
     <FacilityDialog v-if="currentFacility" />
   </div>
 </template>
@@ -22,6 +22,7 @@ import {mapActions, mapGetters} from 'vuex';
 import {Facility} from '@/store/types';
 import RenderFeature from 'ol/render/Feature';
 
+
 type MapData  = {
   source: VectorSource<Geometry>;
 }
@@ -33,7 +34,13 @@ export default Vue.extend({
     ...mapGetters({
       currentFacility: 'getCurrentFacility',
       filteredFacilities: 'getFilteredFacilities',
-    })
+      showFilter: 'getShowFilter'
+    }),
+    classObject: function () {
+      return {
+        containerClass: this.showFilter ? "map-container-on" : "map-container-off"
+      }
+    }
   },
   data: (): MapData => ({
     source: new VectorSource<Geometry>({ features: [] }),
@@ -250,6 +257,25 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import '../styles/components/_external.scss';
+
+#map-root {
+  height: 635px;
+  max-height: 635px;
+}
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  #map-root {
+    height: 827px;
+    max-height: 827px;
+  }
+  .map-container-on {
+    top: 308px;
+  }
+
+  .map-container-off {
+    top: 140px;
+  }
+}
 </style>

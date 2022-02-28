@@ -84,4 +84,19 @@ body {
   .position-lg-relative {
     position: relative;
   }
+  .position-lg-sticky {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+  }
+
+  .sticky-lg-top {
+    position:-webkit-sticky;
+    position:sticky;
+    top:0;
+    z-index:1020;
+  }
+}
+
+.tooltip-popper {
+  z-index: 9999 !important;
 }

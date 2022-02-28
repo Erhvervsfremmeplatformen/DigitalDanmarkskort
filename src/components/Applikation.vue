@@ -4,12 +4,8 @@
 
     <div class="d-flex">
       <div class="grow d-flex flex-column">
-        <h1>Overblik: Danske Test-, Demonstrations og Udviklingsfaciliteter</h1>
-        <div class="d-flex flex-column">
-          <Header />
-        </div>
-        <div
-            class="main-container">
+        <Header />
+        <div class="main-container">
               <MediaQueryProvider :queries="{ mobile: '(max-width: 992px)' }">
               <MatchMedia v-slot="{ mobile }">
                 <MobileLayout v-if="mobile" />
@@ -65,20 +61,14 @@ export default {
 @import '../styles/components/_applikation.scss';
 
 .main-container {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  position: relative;
-  overflow: auto;
-
   //height: 635px;
   min-height: 635px;
-  max-height: 635px;
+  //max-height: 635px;
 
   @media (min-width: map-get($grid-breakpoints, lg)) {
     //height: 837px;
     min-height: 837px;
-    max-height: 837px;
+    //max-height: 837px;
   }
 
 }

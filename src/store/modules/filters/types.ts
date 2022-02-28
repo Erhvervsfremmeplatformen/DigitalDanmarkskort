@@ -3,6 +3,7 @@ import {Facility, ListItem} from "@/store/types";
 export default interface FilterState {
     facilities: Facility[];
     filteredFacilities: Facility[];
+    showFilter: boolean;
     loading: string;
     searchString: string;
     providerTypes: ListItem[],

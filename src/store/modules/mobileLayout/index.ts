@@ -3,7 +3,7 @@ import RootState from '@/store/types';
 import { MobileState } from '@/store/modules/mobileLayout/types';
 
 const state: MobileState = {
-    tabIndex: 1
+    tabIndex: 2
 };
 
 export enum MainMutations {

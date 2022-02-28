@@ -6,6 +6,10 @@
       <h2 class="header-title">{{ facility.name }}</h2>
     </div>
 
+    <div class="card-text">
+      <p><b>{{facility.organisation}}</b></p>
+    </div>
+
     <div class="card-action">
       <div class="action-links d-flex align-items-center">
         <i class="icon icon-open-in-new mr-4"></i>
@@ -14,14 +18,14 @@
     </div>
 
     <div class="card-text">
-      <p><b>Organisation:</b> {{facility.organisation}}</p>
       <p><b>Udbydertype:</b> {{getProviders}}</p>
       <p><b>Kategori(er):</b> {{getCategories}}</p>
       <p><b>Område(r):</b> {{getAreas}}</p>
     </div>
 
     <div v-if="showMore" class="card-text">
-      <p><b>Service:</b> {{getServices}}</p>
+      <p><b>Service(s):</b> {{getServices}}</p>
+      <p><b>Brugerbetaling:</b> {{ getPayment }}</p>
       <p><b>Beskrivelse:</b> {{facility.description}}</p>
     </div>
 
@@ -72,6 +76,17 @@ export default {
         const data = ServiceTypes[Number(item.value)];
         return `${data.text} ${data.description}`;
       })?.join(', ') ?? '';
+    },
+    getPayment(): string {
+
+      if (this.facility.paymentType == 0)
+        return "Nej";
+      if (this.facility.paymentType == 1)
+        return "Ja";
+      if (this.facility.paymentType == 2)
+        return "I nogen tilfælde";
+      return "Ukendt";
+
     },
   },
   methods: {

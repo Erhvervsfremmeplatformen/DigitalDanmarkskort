@@ -1,6 +1,9 @@
 <template>
-  <div class="position-relative">
-    <div class="py-4 d-flex justify-content-center align-items-center">
+  <div class="sticky-lg-top row bg-alternative">
+    <div class="col-12">
+      <h1>Overblik: Danske Test-, Demonstrations og Udviklingsfaciliteter</h1>
+    </div>
+    <div class="col-12 py-4 d-flex justify-content-center align-items-center">
       <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(0)">
         <i class="d-lg-none icon icon-tune"></i>
       </button>
@@ -20,16 +23,16 @@
       </div>
 
       <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(2)">
-        <i v-if="tabIndex === 0 || tabIndex === 1" class="icon icon-menu"></i>
+        <i v-if="tabIndex === 0 || tabIndex === 1" class="icon icon-format-list-bulleted"></i>
         <i v-if="tabIndex === 2" class="icon icon-map"></i>
       </button>
       <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
-              @click="toggleShowFilter">
+              @click="setShowFilter">
         <i v-if="show" class="icon icon-expand-more"></i>
         <i v-if="!show" class="icon icon-expand-less"></i>Filtrer
       </button>
     </div>
-    <div v-if="show" class="bg-alternative w-percent-100 d-none d-lg-flex">
+    <div v-if="show" class="col-12 bg-alternative w-percent-100 d-none d-lg-flex">
       <Filters />
     </div>
   </div>
@@ -46,7 +49,7 @@ export default {
   name: 'Header',
   data: () => ({
     searchString: '',
-    show: false,
+    // show: false,
     debounce: undefined
   }),
   components: {
@@ -54,7 +57,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      tabIndex: 'getMainTabIndex'
+      tabIndex: 'getMainTabIndex',
+      show: 'getShowFilter'
     }),
   },
   watch: {
@@ -67,8 +71,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setSearchString']),
-    ...mapActions(['setMainTabIndex']),
+    ...mapActions(['setSearchString', 'setMainTabIndex', 'setShowFilter']),
     setMainIndex(index: number) {
       if(this.tabIndex === index) {
         this.setMainTabIndex(1);

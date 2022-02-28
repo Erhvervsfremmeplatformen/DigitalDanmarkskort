@@ -14,12 +14,14 @@ export enum FiltersMutations {
     SET_SERVICETYPES = 'SET_SERVICETYPES',
     SET_LOADING = 'SET_LOADING',
     SET_ERROR = 'SET_ERROR',
+    SET_SHOWFILTER = 'SET_SHOWFILTER',
 }
 
 const state: FilterState = {
     facilities: [],
     filteredFacilities: [],
     error: '',
+    showFilter: false,
     loading: 'idle',
     searchString: '',
     providerTypes: [],
@@ -49,6 +51,9 @@ const getters: GetterTree<FilterState, RootState> = {
     },
     getLoading(state): string {
         return state.loading
+    },
+    getShowFilter(state): boolean {
+        return state.showFilter
     }
 };
 
@@ -105,6 +110,9 @@ const searchInObj = (itemObj: any, searchText: string) => {
 };
 
 const mutations: MutationTree<FilterState> = {
+    [FiltersMutations.SET_SHOWFILTER] (state){
+        state.showFilter = !state.showFilter;
+    },
     [FiltersMutations.SET_LOADING] (state, payload: string){
       state.loading = payload;
     },
@@ -194,7 +202,10 @@ const actions: ActionTree<FilterState, RootState> = {
         //console.log(facilities)
 
         commit(FiltersMutations.SET_FILTERED_FACILITIES, facilities);
-    }
+    },
+    setShowFilter({commit}) {
+        commit(FiltersMutations.SET_SHOWFILTER);
+    },
 };
 
 export const filters: Module<FilterState, RootState> = {

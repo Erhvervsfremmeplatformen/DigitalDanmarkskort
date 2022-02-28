@@ -14,14 +14,14 @@
               </MediaQueryProvider>
         </div>
         <div class="d-flex flex-column">
-          <h4>Har du tilføjelser eller rettelser</h4>
+          <h4>Har du tilføjelser eller rettelser?</h4>
           <p>(Kontaktoplysninger)</p>
-          <h4>Hvad er en facilitet</h4>
+          <h4>Hvad er en facilitet?</h4>
           <p>
-            En facilitet er et fysisk eller virtuelt miljø, hvor brugere fra fx virksomheder, universiteter
+            Faciliteterne på kortet er fysiske eller virtuelle miljøer, hvor brugere fra fx virksomheder, universiteter
             og offentlige aktører kan udføre eller få udført test, demonstration og/eller udvikling af nye produkter,
-            services, processer eller organisatoriske løsninger. Herunder skal faciliteten have etableret
-            forretningsmodel og/eller service tilknyttet samt kunne tilgås efter aftale
+            services, processer eller organisatoriske løsninger. Faciliteterne har en etableret forretningsmodel
+            og/eller service tilknyttet og kan tilgås efter aftale.
           </p>
         </div>
       </div>

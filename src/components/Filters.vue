@@ -76,7 +76,7 @@
       <div class="col-12 col-lg-6">
         <div class="d-flex" style="height: 28px">
           <label class="mb-2 mr-2">
-            <b>Service</b>
+            <b>Service(s)</b>
           </label>
           <button id="Tooltip-ID" class="js-tooltip button-unstyled"
                   data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">

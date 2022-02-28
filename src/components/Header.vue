@@ -1,7 +1,7 @@
 <template>
   <div class="sticky-lg-top row bg-alternative">
     <div class="col-12">
-      <h1>Overblik: Danske Test-, Demonstrations og Udviklingsfaciliteter</h1>
+      <h1>Danske Testfaciliteter</h1>
     </div>
     <div class="col-12 py-4 d-flex justify-content-center align-items-center">
       <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(0)">

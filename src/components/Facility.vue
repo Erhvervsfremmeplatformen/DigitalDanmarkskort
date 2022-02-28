@@ -56,25 +56,25 @@ export default {
     getProviders(): string {
       return this.facility.providerTypes?.map((item: ListItem) => {
         const data = ProviderTypes[Number(item.value)];
-        return `${data.text} ${data.description}`;
+        return `${data.text}`;
       })?.join(', ') ?? '';
     },
     getCategories(): string {
       return this.facility.categories?.map((item: ListItem) => {
         const data = Categories[Number(item.value)];
-        return `${data.text} ${data.description}`;
+        return `${data.text}`;
       })?.join(', ') ?? '';
     },
     getAreas(): string {
       return this.facility.areaTypes?.map((item: ListItem) => {
         const data = AreaTypes[Number(item.value)];
-        return `${data.text} ${data.description}`;
+        return `${data.text}`;
       })?.join(', ') ?? '';
     },
     getServices(): string {
       return this.facility.serviceTypes?.map((item: ListItem) => {
         const data = ServiceTypes[Number(item.value)];
-        return `${data.text} ${data.description}`;
+        return `${data.text}`;
       })?.join(', ') ?? '';
     },
     getPayment(): string {

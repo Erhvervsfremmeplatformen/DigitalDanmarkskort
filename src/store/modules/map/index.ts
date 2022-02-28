@@ -1,7 +1,6 @@
 import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
 import RootState, {Facility} from '../../types';
 import MapState from './types';
-import {MobileState} from '@/store/modules/mobileLayout/types';
 
 const state: MapState = {
     currentFacility: undefined

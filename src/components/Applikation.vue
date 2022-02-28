@@ -37,10 +37,10 @@
 import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
 import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
-import DesktopLayout from "@/components/DesktopLayout.vue";
+import DesktopLayout from "./DesktopLayout.vue";
 import { mapActions } from "vuex";
 import 'tippy.js/dist/tippy.css';
-import store from "@/store";
+import store from "../store";
 
 export default {
   name: 'Applikation',

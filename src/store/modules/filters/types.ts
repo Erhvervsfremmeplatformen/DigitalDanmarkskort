@@ -1,4 +1,4 @@
-import {Facility, ListItem} from "@/store/types";
+import {Facility, ListItem} from "../../types";
 
 export default interface FilterState {
     facilities: Facility[];

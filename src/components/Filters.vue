@@ -156,9 +156,9 @@
 
 <script lang="ts">
 import Multiselect from 'vue-multiselect';
-import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '@/store/types';
+import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '../store/types';
 import {mapActions, mapGetters} from "vuex";
-import Tooltip from "@/components/Tooltip.vue";
+import Tooltip from "./Tooltip.vue";
 
 export default {
   name: 'Filters',

@@ -1,5 +1,5 @@
 import { ActionTree, GetterTree, Module, MutationTree } from 'vuex';
-import RootState, {Facility, ListItem} from '@/store/types';
+import RootState, {Facility, ListItem} from '../../types';
 import FilterState from './types';
 import axios from 'axios';
 import Filter from "ol/format/filter/Filter";

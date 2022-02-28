@@ -1,4 +1,4 @@
-import FilterState from "@/store/modules/filters/types";
+import FilterState from "./modules/filters/types";
 export default interface RootState {
     Filters: FilterState
 }

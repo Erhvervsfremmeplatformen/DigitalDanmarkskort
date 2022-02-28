@@ -15,7 +15,7 @@
         </div>
         <div class="d-flex flex-column">
           <h4>Har du tilføjelser eller rettelser?</h4>
-          <p>(Kontaktoplysninger)</p>
+          <p>Send en mail til: <br> mab@atv.dk</p>
           <h4>Hvad er en facilitet?</h4>
           <p>
             Faciliteterne på kortet er fysiske eller virtuelle miljøer, hvor brugere fra fx virksomheder, universiteter

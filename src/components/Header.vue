@@ -9,14 +9,7 @@
       </button>
       <div class="form-group search m-0 mx-4">
         <label for="searchString" class="sr-only">Søg efter indhold</label>
-        <input
-            id="searchString"
-            class="form-input searchInput"
-            name="searchString"
-            title="Search"
-            type="search"
-            v-model="searchString"
-        />
+        <input id="searchString" class="form-input searchInput" name="searchString" title="Search" type="search" v-model="searchString" />
         <button class="button button-search">
           <i class="icon icon-search" />
         </button>
@@ -26,8 +19,7 @@
         <i v-if="tabIndex === 0 || tabIndex === 1" class="icon icon-format-list-bulleted"></i>
         <i v-if="tabIndex === 2" class="icon icon-map"></i>
       </button>
-      <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
-              @click="setShowFilter">
+      <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center" @click="setShowFilter">
         <i v-if="show" class="icon icon-expand-more"></i>
         <i v-if="!show" class="icon icon-expand-less"></i>Filtrer
       </button>
@@ -39,12 +31,12 @@
 </template>
 
 <script lang="ts">
-
-import {mapActions, mapGetters, mapMutations} from 'vuex';
-import Filters from "./Filters.vue";
+import { mapActions, mapGetters, mapMutations } from 'vuex';
+import Filters from './Filters.vue';
 
 export default {
   name: 'Header',
+  inject: ['refreshKey'],
   data: () => ({
     searchString: '',
     // show: false,
@@ -55,13 +47,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      tabIndex: 'getMainTabIndex',
-      show: 'getShowFilter'
+      tabIndex: 'getMainTabIndex'
+      //show: 'getShowFilter'
     }),
+    show() {
+      return this.refreshKey.value && this.$store.getters.getShowFilter;
+    }
   },
   watch: {
     // whenever question changes, this function will run
-    searchString: function(search: string) {
+    searchString: function (search: string) {
       if (this.debounce) {
         clearTimeout(this.debounce);
       }
@@ -71,7 +66,7 @@ export default {
   methods: {
     ...mapActions(['setSearchString', 'setMainTabIndex', 'setShowFilter']),
     setMainIndex(index: number) {
-      if(this.tabIndex === index) {
+      if (this.tabIndex === index) {
         this.setMainTabIndex(1);
       } else {
         this.setMainTabIndex(index);

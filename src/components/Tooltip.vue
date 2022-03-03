@@ -15,14 +15,14 @@ import tippy from 'tippy.js';
 import humps from 'humps';
 
 export default {
-  name: "Tooltip",
+  name: 'Tooltip',
   data: () => {
     return {
       tip: null,
       options: {
         content: String
       }
-    }
+    };
   },
   props: {
     content: {
@@ -61,28 +61,25 @@ export default {
     var observer = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutationRecord) {
         console.log(mutationRecord);
-       var t =mutationRecord.target as HTMLElement;
-       if(t.classList.contains("multiselect__option--highlight")){
-         that.tip.show();
-        // console.log("hightligt")
-       } else{
-         that.tip.hide();
-         //console.log("not hig");
-       }
+        var t = mutationRecord.target as HTMLElement;
+        if (t.classList.contains('multiselect__option--highlight')) {
+          that.tip.show();
+          // console.log("hightligt")
+        } else {
+          that.tip.hide();
+          //console.log("not hig");
+        }
         // console.log("changed?")
         // console.log(that.$refs.trigger);
         //that.tip.show();
-
       });
     });
 
     var target = that.$refs.trigger;
-    if(target) {
-      var newTarget = target.closest(".multiselect__option");
-      if (newTarget)
-        observer.observe(newTarget, {attributes: true, attributeFilter: ['class']});
+    if (target) {
+      var newTarget = target.closest('.multiselect__option');
+      if (newTarget) observer.observe(newTarget, { attributes: true, attributeFilter: ['class'] });
     }
-    
   },
   updated() {
     if (this.tip && !this.content) {
@@ -95,7 +92,7 @@ export default {
   },
   computed: {
     isManualTrigger() {
-      return this.options.trigger === "manual";
+      return this.options.trigger === 'manual';
     }
   },
   methods: {
@@ -103,7 +100,7 @@ export default {
       if (this.tip) {
         try {
           this.tip.destroy();
-        } catch (error) { }
+        } catch (error) {}
         this.tip = null;
       }
       let elm = this.toElement;
@@ -111,12 +108,8 @@ export default {
         if (this.to) {
           elm = document.querySelector(`.applikation-container [name='${this.to}']`);
         } else if (this.toSelector) {
-          elm = document.querySelector(".applikation-container " + this.toSelector);
-        }
-        else if (
-            this.$refs.trigger &&
-            this.$refs.trigger.childElementCount > 0
-        ) {
+          elm = document.querySelector('.applikation-container ' + this.toSelector);
+        } else if (this.$refs.trigger && this.$refs.trigger.childElementCount > 0) {
           elm = this.$refs.trigger;
         } else {
           elm = this.$el.parentElement;
@@ -137,8 +130,8 @@ export default {
         }
       }
       this.tip = tip;
-      this.$emit("onCreate", this.tip);
-      this.$emit("init", this.tip);
+      this.$emit('onCreate', this.tip);
+      this.$emit('init', this.tip);
 
       if (this.isManualTrigger && this.visible === true) {
         this.tip.show();
@@ -150,7 +143,7 @@ export default {
       return this.options;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,27 +1,24 @@
 <!-- The entry point for the sandkasse applikation. Direct and indirect imports of components and stylesheets in this class will be included in the final applikation -->
 <template>
   <div class="applikation-container bg-alternative">
-
     <div class="d-flex">
       <div class="grow d-flex flex-column">
         <Header />
         <div class="main-container">
-              <MediaQueryProvider :queries="{ mobile: '(max-width: 992px)' }">
-              <MatchMedia v-slot="{ mobile }">
-                <MobileLayout v-if="mobile" />
-                <DesktopLayout v-else />
-              </MatchMedia>
-              </MediaQueryProvider>
+          <!-- TODO: add mobile support -->
+          <DesktopLayout />
         </div>
         <div class="d-flex flex-column">
           <h4>Har du tilføjelser eller rettelser?</h4>
-          <p>Send en mail til: <br> mab@atv.dk</p>
+          <p>
+            Send en mail til: <br />
+            mab@atv.dk
+          </p>
           <h4>Hvad er en facilitet?</h4>
           <p>
-            Faciliteterne på kortet er fysiske eller virtuelle miljøer, hvor brugere fra fx virksomheder, universiteter
-            og offentlige aktører kan udføre eller få udført test, demonstration og/eller udvikling af nye produkter,
-            services, processer eller organisatoriske løsninger. Faciliteterne har en etableret forretningsmodel
-            og/eller service tilknyttet og kan tilgås efter aftale.
+            Faciliteterne på kortet er fysiske eller virtuelle miljøer, hvor brugere fra fx virksomheder, universiteter og offentlige aktører kan
+            udføre eller få udført test, demonstration og/eller udvikling af nye produkter, services, processer eller organisatoriske løsninger.
+            Faciliteterne har en etableret forretningsmodel og/eller service tilknyttet og kan tilgås efter aftale.
           </p>
         </div>
       </div>
@@ -32,11 +29,11 @@
 <script lang="ts">
 import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
-import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries'
-import DesktopLayout from "./DesktopLayout.vue";
-import { mapActions } from "vuex";
+import { MediaQueryProvider, MatchMedia } from 'vue-component-media-queries';
+import DesktopLayout from './DesktopLayout.vue';
+import { mapActions } from 'vuex';
 import 'tippy.js/dist/tippy.css';
-import store from "../store";
+import store from '../store';
 
 export default {
   name: 'Applikation',
@@ -45,13 +42,32 @@ export default {
     MobileLayout,
     Header,
     MediaQueryProvider,
-    MatchMedia,
+    MatchMedia
   },
   computed: {
-    ...mapActions(['getFacilities']),
+    ...mapActions(['getFacilities'])
   },
   async mounted() {
+    this.$store.subscribe((mutation: any, state: any) => {
+      this.refreshKey++;
+    });
     await this.getFacilities;
+  },
+  data() {
+    return {
+      refreshKey: 0
+    };
+  },
+  provide() {
+    // Make it available for sub components as "prop"
+    const refreshKey = {};
+    Object.defineProperty(refreshKey, 'value', {
+      enumerable: true,
+      get: () => this.refreshKey
+    });
+    return {
+      refreshKey
+    };
   },
   store: store
 };
@@ -70,7 +86,5 @@ export default {
     min-height: 837px;
     //max-height: 837px;
   }
-
 }
-
 </style>

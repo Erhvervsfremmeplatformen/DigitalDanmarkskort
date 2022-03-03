@@ -21,14 +21,17 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setAreaTypes">
+            @input="setAreaTypes"
+        >
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
-              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+              <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
+              ></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
+            <div class="option__desc d-flex align-items-center">
+              <span class="option__title mr-2">{{ props.option.text }}</span>
               <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
                 <i class="icon icon-help i-white" slot="trigger" />
               </Tooltip>
@@ -38,9 +41,9 @@
       </div>
       <div class="col-12 col-lg-6">
         <div style="height: 28px">
-        <label>
-          <b>Kategori(er)</b>
-        </label>
+          <label>
+            <b>Kategori(er)</b>
+          </label>
         </div>
         <multiselect
             :value="stateCategories"
@@ -56,14 +59,17 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setCategories">
+            @input="setCategories"
+        >
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
-              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+              <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
+              ></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
+            <div class="option__desc d-flex align-items-center">
+              <span class="option__title mr-2">{{ props.option.text }}</span>
               <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
                 <i class="icon icon-help i-white" slot="trigger" />
               </Tooltip>
@@ -78,10 +84,8 @@
           <label class="mb-2 mr-2">
             <b>Service(s)</b>
           </label>
-          <button id="Tooltip-ID" class="js-tooltip button-unstyled"
-                  data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">
-            <i class="icon icon-help" /><span
-              class="sr-only">Hvad betyder det?</span>
+          <button id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">
+            <i class="icon icon-help" /><span class="sr-only">Hvad betyder det?</span>
           </button>
         </div>
         <!--          <button class="button button-unstyled">-->
@@ -103,14 +107,17 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setServiceTypes">
+            @input="setServiceTypes"
+        >
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
-              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+              <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
+              ></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
+            <div class="option__desc d-flex align-items-center">
+              <span class="option__title mr-2">{{ props.option.text }}</span>
               <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
                 <i class="icon icon-help i-white" slot="trigger" />
               </Tooltip>
@@ -120,10 +127,10 @@
       </div>
       <div class="col-12 col-lg-6">
         <div style="height: 28px">
-        <label>
-          <b>Udbydertype(r)</b>
-        </label>
-          </div>
+          <label>
+            <b>Udbydertype(r)</b>
+          </label>
+        </div>
         <multiselect
             :value="stateProviderTypes"
             select-label=""
@@ -138,14 +145,17 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setProviderTypes">
+            @input="setProviderTypes"
+        >
           <template slot="tag" slot-scope="props">
             <span class="multiselect__tag">
-            <span>{{props.option.text.length > 30 ? `${props.option.text.substr(0,30)}...` : props.option.text}}</span>
-              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i></span>
+              <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
+              <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
+              ></span>
           </template>
           <template slot="option" slot-scope="props">
-            <div class="option__desc d-flex align-items-center"><span class="option__title mr-2">{{ props.option.text }}</span>
+            <div class="option__desc d-flex align-items-center">
+              <span class="option__title mr-2">{{ props.option.text }}</span>
               <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
                 <i class="icon icon-help i-white" slot="trigger" />
               </Tooltip>
@@ -159,9 +169,9 @@
 
 <script lang="ts">
 import Multiselect from 'vue-multiselect';
-import {ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes} from '../store/types';
-import {mapActions, mapGetters} from "vuex";
-import Tooltip from "./Tooltip.vue";
+import { ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes } from '../store/types';
+import { mapActions, mapGetters } from 'vuex';
+import Tooltip from './Tooltip.vue';
 import * as DKFDS from 'dkfds';
 
 export default {
@@ -170,44 +180,63 @@ export default {
     Tooltip,
     Multiselect
   },
+  inject: ['refreshKey'],
   mounted() {
     new DKFDS.Tooltip(document.getElementById('Tooltip-ID'));
   },
   data() {
-    const providerTypes = Object.keys(ProviderTypes)
-        .map((x: string): ListItem => ({ text: ProviderTypes[Number(x)].text, value: x, description: ProviderTypes[Number(x)].description }));
-    const categories = Object.keys(Categories)
-        .map((x: string): ListItem => ({ text: Categories[Number(x)].text, value: x, description: Categories[Number(x)].description }));
-    const areaTypes = Object.keys(AreaTypes)
-        .map((x: string): ListItem => ({ text: AreaTypes[Number(x)].text, value: x, description: AreaTypes[Number(x)].description }));
-    const serviceTypes = Object.keys(ServiceTypes)
-        .map((x: string): ListItem => ({ text: ServiceTypes[Number(x)].text, value: x, description: ServiceTypes[Number(x)].description }));
+    const providerTypes = Object.keys(ProviderTypes).map(
+        (x: string): ListItem => ({ text: ProviderTypes[Number(x)].text, value: x, description: ProviderTypes[Number(x)].description })
+    );
+    const categories = Object.keys(Categories).map(
+        (x: string): ListItem => ({ text: Categories[Number(x)].text, value: x, description: Categories[Number(x)].description })
+    );
+    const areaTypes = Object.keys(AreaTypes).map(
+        (x: string): ListItem => ({ text: AreaTypes[Number(x)].text, value: x, description: AreaTypes[Number(x)].description })
+    );
+    const serviceTypes = Object.keys(ServiceTypes).map(
+        (x: string): ListItem => ({ text: ServiceTypes[Number(x)].text, value: x, description: ServiceTypes[Number(x)].description })
+    );
 
     return {
       categories: {
         options: categories
       },
       providerTypes: {
-        options: providerTypes,
+        options: providerTypes
       },
       areaTypes: {
-        options: areaTypes,
+        options: areaTypes
       },
       serviceTypes: {
-        options: serviceTypes,
+        options: serviceTypes
       }
-    }
+    };
   },
-  computed:{
+  computed: {
+    /*
     ...mapGetters({
       stateProviderTypes: 'getProviderTypes',
       stateAreaTypes: 'getAreaTypes',
       stateCategories: 'getCategories',
       stateServiceTypes: 'getServiceTypes'
-    })
+    }),
+    */
+    stateProviderTypes() {
+      return this.refreshKey.value ? this.$store.getters.getProviderTypes : [];
+    },
+    stateAreaTypes() {
+      return this.refreshKey.value ? this.$store.getters.getAreaTypes : [];
+    },
+    stateCategories() {
+      return this.refreshKey.value ? this.$store.getters.getCategories : [];
+    },
+    stateServiceTypes() {
+      return this.refreshKey.value ? this.$store.getters.getServiceTypes : [];
+    }
   },
   methods: {
-    ...mapActions(["setProviderTypes", "setCategories", "setAreaTypes", "setServiceTypes"])
+    ...mapActions(['setProviderTypes', 'setCategories', 'setAreaTypes', 'setServiceTypes'])
   }
 };
 </script>

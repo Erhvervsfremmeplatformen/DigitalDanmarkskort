@@ -6,9 +6,7 @@
           <div class="d-flex align-items-center mb-2">
             <span class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span> Virtuel facilitet
           </div>
-          <div class="d-flex align-items-center">
-            <span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span> Fysisk facilitet
-          </div>
+          <div class="d-flex align-items-center"><span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span> Fysisk facilitet</div>
         </div>
       </div>
     </div>
@@ -17,15 +15,14 @@
         <div class="spinner"></div>
         <div class="spinner-status" role="status">Arbejder</div>
       </div>
-      <div class="h-full d-flex align-items-center justify-content-center"
-           v-if="facilities.length === 0 && loading === 'idle' && !error">
+      <div class="h-full d-flex align-items-center justify-content-center" v-if="facilities.length === 0 && loading === 'idle' && !error">
         <b>Ingen faciliteter fundet</b>
       </div>
       <div class="h-full d-flex align-items-center justify-content-center" v-if="error">
         <b>{{ error }}</b>
       </div>
       <div v-for="facility in facilities" :key="facility.uId" class="card flex-none mb-5">
-        <Facility v-bind:facility="facility"/>
+        <Facility v-bind:facility="facility" />
         <div class="card-footer card-action">
           <div class="action-links">
             <button @click="showFacilityDialog(facility)" class="button button-primary">Læs mere</button>
@@ -38,18 +35,31 @@
 
 <script lang="ts">
 import Facility from './Facility.vue';
-import {Facility as FacilityType} from '../store/types';
-import {mapActions, mapGetters} from "vuex";
+import { Facility as FacilityType } from '../store/types';
+import { mapActions, mapGetters } from 'vuex';
+import { FiltersMutations } from '../store/modules/filters';
 
 export default {
   name: 'FacilityList',
-  components: {Facility},
+  components: { Facility },
+  inject: ['refreshKey'],
   computed: {
+    /*
     ...mapGetters({
-      facilities: 'getFilteredFacilities',
       error: 'getError',
       loading: 'getLoading'
-    })
+    }),
+    */
+    // Use the injected refreshKey to make the store getter reeactive
+    facilities() {
+      return this.refreshKey.value && this.$store.getters.getFilteredFacilities;
+    },
+    error() {
+      return this.refreshKey.value && this.$store.getters.getError;
+    },
+    loading() {
+      return this.refreshKey.value && this.$store.getters.getLoading;
+    }
   },
   methods: {
     ...mapActions(['setCurrentFacility', 'setMainTabIndex']),
@@ -62,15 +72,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color-primary: #0059B3;
-$color-primary-medium: #004993;
-$color-primary-dark: #003972;
-
-$font-path: '~dkfds/src/fonts/IBMPlexSans/';
-$image-path: '~dkfds/src/img';
-$site-image-path: '~dkfds/src/img';
-$icons-folder-path: '~dkfds/src/img/svg-icons';
-@import '~dkfds/src/stylesheets/dkfds';
 @import '../styles/components/_external.scss';
 
 .border-0 {

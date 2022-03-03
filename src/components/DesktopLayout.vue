@@ -10,15 +10,14 @@
 </template>
 
 <script>
-import Map from "./Map";
-import FacilityList from "./FacilityList";
+import Map from './Map';
+import FacilityList from './FacilityList';
 export default {
-  name: "DesktopLayout",
-  components: {FacilityList, Map}
-}
+  name: 'DesktopLayout',
+  components: { FacilityList, Map }
+};
 </script>
 
 <style scoped>
 @import '../styles/components/_external.scss';
-
 </style>

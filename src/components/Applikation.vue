@@ -5,8 +5,14 @@
       <div class="grow d-flex flex-column">
         <Header />
         <div class="main-container">
-          <!-- TODO: add mobile support -->
-          <DesktopLayout />
+          <div v-if="!isMobile()">
+            <DesktopLayout  />
+          </div>
+          <div v-else>
+            <MobileLayout  />
+          </div>
+         
+          
         </div>
         <div class="d-flex flex-column">
           <h4>Har du tilføjelser eller rettelser?</h4>
@@ -57,6 +63,19 @@ export default {
     return {
       refreshKey: 0
     };
+  },
+  methods: {
+    isMobile() {
+      if( screen.width <= 760 ) {
+        console.log("true");
+        return true;
+      }
+      else {
+        console.log("false");
+
+        return false;
+      }
+    }
   },
   provide() {
     // Make it available for sub components as "prop"

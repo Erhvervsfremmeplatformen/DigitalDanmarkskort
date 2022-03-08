@@ -35,9 +35,9 @@ export default Vue.extend({
     //   return this.refreshKey.value && this.$store.getters.getMainTabIndex;
     // },
   },
-  mounted() {
-    console.log(`index: ${this.tabIndex}`);
-  }
+  // mounted() {
+  //   console.log(`index: ${this.tabIndex}`);
+  // }
 });
 </script>
 

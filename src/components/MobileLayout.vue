@@ -21,15 +21,19 @@ import {mapGetters} from 'vuex';
 
 export default Vue.extend({
   name: 'MobileLayout',
+  inject: ['refreshKey'],
   components: {
     Map,
     FacilityList,
     Filters
   },
   computed: {
-    ...mapGetters({
-      tabIndex: 'getMainTabIndex',
-    })
+    // ...mapGetters({
+    //   tabIndex: 'getMainTabIndex',
+    // })
+    tabIndex() {
+      return this.refreshKey.value && this.$store.getters.getMainTabIndex;
+    },
   },
 });
 </script>

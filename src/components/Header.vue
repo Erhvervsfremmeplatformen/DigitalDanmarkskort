@@ -46,10 +46,13 @@ export default {
     Filters
   },
   computed: {
-    ...mapGetters({
-      tabIndex: 'getMainTabIndex'
-      //show: 'getShowFilter'
-    }),
+    // ...mapGetters({
+    //   tabIndex: 'getMainTabIndex'
+    //   //show: 'getShowFilter'
+    // }),
+    tabIndex() {
+      return this.refreshKey.value && this.$store.getters.getMainTabIndex;
+    },
     show() {
       return this.refreshKey.value && this.$store.getters.getShowFilter;
     }
@@ -82,6 +85,6 @@ export default {
 <style scoped>
 @import '../styles/components/_external.scss';
 .searchInput {
-  width: 40rem;
+  max-width: 40rem;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="card-header d-flex align-items-center">
       <span v-if="facility.isVirtual" class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span>
       <span v-if="!facility.isVirtual" class="bg-red rounded-full badge mr-4" style="padding: 12px"></span>
-      <h2 class="header-title">{{ facility.name }}</h2>
+      <h2 class="header-title" style="font-size: 1.8rem;">{{ facility.name }}</h2>
     </div>
 
     <div class="card-text">

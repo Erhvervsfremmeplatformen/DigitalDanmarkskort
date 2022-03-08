@@ -1,6 +1,6 @@
 <template>
   <div class="position-absolute z-10 fixed-bottom w-percent-100 p-4">
-    <div class="card flex-none position-relative pt-6">
+    <div class="card flex-none position-relative pt-7">
       <button
           style="right: 25px; top: 15px"
           class="modal-close function-link d-flex justify-content-center position-absolute"

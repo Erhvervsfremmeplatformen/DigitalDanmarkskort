@@ -28,12 +28,12 @@ export default Vue.extend({
   },
   inject: ['refreshKey'],
   computed: {
-    // ...mapGetters({
-    //   tabIndex: 'getMainTabIndex',
-    // })
-    tabIndex() {
-      return this.refreshKey.value && this.$store.getters.getMainTabIndex;
-    },
+    ...mapGetters({
+      tabIndex: 'getMainTabIndex',
+    })
+    // tabIndex() {
+    //   return this.refreshKey.value && this.$store.getters.getMainTabIndex;
+    // },
   },
   mounted() {
     console.log(`index: ${this.tabIndex}`);

@@ -145,7 +145,7 @@ const mutations: MutationTree<FilterState> = {
 const actions: ActionTree<FilterState, RootState> = {
     async getFacilities({ commit, dispatch }) {
         commit(FiltersMutations.SET_LOADING, "pending");
-        /*
+        
         await axios.get(`https://api-ramboll.onltd.dk/v1/facilities`)
         //await axios.get(`http://api.ramboll.on-limited.dk/v1/facilities`)
             .then(({ data }) => {
@@ -155,59 +155,10 @@ const actions: ActionTree<FilterState, RootState> = {
             .catch(() => {
                 commit(FiltersMutations.SET_ERROR, "Der opstod en fejl");
             });
-        */
-        const data = [
-          {
-            uId: 'a581bf3cc01c4738bbcca510277d6f95',
-            created: '2022-03-09T06:06:14.9255941Z',
-            deleted: null,
-            name: 'PD1500A dobbelt-puls testarmatur',
-            organisation: 'Aalborg Universitet',
-            address: 'Pontoppidanstræde 111',
-            website: 'https://energy.aau.dk/',
-            zip: '9220',
-            city: 'Aalborg Øst',
-            description: 'Udfør en dobbelt-pulstest for at måle omskiftningsydelsen af ​​silicium og halvlederenheder med bred båndgab.',
-            isVirtual: false,
-            providerTypes: [
-              {
-                value: '1',
-                text: 'Education'
-              }
-            ],
-            categories: [
-              {
-                value: '1',
-                text: 'Laboratory'
-              },
-              {
-                value: '16',
-                text: 'Certification'
-              }
-            ],
-            areaTypes: [
-              {
-                value: '16',
-                text: 'Energy'
-              }
-            ],
-            serviceTypes: [
-              {
-                value: '2',
-                text: 'TechnicalSupport'
-              },
-              {
-                value: '16',
-                text: 'AccreditedMeasurements'
-              }
-            ],
-            latitude: '57.01594300000001',
-            longitude: '10.375696755382556',
-            paymentType: 2
-          }
-        ];
-        commit(FiltersMutations.SET_FACILITIES, data);
-        commit(FiltersMutations.SET_ERROR, "");
+        
+
+        // commit(FiltersMutations.SET_FACILITIES, data);
+        // commit(FiltersMutations.SET_ERROR, "");
         commit(FiltersMutations.SET_LOADING, "idle");
         await dispatch('filter');
     },

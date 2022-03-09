@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      refreshKey: 0
+      refreshKey: 1
     };
   },
   methods: {

@@ -19,7 +19,7 @@
         <i v-if="tabIndex === 0 || tabIndex === 1" class="icon icon-format-list-bulleted"></i>
         <i v-if="tabIndex === 2" class="icon icon-map"></i>
       </button>
-      <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center" @click="setShowFilter">
+      <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center align-items-center" @click="setShowFilter">
         <i v-if="show" class="icon icon-expand-more"></i>
         <i v-if="!show" class="icon icon-expand-less"></i>Filtrer
       </button>

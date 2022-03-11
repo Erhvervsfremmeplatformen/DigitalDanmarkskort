@@ -23,7 +23,7 @@
       </div>
       <div v-for="facility in facilities" :key="facility.uId" class="card flex-none mb-5">
         <Facility v-bind:facility="facility" />
-        <div class="card-footer card-action">
+        <div class="card-footer card-action pb-5 pt-0">
           <div class="action-links">
             <button @click="showFacilityDialog(facility)" class="button button-primary">Læs mere</button>
           </div>

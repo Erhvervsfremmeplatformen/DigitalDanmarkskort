@@ -41,6 +41,6 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import '../styles/components/_external.scss';
 </style>

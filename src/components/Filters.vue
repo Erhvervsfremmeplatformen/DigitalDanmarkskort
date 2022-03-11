@@ -1,5 +1,5 @@
 <template>
-  <div id="filter-multiselect" class="d-block w-percent-100">
+  <div style="margin-right: 25px" id="filter-multiselect" class="d-block w-percent-100">
     <div class="row mb-4">
       <div class="col-12 col-lg-6">
         <div style="height: 28px">
@@ -84,7 +84,7 @@
           <label class="mb-2 mr-2">
             <b>Service(s)</b>
           </label>
-          <button id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Dette er et tooltip" data-tooltip-trigger="click">
+          <button style="margin-top:-3px" id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Hvilken ydelse eller service er tilknyttet faciliteten?" data-tooltip-trigger="click">
             <i class="icon icon-help" /><span class="sr-only">Hvad betyder det?</span>
           </button>
         </div>

@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import '../styles/components/_external.scss';
 .searchInput {
   max-width: 40rem;

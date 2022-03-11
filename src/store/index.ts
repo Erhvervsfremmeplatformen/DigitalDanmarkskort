@@ -16,7 +16,7 @@ const store: StoreOptions<RootState> = {
         filters
     },
     strict: true,
-    plugins: [createLogger()],
+    plugins: [],
 };
 
 export default new Vuex.Store<RootState>(store);

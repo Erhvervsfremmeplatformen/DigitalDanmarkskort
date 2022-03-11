@@ -57,21 +57,31 @@ export default {
   },
   mounted() {
     this.init();
+    
+    var open = false;
     var that = this;
     var observer = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutationRecord) {
         console.log(mutationRecord);
         var t = mutationRecord.target as HTMLElement;
         if (t.classList.contains('multiselect__option--highlight')) {
-          that.tip.show();
-          // console.log("hightligt")
+          
+          if(open != true) {
+            that.tip.show();
+            console.log("open")
+            open = true;
+          } else{
+            that.tip.hide();
+            open = false;
+          }
+      
         } else {
           that.tip.hide();
-          //console.log("not hig");
+          console.log("close")
+          open = false;
+
         }
-        // console.log("changed?")
-        // console.log(that.$refs.trigger);
-        //that.tip.show();
+      
       });
     });
 

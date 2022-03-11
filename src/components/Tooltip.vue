@@ -158,4 +158,17 @@ export default {
 
 <style lang="scss" scoped>
 @import '../styles/components/_external.scss';
+.tippy-box {
+  font-size: 1.6rem !important;
+  line-height: 2.4rem!important;
+  font-weight: 400!important;
+  color: #1a1a1a!important;
+  text-transform: none!important;
+  font-size: 1.6rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3) !important;
+  background-color: #fff !important;
+  border: 1px solid #747474 !important;
+  border-radius: 4px !important;
+  padding: .3rem .6rem !important;
+}
 </style>

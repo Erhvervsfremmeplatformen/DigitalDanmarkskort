@@ -84,7 +84,6 @@ export default {
 <style lang="scss" scoped>
 @import '../styles/components/external.scss';
 @import '../styles/components/_applikation.scss';
-
 .main-container {
   //height: 635px;
   min-height: 635px;

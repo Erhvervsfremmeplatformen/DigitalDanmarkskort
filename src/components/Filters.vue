@@ -33,9 +33,11 @@
             <template slot="option" slot-scope="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
-                <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                  <i class="icon icon-help i-white" slot="trigger" />
+                <div class="custom-tooltip">
+                <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
+                  <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
                 </Tooltip>
+                  </div>
               </div>
             </template>
           </multiselect>
@@ -73,9 +75,11 @@
             <template slot="option" slot-scope="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
-                <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                  <i class="icon icon-help i-white" slot="trigger" />
-                </Tooltip>
+                <div class="custom-tooltip">
+                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
+                    <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
+                  </Tooltip>
+                </div>
               </div>
             </template>
           </multiselect>
@@ -88,9 +92,12 @@
           <label class="mb-2 mr-2">
             <b>Service(s)</b>
           </label>
-          <button style="margin-top:-3px" id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Hvilken ydelse eller service er tilknyttet faciliteten?" data-tooltip-trigger="click">
-            <i class="icon icon-help" /><span class="sr-only">Hvad betyder det?</span>
-          </button>
+<!--          <button style="margin-top:-3px" id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Hvilken ydelse eller service er tilknyttet faciliteten?" data-tooltip-trigger="click">-->
+<!--            <i class="icon icon-help" /><span class="sr-only">Hvad betyder det?</span>-->
+<!--          </button>-->
+          <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?" >
+            <i class="icon icon-help i-white" slot="trigger" />
+          </Tooltip>
         </div>
         <!--          <button class="button button-unstyled">-->
         <!--            <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?">-->
@@ -123,9 +130,11 @@
             <template slot="option" slot-scope="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
-                <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                  <i class="icon icon-help i-white" slot="trigger" />
-                </Tooltip>
+                <div class="custom-tooltip">
+                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
+                    <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
+                  </Tooltip>
+                </div>
               </div>
             </template>
           </multiselect>
@@ -163,9 +172,11 @@
             <template slot="option" slot-scope="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
-                <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                  <i class="icon icon-help i-white" slot="trigger" />
-                </Tooltip>
+                <div class="custom-tooltip">
+                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
+                    <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
+                  </Tooltip>
+                </div>
               </div>
             </template>
           </multiselect>
@@ -248,10 +259,36 @@ export default {
   }
 };
 </script>
+<style scoped>
 
+
+</style>
 <style lang="scss" scoped>
+//
+//@import '~tippy.js/dist/tippy';
+//>>> .tippy-box {
+//  // import vue-multiselect as scoped
+//
+//
+//
+//    font-size: 1.6rem !important;
+//    line-height: 2.4rem !important;
+//    font-weight: 400 !important;
+//    color: #1a1a1a !important;
+//    text-transform: none !important;
+//    font-size: 1.6rem !important;
+//    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3) !important;
+//    background-color: #fff !important;
+//    border: 1px solid #747474 !important;
+//    border-radius: 4px !important;
+//    padding: .3rem .6rem !important;
+//  
+//}
+
+
 >>> .my-multiselect {
   // import vue-multiselect as scoped
+  
   @import 'vue-multiselect/dist/vue-multiselect.min';
 
   // Override default vue-multiselect styling

@@ -81,12 +81,12 @@ export default {
 .shadow-0 {
   box-shadow: none;
 }
-//
-//.customCard{
-//  box-shadow: none;
-//}
-//
-//.customCard:hover {
-//  box-shadow: 0 8px 20px 0 rgb(0 0 0 / 25%)!important;
-//}
+
+.customCard{
+  //box-shadow: none;
+}
+
+.customCard:hover {
+ // box-shadow: 0 8px 20px 0 rgb(0 0 0 / 25%)!important;
+}
 </style>

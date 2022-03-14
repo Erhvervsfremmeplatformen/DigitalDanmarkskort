@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-right: 25px" id="filter-multiselect" class="d-block w-percent-100">
+  <div  id="filter-multiselect" class="d-block w-percent-100">
     <div class="row mb-4">
       <div class="col-12 col-lg-6">
         <div style="height: 28px">
@@ -259,10 +259,7 @@ export default {
   }
 };
 </script>
-<style scoped>
 
-
-</style>
 <style lang="scss" scoped>
 //
 //@import '~tippy.js/dist/tippy';

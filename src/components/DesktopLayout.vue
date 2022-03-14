@@ -1,9 +1,9 @@
 <template>
-  <div class="row h-full w-percent-100">
-    <div class="col-7">
+  <div class="d-flex h-full w-percent-100">
+    <div class="flex-7 padding-right-16">
       <Map />
     </div>
-    <div class="col">
+    <div class="flex-5 padding-left-16">
       <FacilityList />
     </div>
   </div>
@@ -20,4 +20,19 @@ export default {
 
 <style scoped lang="scss">
 @import '../styles/components/_external.scss';
+
+.flex-7{
+  flex:7;
+}
+.flex-5{
+  flex:5;
+}
+
+.padding-right-16{
+  padding-right:16px;
+}
+
+.padding-left-16{
+  padding-left:16px;
+}
 </style>

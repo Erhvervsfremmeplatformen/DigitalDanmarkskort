@@ -87,6 +87,7 @@ export default {
 .main-container {
   //height: 635px;
   min-height: 635px;
+  padding-right: 1px;
   //max-height: 635px;
 
   @media (min-width: map-get($grid-breakpoints, lg)) {

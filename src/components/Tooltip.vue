@@ -160,12 +160,7 @@ export default {
   }
 };
 </script>
-<style scoped>
-* >>> .tippy-box[data-theme~='tomato'] {
-  background-color: tomato;
-  color: yellow;
-}
-</style>
+
 <style lang="scss" scoped >
 @import '../styles/components/_external.scss';
 //.tippy-box {

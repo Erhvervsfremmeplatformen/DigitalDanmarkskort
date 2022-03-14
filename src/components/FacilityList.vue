@@ -83,12 +83,11 @@ export default {
 }
 
 .customCard{
-  box-shadow: none;
-  border:1px solid #d7dadf!important;
+ border:1px solid #d7dadf;
 }
 
 .customCard:hover {
-  box-shadow: 0 8px 20px 0 #000019!important;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.25) !important;
   //font-size:12px!important;
 }
 </style>

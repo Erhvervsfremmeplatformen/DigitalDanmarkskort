@@ -1,9 +1,9 @@
 <template>
-  <div class="h-full w-percent-100 max-h overflow-auto">
+  <div class="h-full w-percent-100 max-h overflow-auto customCard">
     <div class="card-header d-flex align-items-center pt-5">
       <span v-if="facility.isVirtual" class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span>
       <span v-if="!facility.isVirtual" class="bg-red rounded-full badge mr-4" style="padding: 12px"></span>
-      <h3 class="header-title" style="font-size: 1.8rem;">{{ facility.name }}</h3>
+      <h3 class="header-title" style="font-size: 2rem;line-height: 28px;">{{ facility.name }}</h3>
     </div>
 
     <div class="card-text">
@@ -121,5 +121,8 @@ export default {
   @media (min-width: map-get($grid-breakpoints, lg)) {
     max-height: 690px;
   }
+
+
+
 }
 </style>

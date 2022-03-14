@@ -87,7 +87,7 @@ export default {
 }
 
 .customCard:hover {
-  box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 0 8px 20px 0 #000019!important;
   //font-size:12px!important;
 }
 </style>

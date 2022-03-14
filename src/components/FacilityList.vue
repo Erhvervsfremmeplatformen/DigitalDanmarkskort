@@ -87,6 +87,6 @@ export default {
 }
 
 .customCard:hover {
- // box-shadow: 0 8px 20px 0 rgb(0 0 0 / 25%)!important;
+  box-shadow: 0 8px 20px 0 rgb(0 0 0 / 25%)!important;
 }
 </style>

@@ -46,7 +46,7 @@ export default {
   computed: {
     /*
     ...mapGetters({
-      error: 'getError',
+      error: 'getError', a
       loading: 'getLoading'
     }),
     */

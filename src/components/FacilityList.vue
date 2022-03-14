@@ -21,7 +21,7 @@
       <div class="h-full d-flex align-items-center justify-content-center" v-if="error">
         <b>{{ error }}</b>
       </div>
-      <div v-for="facility in facilities" :key="facility.uId" class="card flex-none mb-5">
+      <div v-for="facility in facilities" :key="facility.uId" class="card flex-none mb-5 customCard">
         <Facility v-bind:facility="facility" />
         <div class="card-footer card-action pb-5 pt-0">
           <div class="action-links">
@@ -83,7 +83,7 @@ export default {
 }
 
 .customCard{
-  //box-shadow: none;
+  box-shadow: none;
 }
 
 .customCard:hover {

@@ -64,6 +64,7 @@ export default {
   methods: {
     ...mapActions(['setCurrentFacility', 'setMainTabIndex']),
     showFacilityDialog(facility: FacilityType) {
+      window.scrollTo(0, 0);
       this.setCurrentFacility(facility);
       this.setMainTabIndex(1);
     }

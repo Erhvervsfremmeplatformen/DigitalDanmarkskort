@@ -39,7 +39,7 @@ export interface TypeDictionary {
 
 export const ProviderTypes: TypeDictionary = {
     1: { text: 'Universitet eller andet vidensinstitut', description: ''},
-    2: { text: 'Privat virksomhed', description: ''},
+    2: { text: 'Privat virksomhed eller erhvervsdrivende forening', description: ''},
     4: { text: 'Forsyningsvirksomhed', description: ''},
     8: { text: 'GTS-institut', description: ''},
     16: { text: 'Hospital eller regionalt', description: ''},

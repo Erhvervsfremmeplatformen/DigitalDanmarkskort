@@ -1,6 +1,6 @@
 <template>
-  <div class="position-absolute z-10 fixed-bottom w-percent-100 p-4">
-    <div class="card flex-none position-relative pt-7">
+  <div :class="showFilter ? ' position-absolute z-10 fixed-bottom w-percent-100 p-4' : 'position-absolute z-10 fixed-bottom w-percent-100 p-4'"> 
+    <div  :class="showFilter ? ' card flex-none position-relative pt-7' : 'card flex-none position-relative pt-7'">
       <button
           style="right: 25px; top: 15px"
           class="modal-close function-link d-flex justify-content-center position-absolute"
@@ -9,7 +9,10 @@
         <i class="icon icon-close" />
         Luk
       </button>
-      <Facility :facility="facility" :show-more="showMore" />
+      <div :class="showFilter ? 'filtershow ' : ''">
+        <Facility :facility="facility" :show-more="showMore" />
+
+      </div>
       <div class="card-footer card-action">
         <div class="action-links">
           <button
@@ -40,7 +43,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      facility: 'getCurrentFacility'
+      facility: 'getCurrentFacility',
+      showFilter: 'getShowFilter'
     })
   },
   methods: {
@@ -64,4 +68,9 @@ export default {
 
 <style scoped lang="scss"> 
 @import '../styles/components/_external.scss';
+
+.filtershow{
+  max-height:480px;
+  overflow-y:auto;
+}
 </style>

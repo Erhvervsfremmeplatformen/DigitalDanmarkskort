@@ -44,6 +44,11 @@ export default {
   components: { Facility },
   inject: ['refreshKey'],
   computed: {
+    ...mapGetters({
+      currentFacility: 'getCurrentFacility',
+      filteredFacilities: 'getFilteredFacilities',
+      showFilter: 'getShowFilter'
+    }),
     /*
     ...mapGetters({
       error: 'getError', a

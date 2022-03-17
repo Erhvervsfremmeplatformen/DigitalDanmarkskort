@@ -1,6 +1,6 @@
 <template>
   <div class="position-relative position-lg-sticky" :class="showFilter ? 'map-container-on' : 'map-container-off'">
-    <div id="map-root" ref="map-root" class="w-percent-100 h-full" />
+    <div id="map-root" ref="map-root"  :class="showFilter ? 'w-percent-100 h-full small-map' : 'w-percent-100 h-full normal-map'" />
     <FacilityDialog v-if="currentFacility" />
   </div>
 </template>
@@ -25,6 +25,7 @@ import RenderFeature from 'ol/render/Feature';
 
 type MapData  = {
   source: VectorSource<Geometry>;
+  map: null
 }
 
 export default Vue.extend({
@@ -44,10 +45,17 @@ export default Vue.extend({
   },
   data: (): MapData => ({
     source: new VectorSource<Geometry>({ features: [] }),
+    map:null
   }),
   watch: {
     filteredFacilities() {
       this.setMarkers();
+    },
+    showFilter(){
+      console.log("hey");
+      var map = this.map;
+      setTimeout( function() { map.updateSize();}, 50);
+      
     }
   },
   async mounted() {
@@ -190,6 +198,7 @@ export default Vue.extend({
           showFullExtent: true,
         }),
       });
+      this.map = map;
 
       map.on("click", (event) => {
         clusters.getFeatures(event.pixel).then(async (features) => {
@@ -260,16 +269,24 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '../styles/components/_external.scss';
 
-#map-root {
-  height: 635px;
-  max-height: 635px;
+.normal-map {
+  height: 827px !important;
+  max-height: 827px !important;
+}
+.small-map {
+  height: 635px!important;
+  max-height: 635px!important;
 }
 
 @media (min-width: map-get($grid-breakpoints, lg)) {
-  #map-root {
-    height: 827px;
-    max-height: 827px;
-  }
+  //.normal-map {
+  //  height: 827px !important;
+  //  max-height: 827px !important;
+  //}
+  //.small-map {
+  //  height: 659px;
+  //  max-height: 659px;
+  //}
   .map-container-on {
     top: 308px;
   }

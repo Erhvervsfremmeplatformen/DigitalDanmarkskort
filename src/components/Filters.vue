@@ -35,7 +35,7 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                 <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                  <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
+                  <i class="icon icon-help i-white" slot="trigger" />
                 </Tooltip>
                   </div>
               </div>
@@ -77,7 +77,7 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                   <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                    <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
+                    <i class="icon icon-help i-white" slot="trigger"  />
                   </Tooltip>
                 </div>
               </div>
@@ -132,7 +132,7 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                   <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                    <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
+                    <i class="icon icon-help i-white" slot="trigger"  />
                   </Tooltip>
                 </div>
               </div>
@@ -174,7 +174,7 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                   <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                    <i class="icon icon-help i-white" slot="trigger" v-tippy="{ theme : 'light-border'}" />
+                    <i class="icon icon-help i-white" slot="trigger"  />
                   </Tooltip>
                 </div>
               </div>
@@ -201,7 +201,7 @@ export default {
   },
   inject: ['refreshKey'],
   mounted() {
-    new DKFDS.Tooltip(document.getElementById('Tooltip-ID'));
+    //new DKFDS.Tooltip(document.getElementById('Tooltip-ID'));
   },
   data() {
     const providerTypes = Object.keys(ProviderTypes).map(

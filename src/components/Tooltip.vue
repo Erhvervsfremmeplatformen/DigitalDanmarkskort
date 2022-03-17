@@ -64,10 +64,18 @@ export default {
     
     var open = false;
     var that = this;
-    this.tip.setProps({
-      theme:"tomato",
-      appendTo:"parent"
-    })
+    if(this.content.length > 112){
+      this.tip.setProps({
+        theme:"tomato",
+        appendTo:"parent",
+        placement: 'bottom'
+      })
+    } else {
+      this.tip.setProps({
+        theme: "tomato",
+        appendTo: "parent"
+      })
+    }
     var observer = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutationRecord) {
         var t = mutationRecord.target as HTMLElement;
@@ -188,6 +196,7 @@ export default {
     border: 1px solid #747474 !important;
     border-radius: 4px !important;
     padding: .3rem .6rem !important;
+    z-index: 999999!important;
 }
 
 * >>> .tippy-box[data-theme~='tomato'][data-placement^='top'] > .tippy-arrow::before {

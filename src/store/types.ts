@@ -45,7 +45,7 @@ export const ProviderTypes: TypeDictionary = {
     16: { text: 'Hospital', description: ''},
     32: { text: 'Kommune', description: ''},
     64: { text: 'Viden- og erhvervsklynge', description: ''},
-    128: { text: 'Andet, beskriv', description: ''}
+    128: { text: 'Andet', description: ''}
 };
 
 export const Categories: TypeDictionary = {
@@ -54,7 +54,7 @@ export const Categories: TypeDictionary = {
     4: { text:'Real world miljø', description: 'Et virkeligt miljø, som bruges til at teste, demonstrere eller udvikle fx et living lab eller et rensningsanlæg, hvor en del af spildevandet afledes til forsøg.'},
     8: { text:'Datamiljø', description: 'Fx serverkapacitet eller biobanker'},
     16: { text:'Certificering og dokumentation', description: 'Facilitet der bruges til at certificere eller dokumentere det testede produkt.'},
-    32: { text:'Andet, beskriv', description: ''},
+    // 32: { text:'Andet, beskriv', description: ''},
 };
 
 export const AreaTypes: TypeDictionary = {
@@ -75,7 +75,7 @@ export const AreaTypes: TypeDictionary = {
     16384: { text:'Robotteknologi', description: ''},
     32768: { text:'Turisme', description: ''},
     65536: { text:'Vand', description: ''},
-    131072: { text:'Andet, beskriv', description: ''}
+    // 131072: { text:'Andet, beskriv', description: ''}
 };
 
 export const ServiceTypes: TypeDictionary = {
@@ -84,5 +84,5 @@ export const ServiceTypes: TypeDictionary = {
     4: { text:'Komplet service', description: 'Herunder gennemførelse af fx forskning, test, demonstration eller udvikling uden brugerens involvering'},
     8: { text:'Anden rådgivning', description: '(Ikke teknisk support til faciliteten)'},
     16: { text:'Akkrediteret måling og/eller udførelse af certificering', description: ''},
-    32: { text:'Andet, beskriv', description: ''},
+    // 32: { text:'Andet, beskriv', description: ''},
 };

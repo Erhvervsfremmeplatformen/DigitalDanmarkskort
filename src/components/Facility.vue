@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-percent-100 max-h overflow-auto">
+  <div class="h-full w-percent-100 max-h">
     <div class="card-header d-flex align-items-center pt-5">
       <span v-if="facility.isVirtual" class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span>
       <span v-if="!facility.isVirtual" class="bg-red rounded-full badge mr-4" style="padding: 12px"></span>

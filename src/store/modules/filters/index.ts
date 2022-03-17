@@ -21,7 +21,7 @@ const state: FilterState = {
     facilities: [],
     filteredFacilities: [],
     error: '',
-    showFilter: false,
+    showFilter: true,
     loading: 'idle',
     searchString: '',
     providerTypes: [],

@@ -15,7 +15,8 @@
     <div class="card-action">
       <div class="action-links d-flex align-items-center">
         <i class="icon icon-open-in-new mr-4"></i>
-        <a v-bind:href="getWebsiteLink(facility.website)" target="_blank">Besøg website</a>
+        <a v-if="isWebsite(facility.website) && facility.website" v-bind:href="getWebsiteLink(facility.website)" target="_blank">Besøg website</a>
+        <a v-if="!isWebsite(facility.website) && facility.website" v-bind:href="getWebsiteLink(facility.website)" target="_blank">{{facility.website}}</a>
       </div>
     </div>
 
@@ -106,7 +107,15 @@ export default {
   },
   methods: {
     getWebsiteLink(url: string): string {
+      const re = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+      if (re.exec(url)) {
+       return `tel:${url}`;
+      }
       return url.startsWith('http') ? url : `https://${url}`;
+    },
+    isWebsite(url: string): boolean {
+      const re = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+      return !re.exec(url);
     }
   }
 };

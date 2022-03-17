@@ -1,9 +1,9 @@
 <template>
-  <div class="d-flex h-full w-percent-100">
-    <div class="flex-7 padding-right-16">
+  <div class="row">
+    <div class="col-7">
       <Map />
     </div>
-    <div class="flex-5 padding-left-16">
+    <div class="col-5">
       <FacilityList />
     </div>
   </div>

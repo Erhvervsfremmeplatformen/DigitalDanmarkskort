@@ -2,7 +2,7 @@
   <div  id="filter-multiselect" class="d-block w-percent-100">
     <div class="row mb-4">
       <div class="col-12 col-lg-6">
-        <div style="height: 28px">
+        <div style="height: 28px;line-height: 27px;">
           <label>
             <b>Område(r)</b>
           </label>
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <div style="height: 28px">
+        <div style="height: 28px;line-height: 27px;">
           <label>
             <b>Kategori(er)</b>
           </label>
@@ -88,7 +88,7 @@
     </div>
     <div class="row mb-4">
       <div class="col-12 col-lg-6">
-        <div class="d-flex" style="height: 28px">
+        <div class="d-flex" style="height: 28px;line-height: 27px;">
           <label class="mb-2 mr-2">
             <b>Service(s)</b>
           </label>
@@ -141,7 +141,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <div style="height: 28px">
+        <div style="height: 28px;line-height: 27px;">
           <label>
             <b>Udbydertype(r)</b>
           </label>

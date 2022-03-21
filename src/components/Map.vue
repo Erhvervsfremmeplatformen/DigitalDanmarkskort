@@ -1,6 +1,6 @@
 <template>
-  <div class="position-relative position-lg-sticky" :class="showFilter ? 'map-container-on' : 'map-container-off'">
-    <div id="map-root" ref="map-root"  :class="showFilter ? 'w-percent-100 h-full small-map' : 'w-percent-100 h-full normal-map'" />
+  <div class="position-relative" :class="showFilter ? 'map-container-on' : 'map-container-off'">
+    <div id="map-root" ref="map-root" class="w-percent-100 h-full normal-map" />
     <FacilityDialog v-if="currentFacility" />
   </div>
 </template>
@@ -270,12 +270,12 @@ export default Vue.extend({
 @import '../styles/components/_external.scss';
 
 .normal-map {
-  height: 827px !important;
-  max-height: 827px !important;
+  height: 781px !important;
+  max-height: 781px !important;
 }
 .small-map {
-  height: 635px!important;
-  max-height: 635px!important;
+  height: 613px!important;
+  max-height: 613px!important;
 }
 
 @media (min-width: map-get($grid-breakpoints, lg)) {
@@ -287,12 +287,6 @@ export default Vue.extend({
   //  height: 659px;
   //  max-height: 659px;
   //}
-  .map-container-on {
-    top: 308px;
-  }
 
-  .map-container-off {
-    top: 140px;
-  }
 }
 </style>

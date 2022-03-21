@@ -1,5 +1,5 @@
 <template>
-  <div class="sticky-lg-top row bg-alternative">
+  <div class="row bg-alternative">
     <div class="col-12">
       <h1>Danske Testfaciliteter</h1>
     </div>

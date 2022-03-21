@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row overflow-auto normal-map">
     <div class="col-12">
       <div class="card border-0 shadow-0">
         <div class="card-text bg-alternative">
@@ -90,6 +90,34 @@ export default {
 
 .customCard{
  border:1px solid #d7dadf;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+@media (min-width: map-get($grid-breakpoints, lg)) {
+  .normal-map {
+    height: 781px !important;
+    max-height: 781px !important;
+  }
 }
 
 .customCard:hover {

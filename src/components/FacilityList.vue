@@ -6,7 +6,9 @@
           <div class="d-flex align-items-center mb-2">
             <span class="bg-blue rounded-full badge mr-4" style="padding: 12px"></span> Virtuel facilitet
           </div>
-          <div class="d-flex align-items-center"><span class="bg-red rounded-full badge mr-4" style="padding: 12px"></span> Fysisk facilitet</div>
+          <div class="d-flex align-items-center"><span class="bg-red rounded-full badge mr-4"
+                                                       style="padding: 12px"></span> Fysisk facilitet
+          </div>
         </div>
       </div>
     </div>
@@ -15,14 +17,15 @@
         <div class="spinner"></div>
         <div class="spinner-status" role="status">Arbejder</div>
       </div>
-      <div class="h-full d-flex align-items-center justify-content-center" v-if="facilities.length === 0 && loading === 'idle' && !error">
+      <div class="h-full d-flex align-items-center justify-content-center"
+           v-if="facilities.length === 0 && loading === 'idle' && !error">
         <b>Ingen faciliteter fundet</b>
       </div>
       <div class="h-full d-flex align-items-center justify-content-center" v-if="error">
         <b>{{ error }}</b>
       </div>
       <div v-for="facility in facilities" :key="facility.uId" class="card flex-none mb-5 customCard">
-        <Facility v-bind:facility="facility" />
+        <Facility v-bind:facility="facility"/>
         <div class="card-footer card-action pb-5 pt-0">
           <div class="action-links">
             <button @click="showFacilityDialog(facility)" class="button button-primary">Læs mere</button>
@@ -35,13 +38,13 @@
 
 <script lang="ts">
 import Facility from './Facility.vue';
-import { Facility as FacilityType } from '../store/types';
-import { mapActions, mapGetters } from 'vuex';
-import { FiltersMutations } from '../store/modules/filters';
+import {Facility as FacilityType} from '../store/types';
+import {mapActions, mapGetters} from 'vuex';
+import {FiltersMutations} from '../store/modules/filters';
 
 export default {
   name: 'FacilityList',
-  components: { Facility },
+  components: {Facility},
   inject: ['refreshKey'],
   computed: {
     ...mapGetters({
@@ -69,9 +72,17 @@ export default {
   methods: {
     ...mapActions(['setCurrentFacility', 'setMainTabIndex']),
     showFacilityDialog(facility: FacilityType) {
-      window.scrollTo(0, 0);
+      if (this.isMobile())
+        window.scrollTo(0, 0);
       this.setCurrentFacility(facility);
       this.setMainTabIndex(1);
+    },
+    isMobile() {
+      if (screen.width <= 760) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };
@@ -88,8 +99,8 @@ export default {
   box-shadow: none;
 }
 
-.customCard{
- border:1px solid #d7dadf;
+.customCard {
+  border: 1px solid #d7dadf;
 }
 
 /* width */

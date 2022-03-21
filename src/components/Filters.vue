@@ -4,7 +4,7 @@
       <div class="col-12 col-lg-6">
         <div style="height: 28px;line-height: 27px;">
           <label>
-            <b>Område(r)</b>
+            <b>Branche(r)</b>
           </label>
         </div>
         <div class="my-multiselect">

@@ -23,7 +23,7 @@
     <div class="card-text">
       <p><b>Udbydertype:</b> {{ getProviders }}</p>
       <p><b>Kategori(er):</b> {{ getCategories }}</p>
-      <p><b>Område(r):</b> {{ getAreas }}</p>
+      <p><b>Branche(r):</b> {{ getAreas }}</p>
     </div>
 
     <div v-if="showMore" class="card-text">

@@ -52,7 +52,7 @@ export default Vue.extend({
       this.setMarkers();
     },
     showFilter(){
-      console.log("hey");
+     // console.log("hey");
       var map = this.map;
       setTimeout( function() { map.updateSize();}, 50);
       

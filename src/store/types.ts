@@ -42,7 +42,7 @@ export const ProviderTypes: TypeDictionary = {
     2: { text: 'Privat virksomhed eller erhvervsdrivende forening', description: ''},
     4: { text: 'Forsyningsvirksomhed', description: ''},
     8: { text: 'GTS-institut', description: ''},
-    16: { text: 'Hospital eller regionalt', description: ''},
+    16: { text: 'Hospital eller region', description: ''},
     32: { text: 'Kommuner eller kommunalt ejede selskaber', description: ''},
     64: { text: 'NGO eller forening', description: ''},
     128: { text: 'Andet', description: ''}

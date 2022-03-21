@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row mr-0">
     <div class="col-7">
       <Map />
     </div>
@@ -34,5 +34,9 @@ export default {
 
 .padding-left-16{
   padding-left:16px;
+}
+
+.mr-0{
+  margin-right: 0!important;
 }
 </style>

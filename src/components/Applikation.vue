@@ -34,6 +34,7 @@ import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
 import DesktopLayout from './DesktopLayout.vue';
 import {mapActions} from 'vuex';
+
 import store from '../store';
 
 export default {
@@ -83,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 @import '../styles/components/external.scss';
 @import '../styles/components/_applikation.scss';
+@import '../../node_modules/tippy.js/dist/tippy.css';
 .main-container {
   //height: 635px;
   min-height: 635px;

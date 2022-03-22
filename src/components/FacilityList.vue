@@ -28,7 +28,7 @@
         <Facility v-bind:facility="facility"/>
         <div class="card-footer card-action pb-5 pt-0">
           <div class="action-links">
-            <button @click="showFacilityDialog(facility)" class="button button-primary">Læs mere</button>
+            <button aria-label="Læs mere om faciliteten" @click="showFacilityDialog(facility)" class="button button-primary">Læs mere</button>
           </div>
         </div>
       </div>

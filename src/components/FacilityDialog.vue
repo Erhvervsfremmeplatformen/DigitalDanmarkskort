@@ -3,6 +3,7 @@
     <div  :class="showFilter ? ' card flex-none position-relative pt-7' : 'card flex-none position-relative pt-7'">
       <button
           style="right: 25px; top: 15px"
+          aria-label="Luk facilitets vindue"
           class="modal-close function-link d-flex justify-content-center position-absolute"
           @click="setCurrentFacility(undefined)"
       >
@@ -15,7 +16,7 @@
       </div>
       <div class="card-footer card-action">
         <div class="action-links">
-          <button
+          <button 
               class="d-flex flex-column align-items-center button m-auto button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
               @click="toggleShowMore"
           >
@@ -23,8 +24,8 @@
               <i v-if="showMore" class="icon icon-expand-more"></i>
               <i v-if="!showMore" class="icon icon-expand-less"></i>
             </span>
-            <span v-if="!showMore"> Se mere </span>
-            <span v-if="showMore"> Se mindre </span>
+            <span aria-label="Se mere" v-if="!showMore"> Se mere </span>
+            <span aria-label="Se mindre" v-if="showMore"> Se mindre </span>
           </button>
         </div>
       </div>

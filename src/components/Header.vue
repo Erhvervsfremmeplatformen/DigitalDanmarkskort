@@ -4,22 +4,22 @@
       <h1>Danske Testfaciliteter</h1>
     </div>
     <div class="col-12 py-4 d-flex justify-content-center align-items-center">
-      <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(0)">
+      <button aria-label="Se filtre" class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(0)">
         <i class="d-lg-none icon icon-tune"></i>
       </button>
       <div class="form-group search m-0 mx-4">
         <label for="searchString" class="sr-only">Søg efter indhold</label>
         <input id="searchString" class="form-input searchInput" name="searchString" title="Search" type="search" v-model="searchString" />
-        <button class="button button-search">
+        <button aria-label="søg efter en facilitet" class="button button-search">
           <i class="icon icon-search" />
         </button>
       </div>
 
-      <button class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(2)">
+      <button aria-label="se facilitetsliste" class="button button-unstyled button-small d-lg-none w-auto" @click="setMainIndex(2)">
         <i v-if="tabIndex === 0 || tabIndex === 1" class="icon icon-format-list-bulleted"></i>
         <i v-if="tabIndex === 2" class="icon icon-map"></i>
       </button>
-      <button class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center align-items-center" @click="setShowFilter">
+      <button aria-label="vis filtre" class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center align-items-center" @click="setShowFilter">
         <i v-if="show" class="icon icon-expand-more"></i>
         <i v-if="!show" class="icon icon-expand-less"></i>Filtrer
       </button>

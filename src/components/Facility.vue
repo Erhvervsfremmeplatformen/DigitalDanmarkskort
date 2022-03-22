@@ -15,8 +15,8 @@
     <div class="card-action">
       <div class="action-links d-flex align-items-center">
         <i class="icon icon-open-in-new mr-4"></i>
-        <a v-if="isWebsite(facility.website) && facility.website" v-bind:href="getWebsiteLink(facility.website)" target="_blank">Besøg website</a>
-        <a v-if="!isWebsite(facility.website) && facility.website" v-bind:href="getWebsiteLink(facility.website)" target="_blank">{{facility.website}}</a>
+        <a v-if="isWebsite(facility.website) && facility.website" v-bind:href="getWebsiteLink(facility.website)" target="_blank" aria-label="Besøg facilitetens website">Besøg website</a>
+        <a v-if="!isWebsite(facility.website) && facility.website" v-bind:href="getWebsiteLink(facility.website)" target="_blank" aria-label="Ring til faciliteten">{{facility.website}}</a>
       </div>
     </div>
 
@@ -35,7 +35,7 @@
     <div v-if="showMore" class="card-action">
       <div class="action-links d-flex align-items-center">
         <i class="icon icon-location-on mr-4"></i>
-        <a target="_blank" v-bind:href="`https://maps.apple.com/?daddr=${facility.city}+${facility.zip}+${facility.address}&dirflg=d`"
+        <a aria-label="Naviger til faciliteten" target="_blank" v-bind:href="`https://maps.apple.com/?daddr=${facility.city}+${facility.zip}+${facility.address}&dirflg=d`"
         >{{ facility.address }}, {{ facility.city }}, {{ facility.zip }}</a
         >
       </div>

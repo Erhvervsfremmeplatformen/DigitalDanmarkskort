@@ -95,9 +95,11 @@
 <!--          <button style="margin-top:-3px" id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Hvilken ydelse eller service er tilknyttet faciliteten?" data-tooltip-trigger="click">-->
 <!--            <i class="icon icon-help" /><span class="sr-only">Hvad betyder det?</span>-->
 <!--          </button>-->
+          <div class="custom-tooltip">
           <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?" >
             <i class="icon icon-help i-white" slot="trigger" />
           </Tooltip>
+            </div>
         </div>
         <!--          <button class="button button-unstyled">-->
         <!--            <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?">-->
@@ -261,6 +263,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+>>> .custom-tooltip {
+  @import "tippy.js/dist/tippy";
+
+   .tippy-arrow {
+    width: 16px;
+    height: 16px;
+    color: white;
+  }
+}
 //
 //@import '~tippy.js/dist/tippy';
 //>>> .tippy-box {

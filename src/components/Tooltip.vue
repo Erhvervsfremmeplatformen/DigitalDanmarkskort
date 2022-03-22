@@ -171,6 +171,7 @@ export default {
 
 <style lang="scss" scoped >
 @import '../styles/components/_external.scss';
+
 //.tippy-box {
 //  font-size: 1.6rem !important;
 //  line-height: 2.4rem!important;

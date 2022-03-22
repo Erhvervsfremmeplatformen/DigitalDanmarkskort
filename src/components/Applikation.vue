@@ -34,7 +34,6 @@ import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
 import DesktopLayout from './DesktopLayout.vue';
 import {mapActions} from 'vuex';
-import 'tippy.js/dist/tippy.css';
 import store from '../store';
 
 export default {

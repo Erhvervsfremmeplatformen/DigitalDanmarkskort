@@ -14,7 +14,7 @@
       <div class="d-flex flex-column footer" style="align-items: start;">
         <h4>Har du tilføjelser eller rettelser?</h4>
         <p>
-          Send en mail til: <a href="mailto:mab@atv.dk">mab@atv.dk</a>
+          Se vejledning og kontaktinformation på <a href="https://www.atv.dk/testfaciliteter">ATV’s hjemmeside</a>
         <p>
         <h4>Hvad er en facilitet?</h4>
         <p>

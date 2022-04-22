@@ -14,8 +14,9 @@
       <div class="d-flex flex-column footer" style="align-items: start;">
         <h4>Har du tilføjelser eller rettelser?</h4>
         <p>
-          Se vejledning og kontaktinformation på <a target="_blank" href="https://www.atv.dk/testfaciliteter">ATV’s hjemmeside</a>
-        <p>
+          Se vejledning og kontaktinformation på
+          <a target="_blank" href="https://www.atv.dk/testfaciliteter">ATV’s hjemmeside <i class="icon icon-open-in-new"/></a>
+        </p>
         <h4>Hvad er en facilitet?</h4>
         <p>
           Faciliteterne på kortet er fysiske eller virtuelle miljøer, hvor brugere fra fx virksomheder, universiteter og

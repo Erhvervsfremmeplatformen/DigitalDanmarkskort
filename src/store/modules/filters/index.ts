@@ -145,9 +145,9 @@ const mutations: MutationTree<FilterState> = {
 const actions: ActionTree<FilterState, RootState> = {
     async getFacilities({ commit, dispatch }) {
         commit(FiltersMutations.SET_LOADING, "pending");
-        
-        await axios.get(`https://api-ramboll.onltd.dk/v1/facilities`)
-        //await axios.get(`http://api.ramboll.on-limited.dk/v1/facilities`)
+
+        //await axios.get(`https://api-ramboll.onltd.dk/v1/facilities`)
+        await axios.get(`http://api.ramboll.on-limited.dk/v1/facilities`)
             .then(({ data }) => {
                 commit(FiltersMutations.SET_FACILITIES, data);
                 commit(FiltersMutations.SET_ERROR, "");

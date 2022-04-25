@@ -16,7 +16,7 @@
           <p>
             Se vejledning og kontaktinformation på
             <a target="_blank" class="icon-link" href="https://www.atv.dk/testfaciliteter">ATV’s hjemmeside
-              <i class="icon icon-open-in-new icon-svg"/></a>
+              <svg class="icon-svg" focusable="false" aria-hidden="true"><use xlink:href="#open-in-new"></use></svg></a>
           </p>
         <h4>Hvad er en facilitet?</h4>
         <p>
@@ -98,6 +98,10 @@ export default {
     min-height: 837px;
     //max-height: 837px;
   }
+}
+
+a:visited > .icon-link {
+  color: rgb(128, 0, 128);
 }
 
 .footer {

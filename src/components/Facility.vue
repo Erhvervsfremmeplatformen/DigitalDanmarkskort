@@ -63,7 +63,7 @@ export default {
           this.facility.providerTypes
               ?.map((item: ListItem) => {
                 const data = ProviderTypes[Number(item.value)];
-                return `${data.text}`;
+                if (data) return `${data?.text}`;
               })
               ?.join(', ') ?? ''
       );
@@ -73,7 +73,7 @@ export default {
           this.facility.categories
               ?.map((item: ListItem) => {
                 const data = Categories[Number(item.value)];
-                return `${data.text}`;
+                if (data) return `${data?.text}`;
               })
               ?.join(', ') ?? ''
       );
@@ -83,7 +83,7 @@ export default {
           this.facility.areaTypes
               ?.map((item: ListItem) => {
                 const data = AreaTypes[Number(item.value)];
-                return `${data.text}`;
+                if (data) return `${data?.text}`;
               })
               ?.join(', ') ?? ''
       );
@@ -93,7 +93,7 @@ export default {
           this.facility.serviceTypes
               ?.map((item: ListItem) => {
                 const data = ServiceTypes[Number(item.value)];
-                return `${data.text}`;
+                if (data) return `${data?.text}`;
               })
               ?.join(', ') ?? ''
       );

@@ -19,7 +19,11 @@
         <i v-if="tabIndex === 0 || tabIndex === 1" class="icon icon-format-list-bulleted"></i>
         <i v-if="tabIndex === 2" class="icon icon-map"></i>
       </button>
-      <button aria-label="vis filtre" class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center align-items-center" @click="setShowFilter">
+      <button
+        aria-label="vis filtre"
+        class="button button-small px-2 button-unstyled d-none d-lg-flex justify-content-center align-items-center"
+        @click="setShowFilter"
+      >
         <i v-if="show" class="icon icon-expand-more"></i>
         <i v-if="!show" class="icon icon-expand-less"></i>Filtrer
       </button>
@@ -33,10 +37,11 @@
 <script lang="ts">
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 import Filters from './Filters.vue';
+import { store } from '../store';
 
 export default {
   name: 'Header',
-  inject: ['refreshKey'],
+  //inject: ['refreshKey'],
   data: () => ({
     searchString: '',
     // show: false,
@@ -46,16 +51,19 @@ export default {
     Filters
   },
   computed: {
-    // ...mapGetters({
-    //   tabIndex: 'getMainTabIndex'
-    //   //show: 'getShowFilter'
-    // }),
+    ...mapGetters({
+      tabIndex: 'getMainTabIndex',
+      show: 'getShowFilter'
+    })
+    /*
+     TODO: AJP - fjern
     tabIndex() {
       return this.refreshKey.value && this.$store.getters.getMainTabIndex;
     },
     show() {
       return this.refreshKey.value && this.$store.getters.getShowFilter;
     }
+    */
   },
   watch: {
     // whenever question changes, this function will run
@@ -65,6 +73,9 @@ export default {
       }
       this.debounce = setTimeout(() => this.setSearchString(search), 300);
     }
+  },
+  beforeCreate() {
+    this.$store = store;
   },
   methods: {
     ...mapActions(['setSearchString', 'setMainTabIndex', 'setShowFilter']),

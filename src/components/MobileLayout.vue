@@ -19,6 +19,7 @@ import FacilityList from './FacilityList.vue';
 import Filters from './Filters.vue';
 import { mapGetters } from 'vuex';
 import { defineComponent } from 'vue';
+import { store } from '../store';
 
 export default defineComponent({
   name: 'MobileLayout',
@@ -27,14 +28,18 @@ export default defineComponent({
     FacilityList,
     Filters
   },
-  inject: ['refreshKey'],
+  //inject: ['refreshKey'],
   computed: {
     ...mapGetters({
       tabIndex: 'getMainTabIndex'
     })
+    // TODO: AJP - fjern
     // tabIndex() {
     //   return this.refreshKey.value && this.$store.getters.getMainTabIndex;
     // },
+  },
+  beforeCreate() {
+    this.$store = store;
   }
   // mounted() {
   //   console.log(`index: ${this.tabIndex}`);

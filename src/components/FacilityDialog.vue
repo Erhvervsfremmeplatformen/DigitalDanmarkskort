@@ -1,24 +1,23 @@
 <template>
-  <div :class="showFilter ? ' position-absolute z-10 fixed-bottom w-percent-100 p-4' : 'position-absolute z-10 fixed-bottom w-percent-100 p-4'"> 
-    <div  :class="showFilter ? ' card flex-none position-relative pt-7' : 'card flex-none position-relative pt-7'">
+  <div :class="showFilter ? ' position-absolute z-10 fixed-bottom w-percent-100 p-4' : 'position-absolute z-10 fixed-bottom w-percent-100 p-4'">
+    <div :class="showFilter ? ' card flex-none position-relative pt-7' : 'card flex-none position-relative pt-7'">
       <button
-          style="right: 25px; top: 15px"
-          aria-label="Luk facilitets vindue"
-          class="modal-close function-link d-flex justify-content-center position-absolute"
-          @click="setCurrentFacility(undefined)"
+        style="right: 25px; top: 15px"
+        aria-label="Luk facilitets vindue"
+        class="modal-close function-link d-flex justify-content-center position-absolute"
+        @click="setCurrentFacility(undefined)"
       >
         <i class="icon icon-close" />
         Luk
       </button>
       <div :class="showFilter ? 'filtershow ' : ''">
         <Facility :facility="facility" :show-more="showMore" />
-
       </div>
       <div class="card-footer card-action">
         <div class="action-links">
-          <button 
-              class="d-flex flex-column align-items-center button m-auto button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
-              @click="toggleShowMore"
+          <button
+            class="d-flex flex-column align-items-center button m-auto button-small px-2 button-unstyled d-none d-lg-flex justify-content-center"
+            @click="toggleShowMore"
           >
             <span>
               <i v-if="showMore" class="icon icon-expand-more"></i>
@@ -36,6 +35,8 @@
 <script lang="ts">
 import Facility from './Facility.vue';
 import { mapActions, mapGetters } from 'vuex';
+import { store } from '../store';
+
 export default {
   name: 'FacilityDialog',
   components: { Facility },
@@ -47,6 +48,9 @@ export default {
       facility: 'getCurrentFacility',
       showFilter: 'getShowFilter'
     })
+  },
+  beforeCreate() {
+    this.$store = store;
   },
   methods: {
     ...mapActions(['setCurrentFacility']),
@@ -67,11 +71,11 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"> 
+<style scoped lang="scss">
 @import '../styles/components/_external.scss';
 
-.filtershow{
-  max-height:480px;
-  overflow-y:auto;
+.filtershow {
+  max-height: 480px;
+  overflow-y: auto;
 }
 </style>

@@ -22,6 +22,7 @@ import { mapActions, mapGetters } from 'vuex';
 import { Facility } from '../store/types';
 import RenderFeature from 'ol/render/Feature';
 import { defineComponent } from 'vue';
+import { store } from '../store';
 
 type MapData = {
   source: VectorSource<Geometry>;
@@ -64,6 +65,9 @@ export default defineComponent({
     if (this.filteredFacilities.length > 0) {
       this.setMarkers();
     }
+  },
+  beforeCreate() {
+    this.$store = store;
   },
   methods: {
     ...mapActions(['getFacility', 'setCurrentFacility']),

@@ -9,7 +9,7 @@
         </div>
         <div class="my-multiselect">
           <multiselect
-            :value="stateAreaTypes"
+            v-model="selectedAreaTypes"
             select-label=""
             tag-placeholder=""
             deselect-label=""
@@ -22,7 +22,8 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setAreaTypes"
+            @select="item => addItem(item, selectedAreaTypes, setAreaTypes)"
+            @remove="item => removeItem(item, selectedAreaTypes, setAreaTypes)"
           >
             <template #tag="props">
               <span class="multiselect__tag">
@@ -53,8 +54,9 @@
           </label>
         </div>
         <div class="my-multiselect">
+          <!-- AJP: fix det så den kan understøtte flere værdier -->
           <multiselect
-            :value="stateCategories"
+            v-model="selectedCategories"
             select-label=""
             tag-placeholder=""
             deselect-label=""
@@ -67,7 +69,8 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setCategories"
+            @select="item => addItem(item, selectedCategories, setCategories)"
+            @remove="item => removeItem(item, selectedCategories, setCategories)"
           >
             <template #tag="props">
               <span class="multiselect__tag">
@@ -117,7 +120,7 @@
         <!--          </button>-->
         <div class="my-multiselect">
           <multiselect
-            :value="stateServiceTypes"
+            v-model="selectedServiceTypes"
             select-label=""
             tag-placeholder=""
             deselect-label=""
@@ -130,7 +133,8 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setServiceTypes"
+            @select="item => addItem(item, selectedServiceTypes, setServiceTypes)"
+            @remove="item => removeItem(item, selectedServiceTypes, setServiceTypes)"
           >
             <template #tag="props">
               <span class="multiselect__tag">
@@ -162,7 +166,7 @@
         </div>
         <div class="my-multiselect">
           <multiselect
-            :value="stateProviderTypes"
+            v-model="selectedProviderTypes"
             select-label=""
             tag-placeholder=""
             deselect-label=""
@@ -175,7 +179,8 @@
             :taggable="true"
             :preselect-first="false"
             open-direction="bottom"
-            @input="setProviderTypes"
+            @select="item => addItem(item, selectedProviderTypes, setProviderTypes)"
+            @remove="item => removeItem(item, selectedProviderTypes, setProviderTypes)"
           >
             <template #tag="props">
               <span class="multiselect__tag">
@@ -209,6 +214,7 @@ import { ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes } from '..
 import { mapActions, mapGetters } from 'vuex';
 import Tooltip from './Tooltip.vue';
 import * as DKFDS from 'dkfds';
+import { store } from '../store';
 
 export default {
   name: 'Filters',
@@ -216,7 +222,10 @@ export default {
     Tooltip,
     multiselect
   },
-  inject: ['refreshKey'],
+  //inject: ['refreshKey'],
+  beforeCreate() {
+    this.$store = store;
+  },
   mounted() {
     //new DKFDS.Tooltip(document.getElementById('Tooltip-ID'));
   },
@@ -235,6 +244,11 @@ export default {
     );
 
     return {
+      selectedCategories: this.stateCategories ?? [],
+      selectedProviderTypes: this.stateProviderTypes ?? [],
+      selectedAreaTypes: this.stateAreaTypes ?? [],
+      selectedServiceTypes: this.stateServiceTypes ?? [],
+
       categories: {
         options: categories
       },
@@ -250,14 +264,15 @@ export default {
     };
   },
   computed: {
-    /*
+    // TODO: AJP - tilføjet
     ...mapGetters({
       stateProviderTypes: 'getProviderTypes',
       stateAreaTypes: 'getAreaTypes',
       stateCategories: 'getCategories',
       stateServiceTypes: 'getServiceTypes'
-    }),
-    */
+    })
+    /*
+   TODO: AJP - fjern
     stateProviderTypes() {
       return this.refreshKey.value ? this.$store.getters.getProviderTypes : [];
     },
@@ -270,9 +285,29 @@ export default {
     stateServiceTypes() {
       return this.refreshKey.value ? this.$store.getters.getServiceTypes : [];
     }
+    */
   },
   methods: {
-    ...mapActions(['setProviderTypes', 'setCategories', 'setAreaTypes', 'setServiceTypes'])
+    ...mapActions(['setProviderTypes', 'setCategories', 'setAreaTypes', 'setServiceTypes']),
+
+    // TODO: AJP - kan det gøres smartere ?
+    addItem(item: ListItem, collection: ListItem[], func: Function) {
+      func([...collection, item]);
+    },
+    removeItem(item: ListItem, collection: ListItem[], func: Function) {
+      func(collection.filter((i: ListItem) => i.value !== item.value));
+    }
+
+    /*
+    addCategory(item: ListItem) {
+      this.setCategories([...this.selectedCategories, item]);
+    },
+    removeCategory(item: ListItem) {
+      const index = this.selectedCategories.findIndex((item: any) => item.value === item.value);
+      this.selectedCategories.splice(index, 1);
+      this.setCategories(this.selectedCategories);
+    }
+    */
   }
 };
 </script>
@@ -308,12 +343,11 @@ export default {
 //
 //}
 
+// TODO: AJP - fix it - moved from nested ...
+@import 'vue-multiselect/dist/vue-multiselect.css';
+
 :deep(.my-multiselect) {
   // import vue-multiselect as scoped
-
-  // TODO: AJP - fix it
-  //@import 'vue-multiselect/dist/vue-multiselect.min';
-
   // Override default vue-multiselect styling
   .multiselect__element {
     ul > li {

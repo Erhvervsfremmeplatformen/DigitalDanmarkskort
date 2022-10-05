@@ -38,7 +38,7 @@ import Header from './Header.vue';
 import DesktopLayout from './DesktopLayout.vue';
 import { mapActions } from 'vuex';
 
-import store from '../store';
+import { store } from '../store';
 
 export default {
   name: 'Applikation',
@@ -50,15 +50,20 @@ export default {
   computed: {
     ...mapActions(['getFacilities'])
   },
+  beforeCreate() {
+    this.$store = store;
+  },
   async mounted() {
+    /*
     this.$store.subscribe((mutation: any, state: any) => {
       this.refreshKey++;
     });
+    */
     await this.getFacilities;
   },
   data() {
     return {
-      refreshKey: 1
+      //refreshKey: 1
     };
   },
   methods: {
@@ -69,7 +74,9 @@ export default {
         return false;
       }
     }
-  },
+  }
+  /*
+  TODO: AJP - fjernet provide/inject
   provide() {
     // Make it available for sub components as "prop"
     const refreshKey = {};
@@ -80,8 +87,8 @@ export default {
     return {
       refreshKey
     };
-  },
-  store: store
+  }
+  */
 };
 </script>
 <style lang="scss" scoped>

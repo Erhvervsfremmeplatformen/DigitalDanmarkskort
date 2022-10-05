@@ -29,8 +29,11 @@ export default {
       type: String,
       required: true
     },
+    /*
+    AJP - ser ikke ud til at blive brugt til noget ???
     theme: 'tomato',
     appendTo: 'parent',
+    */
     toElement: {
       type: String
     },

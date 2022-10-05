@@ -1,5 +1,3 @@
-
-
 <template>
   <div v-on:click.stop.prevent>
     <div class="d-flex" ref="trigger">
@@ -22,7 +20,7 @@ export default {
     return {
       tip: null,
       options: {
-        content: String,
+        content: String
       }
     };
   },
@@ -32,7 +30,7 @@ export default {
       required: true
     },
     theme: 'tomato',
-    appendTo:"parent",
+    appendTo: 'parent',
     toElement: {
       type: String
     },
@@ -61,40 +59,36 @@ export default {
   },
   mounted() {
     this.init();
-    
+
     var open = false;
     var that = this;
-    if(this.content.length > 112){
+    if (this.content.length > 112) {
       this.tip.setProps({
-        theme:"tomato",
-        appendTo:"parent",
+        theme: 'tomato',
+        appendTo: 'parent',
         placement: 'bottom'
-      })
+      });
     } else {
       this.tip.setProps({
-        theme: "tomato",
-        appendTo: "parent"
-      })
+        theme: 'tomato',
+        appendTo: 'parent'
+      });
     }
     var observer = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutationRecord) {
         var t = mutationRecord.target as HTMLElement;
         if (t.classList.contains('multiselect__option--highlight')) {
-          
-          if(open != true) {
+          if (open != true) {
             that.tip.show();
             open = true;
-          } else{
+          } else {
             that.tip.hide();
             open = false;
           }
-      
         } else {
           that.tip.hide();
           open = false;
-
         }
-      
       });
     });
 
@@ -169,7 +163,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 @import '../styles/components/_external.scss';
 
 //.tippy-box {
@@ -185,35 +179,31 @@ export default {
 //  border-radius: 4px !important;
 //  padding: .3rem .6rem !important;
 //}
-* >>> .tippy-box[data-theme~='tomato'] {
-    font-size: 1.6rem !important;
-    line-height: 2.4rem!important;
-    font-weight: 400!important;
-    color: #1a1a1a!important;
-    text-transform: none!important;
-    font-size: 1.6rem !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3) !important;
-    background-color: #fff !important;
-    border: 1px solid #747474 !important;
-    border-radius: 4px !important;
-    padding: .3rem .6rem !important;
-    z-index: 999999!important;
+* :deep(.tippy-box[data-theme~='tomato']) {
+  font-size: 1.6rem !important;
+  line-height: 2.4rem !important;
+  font-weight: 400 !important;
+  color: #1a1a1a !important;
+  text-transform: none !important;
+  font-size: 1.6rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3) !important;
+  background-color: #fff !important;
+  border: 1px solid #747474 !important;
+  border-radius: 4px !important;
+  padding: 0.3rem 0.6rem !important;
+  z-index: 999999 !important;
 }
 
-* >>> .tippy-box[data-theme~='tomato'][data-placement^='top'] > .tippy-arrow::before {
+* :deep(.tippy-box[data-theme~='tomato'][data-placement^='top'] > .tippy-arrow::before) {
   border-top-color: white;
 }
-* >>> .tippy-box[data-theme~='tomato'][data-placement^='bottom']
-> .tippy-arrow::before {
+* :deep(.tippy-box[data-theme~='tomato'][data-placement^='bottom']) > .tippy-arrow::before {
   border-bottom-color: white;
 }
-* >>> .tippy-box[data-theme~='tomato'][data-placement^='left']
-> .tippy-arrow::before {
+* :deep(.tippy-box[data-theme~='tomato'][data-placement^='left']) > .tippy-arrow::before {
   border-left-color: white;
 }
-* >>> .tippy-box[data-theme~='tomato'][data-placement^='right']
-> .tippy-arrow::before {
+* :deep(.tippy-box[data-theme~='tomato'][data-placement^='right']) > .tippy-arrow::before {
   border-right-color: white;
 }
-
 </style>

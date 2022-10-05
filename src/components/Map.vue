@@ -18,19 +18,19 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { createEmpty, extend, getWidth } from 'ol/extent';
 import { fromLonLat } from 'ol/proj';
 import FacilityDialog from './FacilityDialog.vue';
-import {mapActions, mapGetters} from 'vuex';
-import {Facility} from '../store/types';
+import { mapActions, mapGetters } from 'vuex';
+import { Facility } from '../store/types';
 import RenderFeature from 'ol/render/Feature';
+import { defineComponent } from 'vue';
 
-
-type MapData  = {
+type MapData = {
   source: VectorSource<Geometry>;
-  map: null
-}
+  map: null;
+};
 
-export default Vue.extend({
+export default defineComponent({
   name: 'Map',
-  components: {FacilityDialog},
+  components: { FacilityDialog },
   computed: {
     ...mapGetters({
       currentFacility: 'getCurrentFacility',
@@ -39,23 +39,24 @@ export default Vue.extend({
     }),
     classObject: function () {
       return {
-        containerClass: this.showFilter ? "map-container-on" : "map-container-off"
-      }
+        containerClass: this.showFilter ? 'map-container-on' : 'map-container-off'
+      };
     }
   },
   data: (): MapData => ({
     source: new VectorSource<Geometry>({ features: [] }),
-    map:null
+    map: null
   }),
   watch: {
     filteredFacilities() {
       this.setMarkers();
     },
-    showFilter(){
-     // console.log("hey");
+    showFilter() {
+      // console.log("hey");
       var map = this.map;
-      setTimeout( function() { map.updateSize();}, 50);
-      
+      setTimeout(function () {
+        map.updateSize();
+      }, 50);
     }
   },
   async mounted() {
@@ -65,10 +66,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    ...mapActions([
-      'getFacility',
-      'setCurrentFacility',
-    ]),
+    ...mapActions(['getFacility', 'setCurrentFacility']),
     initiateMap() {
       // const source = new VectorSource({
       //   features: this.features,
@@ -77,39 +75,39 @@ export default Vue.extend({
       const source = this.source;
 
       const outerCircleFill = new Fill({
-        color: 'rgba(255,102,102,0.3)',
+        color: 'rgba(255,102,102,0.3)'
       });
       const innerCircleFill = new Fill({
-        color: 'rgba(255,0,0,0.7)',
+        color: 'rgba(255,0,0,0.7)'
       });
       const outerCircleFillVirtual = new Fill({
-        color: 'rgba(0,0,255,.3)',
+        color: 'rgba(0,0,255,.3)'
       });
       const innerCircleFillVirtual = new Fill({
-        color: 'rgba(0,0,255,.7)',
+        color: 'rgba(0,0,255,.7)'
       });
       const textFill = new Fill({
-        color: '#fff',
+        color: '#fff'
       });
       const textStroke = new Stroke({
         color: 'rgba(0, 0, 0, 0.6)',
-        width: 1,
+        width: 1
       });
       const innerCircle = new CircleStyle({
         radius: 14,
-        fill: innerCircleFill,
+        fill: innerCircleFill
       });
       const outerCircle = new CircleStyle({
         radius: 20,
-        fill: outerCircleFill,
+        fill: outerCircleFill
       });
       const innerCircleVirtual = new CircleStyle({
         radius: 14,
-        fill: innerCircleFillVirtual,
+        fill: innerCircleFillVirtual
       });
       const outerCircleVirtual = new CircleStyle({
         radius: 20,
-        fill: outerCircleFillVirtual,
+        fill: outerCircleFillVirtual
       });
       const virtualMarker = new CircleStyle({
         radius: 10,
@@ -125,66 +123,64 @@ export default Vue.extend({
         })
       });
 
-      function clusterStyle(feature: Feature<Geometry> | RenderFeature, resolution: number): (void | Style | Style[]) {
+      function clusterStyle(feature: Feature<Geometry> | RenderFeature, resolution: number): void | Style | Style[] {
         const features: Feature<Geometry>[] = feature.get('features');
         const size = features.length;
 
         const virtualFacilityFeatures = features.filter(x => x.get('isVirtual') === true);
         const notVirtualFacilityFeatures = features.filter(x => x.get('isVirtual') === false);
 
-        if(size === 1) {
+        if (size === 1) {
           const featureFacility = feature.get('features')[0];
           const isVirtual = featureFacility.get('isVirtual');
 
           return new Style({
             image: isVirtual ? virtualMarker : physicalMarker
           });
-        }
-        else if (virtualFacilityFeatures.length > 1 && virtualFacilityFeatures.length > notVirtualFacilityFeatures.length)
-        {
+        } else if (virtualFacilityFeatures.length > 1 && virtualFacilityFeatures.length > notVirtualFacilityFeatures.length) {
           return [
             new Style({
-              image: outerCircleVirtual,
+              image: outerCircleVirtual
             }),
             new Style({
               image: innerCircleVirtual,
               text: new Text({
                 text: size.toString(),
                 fill: textFill,
-                stroke: textStroke,
-              }),
-            }),
+                stroke: textStroke
+              })
+            })
           ];
         }
 
         return [
           new Style({
-            image: outerCircle,
+            image: outerCircle
           }),
           new Style({
             image: innerCircle,
             text: new Text({
               text: size.toString(),
               fill: textFill,
-              stroke: textStroke,
-            }),
-          }),
+              stroke: textStroke
+            })
+          })
         ];
       }
 
       const clusterSource = new Cluster({
         distance: 35,
-        source: source,
+        source: source
       });
 
       // Layer displaying the clusters and individual features.
       const clusters = new VectorLayer({
         source: clusterSource,
-        style: clusterStyle,
+        style: clusterStyle
       });
 
       const raster = new TileLayer({
-        source: new OSM(),
+        source: new OSM()
       });
 
       const map = new Map({
@@ -195,30 +191,23 @@ export default Vue.extend({
           center: fromLonLat([9.501785, 56.26392]),
           zoom: 7,
           maxZoom: 19,
-          showFullExtent: true,
-        }),
+          showFullExtent: true
+        })
       });
       this.map = map;
 
-      map.on("click", (event) => {
-        clusters.getFeatures(event.pixel).then(async (features) => {
+      map.on('click', event => {
+        clusters.getFeatures(event.pixel).then(async features => {
           if (features.length > 0) {
-            const clusterMembers = features[0].get("features");
+            const clusterMembers = features[0].get('features');
 
             const view = map.getView();
             if (clusterMembers.length > 1) {
               // Calculate the extent of the cluster members.
               const extent = createEmpty();
-              clusterMembers.forEach((feature: Feature<any>) =>
-                  extend(extent, feature.getGeometry().getExtent())
-              );
+              clusterMembers.forEach((feature: Feature<any>) => extend(extent, feature.getGeometry().getExtent()));
               const resolution = map.getView().getResolution();
-              if (
-                  view.getZoom() === view.getMaxZoom() ||
-                  (resolution &&
-                      getWidth(extent) < resolution &&
-                      getWidth(extent) < resolution)
-              ) {
+              if (view.getZoom() === view.getMaxZoom() || (resolution && getWidth(extent) < resolution && getWidth(extent) < resolution)) {
                 view.fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
                 // Show an expanded view of the cluster members.
                 // clickFeature = features[0];
@@ -228,8 +217,7 @@ export default Vue.extend({
                 // Zoom to the extent of the cluster members.
                 view.fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
               }
-            }
-            else if (clusterMembers.length === 1) {
+            } else if (clusterMembers.length === 1) {
               const feature = clusterMembers[0];
               const facilityId = feature.get('facilityId');
 
@@ -245,10 +233,9 @@ export default Vue.extend({
       const facilityCount = facilities.length;
       const features = new Array<Feature<Geometry>>();
 
-      for(let i = 0; i < facilityCount; i++) {
+      for (let i = 0; i < facilityCount; i++) {
         const facility = facilities[i];
-        if (!facility.longitude || !facility.latitude)
-        {
+        if (!facility.longitude || !facility.latitude) {
           continue;
         }
 
@@ -262,7 +249,7 @@ export default Vue.extend({
       this.source.clear();
       this.source.addFeatures(features);
     }
-  },
+  }
 });
 </script>
 
@@ -274,8 +261,8 @@ export default Vue.extend({
   max-height: 781px !important;
 }
 .small-map {
-  height: 613px!important;
-  max-height: 613px!important;
+  height: 613px !important;
+  max-height: 613px !important;
 }
 
 @media (min-width: map-get($grid-breakpoints, lg)) {
@@ -287,6 +274,5 @@ export default Vue.extend({
   //  height: 659px;
   //  max-height: 659px;
   //}
-
 }
 </style>

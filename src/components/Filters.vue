@@ -1,8 +1,8 @@
 <template>
-  <div  id="filter-multiselect" class="d-block w-percent-100">
+  <div id="filter-multiselect" class="d-block w-percent-100">
     <div class="row mb-4">
       <div class="col-12 col-lg-6">
-        <div style="height: 28px;line-height: 27px;">
+        <div style="height: 28px; line-height: 27px">
           <label>
             <b>Branche(r)</b>
           </label>
@@ -24,27 +24,30 @@
             open-direction="bottom"
             @input="setAreaTypes"
           >
-            <template slot="tag" slot-scope="props">
+            <template #tag="props">
               <span class="multiselect__tag">
                 <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
                 <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
               ></span>
             </template>
-            <template slot="option" slot-scope="props">
+            <template #option="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
-                <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                  <i class="icon icon-help i-white" slot="trigger" />
-                </Tooltip>
-                  </div>
+                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
+                    <!-- TODO: AJP - wrapped i template -->
+                    <template #trigger>
+                      <i class="icon icon-help i-white" />
+                    </template>
+                  </Tooltip>
+                </div>
               </div>
             </template>
           </multiselect>
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <div style="height: 28px;line-height: 27px;">
+        <div style="height: 28px; line-height: 27px">
           <label>
             <b>Kategori(er)</b>
           </label>
@@ -66,18 +69,21 @@
             open-direction="bottom"
             @input="setCategories"
           >
-            <template slot="tag" slot-scope="props">
+            <template #tag="props">
               <span class="multiselect__tag">
                 <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
                 <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
               ></span>
             </template>
-            <template slot="option" slot-scope="props">
+            <template #option="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
-                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                    <i class="icon icon-help i-white" slot="trigger"  />
+                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
+                    <!-- TODO: AJP - wrapped i template -->
+                    <template #trigger>
+                      <i class="icon icon-help i-white" />
+                    </template>
                   </Tooltip>
                 </div>
               </div>
@@ -88,18 +94,21 @@
     </div>
     <div class="row mb-4">
       <div class="col-12 col-lg-6">
-        <div class="d-flex" style="height: 28px;line-height: 27px;">
+        <div class="d-flex" style="height: 28px; line-height: 27px">
           <label class="mb-2 mr-2">
             <b>Service(s)</b>
           </label>
-<!--          <button style="margin-top:-3px" id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Hvilken ydelse eller service er tilknyttet faciliteten?" data-tooltip-trigger="click">-->
-<!--            <i class="icon icon-help" /><span class="sr-only">Hvad betyder det?</span>-->
-<!--          </button>-->
+          <!--          <button style="margin-top:-3px" id="Tooltip-ID" class="js-tooltip button-unstyled" data-tooltip="Hvilken ydelse eller service er tilknyttet faciliteten?" data-tooltip-trigger="click">-->
+          <!--            <i class="icon icon-help" /><span class="sr-only">Hvad betyder det?</span>-->
+          <!--          </button>-->
           <div class="custom-tooltip">
-          <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?" >
-            <i class="icon icon-help i-white" slot="trigger" />
-          </Tooltip>
-            </div>
+            <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?">
+              <!-- TODO: AJP - wrapped i template -->
+              <template #trigger>
+                <i class="icon icon-help i-white" />
+              </template>
+            </Tooltip>
+          </div>
         </div>
         <!--          <button class="button button-unstyled">-->
         <!--            <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?">-->
@@ -123,18 +132,21 @@
             open-direction="bottom"
             @input="setServiceTypes"
           >
-            <template slot="tag" slot-scope="props">
+            <template #tag="props">
               <span class="multiselect__tag">
                 <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
                 <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
               ></span>
             </template>
-            <template slot="option" slot-scope="props">
+            <template #option="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
-                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                    <i class="icon icon-help i-white" slot="trigger"  />
+                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
+                    <!-- TODO: AJP - wrapped i template -->
+                    <template #trigger>
+                      <i class="icon icon-help i-white" />
+                    </template>
                   </Tooltip>
                 </div>
               </div>
@@ -143,7 +155,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <div style="height: 28px;line-height: 27px;">
+        <div style="height: 28px; line-height: 27px">
           <label>
             <b>Udbydertype(r)</b>
           </label>
@@ -165,18 +177,21 @@
             open-direction="bottom"
             @input="setProviderTypes"
           >
-            <template slot="tag" slot-scope="props">
+            <template #tag="props">
               <span class="multiselect__tag">
                 <span>{{ props.option.text.length > 30 ? `${props.option.text.substr(0, 30)}...` : props.option.text }}</span>
                 <i aria-hidden="true" tabindex="1" @click="props.remove(props.option)" class="multiselect__tag-icon"></i
               ></span>
             </template>
-            <template slot="option" slot-scope="props">
+            <template #option="props">
               <div class="option__desc d-flex align-items-center">
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
-                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description" >
-                    <i class="icon icon-help i-white" slot="trigger"  />
+                  <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
+                    <!-- TODO: AJP - wrapped i template -->
+                    <template #trigger>
+                      <i class="icon icon-help i-white" />
+                    </template>
                   </Tooltip>
                 </div>
               </div>
@@ -189,7 +204,7 @@
 </template>
 
 <script lang="ts">
-import Multiselect from 'vue-multiselect';
+import multiselect from 'vue-multiselect';
 import { ProviderTypes, ListItem, Categories, AreaTypes, ServiceTypes } from '../store/types';
 import { mapActions, mapGetters } from 'vuex';
 import Tooltip from './Tooltip.vue';
@@ -199,7 +214,7 @@ export default {
   name: 'Filters',
   components: {
     Tooltip,
-    Multiselect
+    multiselect
   },
   inject: ['refreshKey'],
   mounted() {
@@ -263,11 +278,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+:deep(.custom-tooltip) {
+  @import 'tippy.js/dist/tippy';
 
->>> .custom-tooltip {
-  @import "tippy.js/dist/tippy";
-
-   .tippy-arrow {
+  .tippy-arrow {
     width: 16px;
     height: 16px;
     color: white;
@@ -291,14 +305,14 @@ export default {
 //    border: 1px solid #747474 !important;
 //    border-radius: 4px !important;
 //    padding: .3rem .6rem !important;
-//  
+//
 //}
 
-
->>> .my-multiselect {
+:deep(.my-multiselect) {
   // import vue-multiselect as scoped
-  
-  @import 'vue-multiselect/dist/vue-multiselect.min';
+
+  // TODO: AJP - fix it
+  //@import 'vue-multiselect/dist/vue-multiselect.min';
 
   // Override default vue-multiselect styling
   .multiselect__element {

@@ -2,29 +2,28 @@
 <template>
   <div class="applikation-container bg-alternative">
     <div class="grow d-flex flex-column">
-      <Header/>
+      <Header />
       <div class="main-container">
         <div v-if="!isMobile()">
-          <DesktopLayout/>
+          <DesktopLayout />
         </div>
         <div v-else>
-          <MobileLayout/>
+          <MobileLayout />
         </div>
       </div>
-      <div class="d-flex flex-column footer" style="align-items: start;">
+      <div class="d-flex flex-column footer" style="align-items: start">
         <h4>Har du tilføjelser eller rettelser?</h4>
-          <p>
-            Se vejledning og kontaktinformation på
-            <a target="_blank" class="icon-link" href="https://www.atv.dk/testfaciliteter">ATV’s hjemmeside
-              <svg class="icon-svg" focusable="false" aria-hidden="true"><use xlink:href="#open-in-new"></use></svg></a>
-          </p>
+        <p>
+          Se vejledning og kontaktinformation på
+          <a target="_blank" class="icon-link" href="https://www.atv.dk/testfaciliteter"
+            >ATV’s hjemmeside <svg class="icon-svg" focusable="false" aria-hidden="true"><use xlink:href="#open-in-new"></use></svg
+          ></a>
+        </p>
         <h4>Hvad er en facilitet?</h4>
         <p>
-          Faciliteterne på kortet er fysiske eller virtuelle miljøer, hvor brugere fra fx virksomheder, universiteter og
-          offentlige aktører kan
-          udføre eller få udført test, demonstration og/eller udvikling af nye produkter, services, processer eller
-          organisatoriske løsninger.
-          Faciliteterne har en etableret forretningsmodel og/eller service tilknyttet og kan tilgås efter aftale.
+          Faciliteterne på kortet er fysiske eller virtuelle miljøer, hvor brugere fra fx virksomheder, universiteter og offentlige aktører kan udføre
+          eller få udført test, demonstration og/eller udvikling af nye produkter, services, processer eller organisatoriske løsninger. Faciliteterne
+          har en etableret forretningsmodel og/eller service tilknyttet og kan tilgås efter aftale.
         </p>
       </div>
     </div>
@@ -34,8 +33,10 @@
 <script lang="ts">
 import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
+// TODO: AJP - fjern ts-ignore ...
+// @ts-ignore
 import DesktopLayout from './DesktopLayout.vue';
-import {mapActions} from 'vuex';
+import { mapActions } from 'vuex';
 
 import store from '../store';
 

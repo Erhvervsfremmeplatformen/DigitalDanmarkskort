@@ -33,8 +33,6 @@
 <script lang="ts">
 import MobileLayout from './MobileLayout.vue';
 import Header from './Header.vue';
-// TODO: AJP - fjern ts-ignore ...
-// @ts-ignore
 import DesktopLayout from './DesktopLayout.vue';
 import { mapActions } from 'vuex';
 
@@ -54,17 +52,7 @@ export default {
     this.$store = store;
   },
   async mounted() {
-    /*
-    this.$store.subscribe((mutation: any, state: any) => {
-      this.refreshKey++;
-    });
-    */
     await this.getFacilities;
-  },
-  data() {
-    return {
-      //refreshKey: 1
-    };
   },
   methods: {
     isMobile() {
@@ -75,20 +63,6 @@ export default {
       }
     }
   }
-  /*
-  TODO: AJP - fjernet provide/inject
-  provide() {
-    // Make it available for sub components as "prop"
-    const refreshKey = {};
-    Object.defineProperty(refreshKey, 'value', {
-      enumerable: true,
-      get: () => this.refreshKey
-    });
-    return {
-      refreshKey
-    };
-  }
-  */
 };
 </script>
 <style lang="scss" scoped>

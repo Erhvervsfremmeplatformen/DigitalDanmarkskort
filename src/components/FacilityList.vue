@@ -42,29 +42,14 @@ import { store } from '../store';
 export default {
   name: 'FacilityList',
   components: { Facility },
-  //inject: ['refreshKey'],
   computed: {
     ...mapGetters({
       currentFacility: 'getCurrentFacility',
-      // AJP filteredFacilities -> facilities
       facilities: 'getFilteredFacilities',
       showFilter: 'getShowFilter',
       error: 'getError',
       loading: 'getLoading'
     })
-    /*
-    TODO: AJP - fjern
-    // Use the injected refreshKey to make the store getter reeactive
-    facilities() {
-      return this.refreshKey.value && this.$store.getters.getFilteredFacilities;
-    },
-    error() {
-      return this.refreshKey.value && this.$store.getters.getError;
-    },
-    loading() {
-      return this.refreshKey.value && this.$store.getters.getLoading;
-    }
-    */
   },
   beforeCreate() {
     this.$store = store;

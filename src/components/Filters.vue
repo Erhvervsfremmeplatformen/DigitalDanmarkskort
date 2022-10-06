@@ -36,7 +36,6 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                   <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                    <!-- TODO: AJP - wrapped i template -->
                     <template #trigger>
                       <i class="icon icon-help i-white" />
                     </template>
@@ -54,7 +53,6 @@
           </label>
         </div>
         <div class="my-multiselect">
-          <!-- AJP: fix det så den kan understøtte flere værdier -->
           <multiselect
             v-model="selectedCategories"
             select-label=""
@@ -83,7 +81,6 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                   <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                    <!-- TODO: AJP - wrapped i template -->
                     <template #trigger>
                       <i class="icon icon-help i-white" />
                     </template>
@@ -106,7 +103,6 @@
           <!--          </button>-->
           <div class="custom-tooltip">
             <Tooltip content="Hvilken ydelse eller service er tilknyttet faciliteten?">
-              <!-- TODO: AJP - wrapped i template -->
               <template #trigger>
                 <i class="icon icon-help i-white" />
               </template>
@@ -147,7 +143,6 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                   <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                    <!-- TODO: AJP - wrapped i template -->
                     <template #trigger>
                       <i class="icon icon-help i-white" />
                     </template>
@@ -193,7 +188,6 @@
                 <span class="option__title mr-2">{{ props.option.text }}</span>
                 <div class="custom-tooltip">
                   <Tooltip v-if="props.option.description" trigger="click" :content="props.option.description">
-                    <!-- TODO: AJP - wrapped i template -->
                     <template #trigger>
                       <i class="icon icon-help i-white" />
                     </template>
@@ -222,7 +216,6 @@ export default {
     Tooltip,
     multiselect
   },
-  //inject: ['refreshKey'],
   beforeCreate() {
     this.$store = store;
   },
@@ -264,50 +257,22 @@ export default {
     };
   },
   computed: {
-    // TODO: AJP - tilføjet
     ...mapGetters({
       stateProviderTypes: 'getProviderTypes',
       stateAreaTypes: 'getAreaTypes',
       stateCategories: 'getCategories',
       stateServiceTypes: 'getServiceTypes'
     })
-    /*
-   TODO: AJP - fjern
-    stateProviderTypes() {
-      return this.refreshKey.value ? this.$store.getters.getProviderTypes : [];
-    },
-    stateAreaTypes() {
-      return this.refreshKey.value ? this.$store.getters.getAreaTypes : [];
-    },
-    stateCategories() {
-      return this.refreshKey.value ? this.$store.getters.getCategories : [];
-    },
-    stateServiceTypes() {
-      return this.refreshKey.value ? this.$store.getters.getServiceTypes : [];
-    }
-    */
   },
   methods: {
     ...mapActions(['setProviderTypes', 'setCategories', 'setAreaTypes', 'setServiceTypes']),
 
-    // TODO: AJP - kan det gøres smartere ?
     addItem(item: ListItem, collection: ListItem[], func: Function) {
       func([...collection, item]);
     },
     removeItem(item: ListItem, collection: ListItem[], func: Function) {
       func(collection.filter((i: ListItem) => i.value !== item.value));
     }
-
-    /*
-    addCategory(item: ListItem) {
-      this.setCategories([...this.selectedCategories, item]);
-    },
-    removeCategory(item: ListItem) {
-      const index = this.selectedCategories.findIndex((item: any) => item.value === item.value);
-      this.selectedCategories.splice(index, 1);
-      this.setCategories(this.selectedCategories);
-    }
-    */
   }
 };
 </script>
@@ -343,11 +308,10 @@ export default {
 //
 //}
 
-// TODO: AJP - fix it - moved from nested ...
+// import vue-multiselect as scoped
 @import 'vue-multiselect/dist/vue-multiselect.css';
 
 :deep(.my-multiselect) {
-  // import vue-multiselect as scoped
   // Override default vue-multiselect styling
   .multiselect__element {
     ul > li {

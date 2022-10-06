@@ -9,9 +9,9 @@
   </div>
 </template>
 
-<script>
-import Map from './Map';
-import FacilityList from './FacilityList';
+<script lang="ts">
+import Map from './Map.vue';
+import FacilityList from './FacilityList.vue';
 export default {
   name: 'DesktopLayout',
   components: { FacilityList, Map }
@@ -21,22 +21,22 @@ export default {
 <style scoped lang="scss">
 @import '../styles/components/_external.scss';
 
-.flex-7{
-  flex:7;
+.flex-7 {
+  flex: 7;
 }
-.flex-5{
-  flex:5;
-}
-
-.padding-right-16{
-  padding-right:16px;
+.flex-5 {
+  flex: 5;
 }
 
-.padding-left-16{
-  padding-left:16px;
+.padding-right-16 {
+  padding-right: 16px;
 }
 
-.mr-0{
-  margin-right: 0!important;
+.padding-left-16 {
+  padding-left: 16px;
+}
+
+.mr-0 {
+  margin-right: 0 !important;
 }
 </style>

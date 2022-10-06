@@ -55,15 +55,6 @@ export default {
       tabIndex: 'getMainTabIndex',
       show: 'getShowFilter'
     })
-    /*
-     TODO: AJP - fjern
-    tabIndex() {
-      return this.refreshKey.value && this.$store.getters.getMainTabIndex;
-    },
-    show() {
-      return this.refreshKey.value && this.$store.getters.getShowFilter;
-    }
-    */
   },
   watch: {
     // whenever question changes, this function will run

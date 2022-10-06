@@ -13,7 +13,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import Map from './Map.vue';
 import FacilityList from './FacilityList.vue';
 import Filters from './Filters.vue';
@@ -28,15 +27,10 @@ export default defineComponent({
     FacilityList,
     Filters
   },
-  //inject: ['refreshKey'],
   computed: {
     ...mapGetters({
       tabIndex: 'getMainTabIndex'
     })
-    // TODO: AJP - fjern
-    // tabIndex() {
-    //   return this.refreshKey.value && this.$store.getters.getMainTabIndex;
-    // },
   },
   beforeCreate() {
     this.$store = store;
